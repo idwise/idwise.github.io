@@ -1,5 +1,5 @@
 # Build settings
-remote_theme:pmarsceill/just-the-docs
+remote_theme: pmarsceill/just-the-docs
 
 # Site settings
 title: IDWise Developer Website
