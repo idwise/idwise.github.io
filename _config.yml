@@ -1,9 +1,12 @@
 # Build settings
 remote_theme: pmarsceill/just-the-docs
-
 # Site settings
 title: "IDWise Developer Website"
 description: "A website for developers to integrate and interact with IDWise!"
+logo: "https://www.idwise.com/images/logo-dark.png"
+
+
+<!-- 
 url: "https://developers.idwise.com" 
 search_enabled: false
 search:
@@ -103,3 +106,4 @@ compress_html:
   profile: false
   # ignore:
   #   envs: all
+  -->
