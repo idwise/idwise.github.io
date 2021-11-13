@@ -2,7 +2,7 @@
 remote_theme: pmarsceill/just-the-docs
 
 # Site settings
-title: IDWise Developer Website
+title: IDWise Developer Website!
 description: A website for developers to integrate and interact with IDWise!
 baseurl: "/"
 url: "https://developers.idwise.com" 
