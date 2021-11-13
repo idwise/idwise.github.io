@@ -1,3 +1,11 @@
+---
+layout: default
+title: Home
+nav_order: 1
+has_children: true
+---
+
+
 ## Welcome to IDWise Developers Site!
 
 * [IDWise Android SDK](https://developers.idwise.com/idwise-android-sdk-documentation/)
