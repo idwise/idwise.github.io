@@ -35,17 +35,17 @@ compress_html:
   blanklines: false
   profile: false
 
-aux_links:
-  "IDWise Android SDK":
-    - "idwise-android-sdk-documentation"
-  "IDWise iOS SDK":
-    - "idwise-ios-sdk-documentation"
-  "IDWise Web SDK":
-    - "idwise-web-sdk"
-  "IDWise Document Processing API":
-    - "document-processing-api"
-  "Tech Interview Preapration & Resources":
-    - "interview-prep"
+# aux_links:
+#   "IDWise Android SDK":
+#     - "idwise-android-sdk-documentation"
+#   "IDWise iOS SDK":
+#     - "idwise-ios-sdk-documentation"
+#   "IDWise Web SDK":
+#     - "idwise-web-sdk"
+#   "IDWise Document Processing API":
+#     - "document-processing-api"
+#   "Tech Interview Preapration & Resources":
+#     - "interview-prep"
 
 # 
 # search_enabled: false
