@@ -5,5 +5,5 @@ title: IDWise iOS SDK
 nav_order: 3
 ---
 <script>
-window.location.href = "https://developers.idwise.com/idwise-ios-sdk-documentation/"
+window.location.href = "https://github.com/idwise/idwise-ios-sdk-documentation"
 </script>
