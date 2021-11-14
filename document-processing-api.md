@@ -5,6 +5,6 @@ title: IDWise Document Processing API
 nav_order: 5
 ---
 <script>
-window.location.href = "https://developers.idwise.com/document-processing-api/"
+window.location.href = "https://github.com/idwise/document-processing-api"
 </script>
 
