@@ -5,5 +5,5 @@ title: IDWise Web SDK
 nav_order: 4
 ---
 <script>
-window.location.href = "https://developers.idwise.com/idwise-web-sdk/"
+window.location.href = "https://github.com/idwise/idwise-web-sdk"
 </script>
