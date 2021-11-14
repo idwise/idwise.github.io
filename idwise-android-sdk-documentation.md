@@ -5,5 +5,5 @@ title: Android SDK Documentation
 nav_order: 2
 ---
 <script>
-window.location.href = "https://developers.idwise.com/idwise-android-sdk-documentation"
+window.location.href = "https://github.com/idwise/idwise-android-sdk-documentation"
 </script>
