@@ -19,6 +19,7 @@ jtd.addEvent(toggleDarkMode, 'click', function(){
   }
 });
 </script>
+
 ## IDWise Tech Interview Prep Resources
 
 Dear Candidate!
@@ -31,10 +32,11 @@ This file should help you understand the structure of the interview.
 
 Our interview consists of 3 main components:
 
-1.  Coding 30-45 minutes
+1.  Coding + Role Specific 60-75 minutes
 2.  System Design 30-45 minutes
-3.  Behavioural + Final Q&A 15-30 minutes
+3.  Project Retrospective + Final Q&A 15-30 minutes
 
+The interview is generally split to two separate sessions: the first one covers the first component (Coding + Role Specific) and the second session covers the rest.
 
 ## What will you need on the day?
 * ⏰ **Time:** Please block the time for the interview, 2.5 hours at least, as some of the parts can go over a bit.
@@ -42,7 +44,7 @@ Our interview consists of 3 main components:
 * 🎧 **Good Pair of Heaephones:** to allow the best communicatin.
 * 💻 **Computer:** it might seem obvious 🙂, but some candidates joined from their phones with no access to a computer, which wouldn't allow for the best interview experience!
 
-## Coding Interview
+## Coding Interview + Role Specific Questions
 
 This part of the interview focuses on your coding and problem-solving skills, where you'll solve general coding questions, In this interview, there will be a high emphasis on testing your understanding of concepts like data structures, algorithms, and design.
 
@@ -51,6 +53,8 @@ Your technical knowledge, coding ability, and creativity will be tested.
 You are not required to write a code that runs (although if you feel comfortable, give it a go!), but we are looking for your understanding of the problem, and ability to navigate and optimise the solution, the way you interact and ask questions, and when you start coding!
 
 We also would observe the way you approach debugging your code/pseudocode, and how you detect and fix problems.
+
+Also, we will be asking questions specific to the role you are filling, for example, we will touch on AI / ML in this part if the role is for an ML Engineer, or Frontend technologies if the role is for a full stack developer and so on.
 
 **Resources**: You can try using [LeetCode](https://leetcode.com/), which is a free tool that contains a lot of examples similar to the ones which will be asking.
 
@@ -68,10 +72,10 @@ Given the complexity of system design, it's impossible to cover all the various 
 
 **We use [ExcaliDraw](https://excalidraw.com/) for this part of the interview.**
 
-## Behavioural + Final Q&A
+## Project Retrospective + Final Q&A
 
-This involves asking questions about the candidate's behaviour in past situations that are similar to the ones required in the role you're trying to fill, and you will have the opportunity to ask questions about the company, team, processes, and tech of the company at the end too.
+This involves asking questions about the candidate's team working / people skills in past situations that are similar to the ones required in the role you're trying to fill, and you will have the opportunity to ask questions about the company, team, processes, and tech of the company at the end too.
 
-The IDWisers wishes you the best! 
+The IDWisers wishes you the best! 
 
 For any questions, you can contact the team via the website: https://idwise.com/contact
