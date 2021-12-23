@@ -14,7 +14,7 @@ AML Check service is an API that allows IDWise customers to search for individua
 
 ## How to use
 
-API only accepts **POST** requests to one of two urls:
+API only accepts **POST** requests to this url:
 
 ```
 https://api.idwise.com/aml/search
