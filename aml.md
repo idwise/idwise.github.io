@@ -1,3 +1,11 @@
+---
+layout: default
+parent: Home
+title: AML Screening Service
+nav_order: 7
+---
+
+
 # Standalone AML Screening Service: PEPs, Sanction & More
 
 ## Overview
