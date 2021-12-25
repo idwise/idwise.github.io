@@ -48,28 +48,58 @@ nav_order: 200
 <!-- Tab links -->
 <div class="tab">
   
-  <button id="PythonButton" class="tablinks" onclick="openTab(event, 'Python')">Python</button>
-  <button id="JavaButton" class="tablinks" onclick="openTab(event, 'Java')">Java</button>
-  <button  id="CSharpButton" class="tablinks" onclick="openTab(event, 'CSharp')">C#</button>
+  <button  class="tablinks-active" onclick="openTab(event, 'Python')">Python</button>
+  <button  class="tablinks" onclick="openTab(event, 'Java')">Java</button>
+  <button  class="tablinks" onclick="openTab(event, 'CSharp')">C#</button>
 </div>
 
 <!-- Tab content -->
-<div id="Python" class="tabcontent">
-  ``` python
+<div id="Python" class="tabcontent" style="display: block;">
+  <code>
   print("Hello world")
-  ```
+  </code>
 </div>
 
 <div id="Java" class="tabcontent">
-  ``` java
+  <code>
   Print("Hello world")
-  ```
+  </code>
 </div>
 
 <div id="CSharp" class="tabcontent">
-  ``` java
+  <code>
   Console.Print("Hello world")
-  ```
+  </code>
+</div>
+
+
+
+
+<!-- Tab links 2 -->
+<div class="tab">
+  
+  <button class="tablinks-active" onclick="openTab(event, 'Python1')">Python</button>
+  <button class="tablinks" onclick="openTab(event, 'Java1')">Java</button>
+  <button  class="tablinks" onclick="openTab(event, 'CSharp1')">C#</button>
+</div>
+
+<!-- Tab content -->
+<div id="Python1" class="tabcontent" style="display: block;">
+  <code>
+  print("Hello world")
+  </code>
+</div>
+
+<div id="Java1" class="tabcontent">
+  <code>
+  Print("Hello world")
+  </code>
+</div>
+
+<div id="CSharp1" class="tabcontent">
+  <code>
+  Console.Print("Hello world")
+  </code>
 </div>
 
 <script>
@@ -89,5 +119,6 @@ function openTab(evt, tabName) {
   document.getElementById(tabName).style.display = "block";
   evt.currentTarget.className += " active";
 }
-document.getElementById("PythonButton").onclick();
+
+  
 </script>
