@@ -5,7 +5,7 @@ title: Test Code Tabs
 nav_order: 200
 ---
 
-<script lang="javascript">
+<script>
 function openTab(evt, cityName) {
   // Declare all variables
   var i, tabcontent, tablinks;
