@@ -4,7 +4,6 @@ parent: Home
 title: Test Code Tabs
 nav_order: 200
 ---
-<script>alert("test")</script>
 <script>
 function openTab(evt, cityName) {
   // Declare all variables
