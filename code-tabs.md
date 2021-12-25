@@ -47,9 +47,10 @@ nav_order: 200
 
 <!-- Tab links -->
 <div class="tab">
-  <button class="tablinks" onclick="openTab(event, 'Python')">Python</button>
-  <button class="tablinks" onclick="openTab(event, 'Java')">Java</button>
-  <button class="tablinks" onclick="openTab(event, 'CSharp')">C#</button>
+  
+  <button id="PythonButton" class="tablinks" onclick="openTab(event, 'Python')">Python</button>
+  <button id="JavaButton" class="tablinks" onclick="openTab(event, 'Java')">Java</button>
+  <button  id="CSharpButton" class="tablinks" onclick="openTab(event, 'CSharp')">C#</button>
 </div>
 
 <!-- Tab content -->
@@ -88,5 +89,5 @@ function openTab(evt, tabName) {
   document.getElementById(tabName).style.display = "block";
   evt.currentTarget.className += " active";
 }
-  alert("test")
+document.getElementById("PythonButton").onclick();
 </script>
