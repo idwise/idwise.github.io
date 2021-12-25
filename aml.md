@@ -10,7 +10,7 @@ nav_order: 7
 
 ## Overview
 
-AML Check service is an API that allows IDWise customers to search for individuals over Anti Money Laundering (AML) database.
+AML Check service is an API that allows IDWise customers to search for individuals over Anti Money Laundering (AML) datasets which are updated daily.
 
 ## How to use
 
