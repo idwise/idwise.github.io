@@ -26,6 +26,7 @@ function openTab(evt, cityName) {
   evt.currentTarget.className += " active";
 }
 openTab(null, "Python");
+  
 </script>
 
 <style lang="css">
