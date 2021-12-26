@@ -72,7 +72,7 @@ The text prompts, images, and colours for both the light and dark modes within a
 
 It almost works like magic!
 
-## Note: If you use Proguard for obfuscation or shrinking:
+## If you use Proguard for obfuscation or shrinking:
 You need to update your build as follow:
 
 	// generate release apk
