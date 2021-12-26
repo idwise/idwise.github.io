@@ -1,9 +1,4 @@
----
-layout: default
-parent: Home
-title: Tech Interview Prep 
-nav_order: 100
----
+
 <button class="btn js-toggle-dark-mode">Dark Mode</button>
 
 <script>
