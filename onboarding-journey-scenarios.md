@@ -1,3 +1,7 @@
+---
+nav_exclude: true
+---
+
 # Onboarding Journey Scenarios
 
 IDWise helps customers boost onboarding conversion rate, and enables customers to cater for multiple integration scenarios, here are some examples of how to handle different situations within your app:
