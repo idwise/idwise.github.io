@@ -89,7 +89,7 @@ And add the following file to your app [`proguard.pro`](https://github.com/idwis
 Please reach out to our IDWise support team for details on how to customise the UI for the ID verification journey.
 
 ## Onboarding Journey Scenarios:
-Please [`click here`](https://github.com/idwise/idwise-android-sdk-documentation/blob/main/onboarding-journey-scenarios.md) for detailed explanation of common onboarding journey scanerios and how to deal with each of these scenarios.
+Please [`click here`](onboarding-journey-scenarios.html) for detailed explanation of common onboarding journey scanerios and how to deal with each of these scenarios.
 
 
 
