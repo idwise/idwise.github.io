@@ -46,6 +46,8 @@ dependencies {
 ```
 - Change your `minSdkVersion` to **19** or higher
 
+[`Click here for an example for build.gradle`](https://github.com/idwise/idwise-android-sdk-documentation/blob/main/example%20build.gradle)
+
 ## Step 2: Starting an ID verification journey:
 You can find an example of how to start an ID verification process in the file [`example-activity.kt`](https://github.com/idwise/idwise-android-sdk-documentation/blob/main/example-activity.kt).
 
