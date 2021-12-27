@@ -1,6 +1,6 @@
 ---
 layout: default
-parent: Android SDK Documentation
+parent: Android SDK
 title: Onboarding Journey Scenarios 
 nav_exclude: true
 ---
