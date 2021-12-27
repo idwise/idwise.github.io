@@ -4,7 +4,7 @@ parent: Home
 title: IDWise Web SDK 
 nav_order: 4
 ---
-# IDWise Document Capture SDK
+# IDWise Javascript Document Capture SDK
 
 This SDK allows you to integrate the IDWise Digital Identity Verification technology in your web app with minimal effort
 It presents a highly customisable UI that guides the user through a series of steps that prompts them for their ID documents and/or biometrics depending on how you have configured your journey flow in IDWise backend system. At the end of this process your app will receive a callback with information about the completed journey which your backend code can use to securely get the results of this journey. It's that simple!
