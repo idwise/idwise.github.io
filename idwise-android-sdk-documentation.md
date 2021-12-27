@@ -1,7 +1,7 @@
 ---
 layout: default
 parent: Home
-title: Android SDK Documentation 
+title: Android SDK 
 nav_order: 2
 heading_anchors: true
 ---
