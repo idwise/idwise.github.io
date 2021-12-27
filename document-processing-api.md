@@ -1,7 +1,7 @@
 ---
 layout: default
 parent: Home
-title: IDWise Document Processing API 
+title: Document Processing API 
 nav_order: 5
 ---
 # IDWise Document Processing API
