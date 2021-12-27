@@ -1,7 +1,7 @@
 ---
 layout: default
 parent: Home
-title: IDWise Web SDK 
+title: Web SDK 
 nav_order: 4
 ---
 # IDWise Javascript Document Capture SDK
