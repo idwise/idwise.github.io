@@ -1,7 +1,7 @@
 ---
 layout: default
 parent: Home
-title: IDWise Journey API 
+title: Journey API 
 nav_order: 6
 ---
 
