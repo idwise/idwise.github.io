@@ -1,6 +1,6 @@
 ---
 layout: default
-parent: Home
+parent: IDWise Developers
 title: iOS SDK
 nav_order: 3
 ---
