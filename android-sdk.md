@@ -1,6 +1,6 @@
 ---
 layout: default
-parent: Home
+parent: IDWise Developers
 title: Android SDK 
 nav_order: 2
 heading_anchors: true
