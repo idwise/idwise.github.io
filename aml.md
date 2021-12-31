@@ -1,6 +1,6 @@
 ---
 layout: default
-parent: Home
+parent: IDWise Developers
 title: AML Screening Service
 nav_order: 7
 ---
