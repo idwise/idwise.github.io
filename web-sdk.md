@@ -1,6 +1,6 @@
 ---
 layout: default
-parent: Home
+parent: IDWise Developers
 title: Web SDK 
 nav_order: 4
 ---
