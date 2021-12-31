@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Home
+title: IDWise Developers
 nav_order: 1
 has_children: true
 ---
