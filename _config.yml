@@ -35,6 +35,13 @@ compress_html:
   blanklines: false
   profile: false
 
+aux_links:
+  "IDWise on Github":
+    - "//github.com/idwise"
+  "IDWise Website":
+    - "https://idwise.com"
+
+
 # aux_links:
 #   "IDWise Android SDK":
 #     - "idwise-android-sdk-documentation"
