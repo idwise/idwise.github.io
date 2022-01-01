@@ -3,7 +3,7 @@ remote_theme: pmarsceill/just-the-docs
 # Site settings
 title: "IDWise Developer Website"
 description: "A website for developers to integrate and interact with IDWise!"
-logo: "https://www.res.idwise.com/logos/idwise-preview.png"
+logo: "https://github.com/idwise/idwise.github.io/raw/main/logo-tr.png"
 heading_anchors: false
 search_enabled: true
 back_to_top: true
