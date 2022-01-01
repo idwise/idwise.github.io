@@ -1,2 +1,2 @@
 ## Welcome to IDWise Developers Site!
-Please visit our developers website at https://idwi.se/dev
+Please visit our developers website at https://developers.idwise.com
