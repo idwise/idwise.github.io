@@ -85,6 +85,8 @@ The text prompts, images, and colours for both the light and dark modes within a
 
 It almost works like magic!
 
+Please reach out to the support team to help with this customisation!
+
 ## If you use Proguard
 You need to update your build as follow:
 
