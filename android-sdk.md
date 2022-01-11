@@ -5,6 +5,23 @@ title: Android SDK
 nav_order: 2
 heading_anchors: true
 ---
+
+# Navigation Structure
+{: .no_toc }
+
+<details open markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
+1. TOC
+{:toc}
+</details>
+
+---
+
+
+
 # IDWise Smart Onboarding SDK for Android
 This SDK allows you to integrate the IDWise Digital Identity Verification technology inside your app with minimal fuss. Whenever your app wants to verify a user, it simply calls a single function in our SDK (`startJourney`) which will start an ID verification journey for that user. This will present a highly customisable UI that guides the user through a series of steps that prompts them for their ID documents and/or biometrics depending on how you have configured your journey flow in IDWise backend systems. At the end of this process your app will receive a `journeyId` (via callback functions) which your backend code can use to securely get the result of this verification process. It's that simple!
 
