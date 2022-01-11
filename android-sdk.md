@@ -76,7 +76,7 @@ Your app can start an ID verification process by making a call to the `startJour
 
 The `journeyId` can then be used by your backend code to securely get the result of the ID verification.
 
-## Step 3: Customising the UI for the ID verification journey
+## Step 3: Customising the UI
 
 The text prompts, images, and colours for both the light and dark modes within an ID verification journey are all customisable. This customisation is performed in our cloud which has the following advantages:
 
