@@ -25,20 +25,20 @@ Integrating with IDWise document processing API couldn't be easier! It is a stan
 You can access this API by integrating to a simple app, or simply by invoking it using a tool such as Postman.
 
 ## API Details 
-### API endpoint: 
+### API endpoint
 Base URL: https://api.idwise.com
 
 Path: /process/document
 
-### Authentication: 
+### Authentication
 Basic authentication.
 You will need API Key and API Secret, these need to be passed into the "Authorization" HTTP header. API key (as username) and API secret (use as password) need to be separated by a colon (:) then encoded as base64.
 API Key and API Secret will be shared with you by IDWise team.
 
-### HTTP Method: 
+### HTTP Method
 POST
 
-### Parameters:
+### Parameters
 All paramters are sent as part of POST Body, encoded as form-data (multi-part).
 
 Here are the parameters
