@@ -4,7 +4,8 @@ parent: IDWise Developers
 title: AML Screening Service
 nav_order: 7
 ---
-# Navigation Structure
+
+# Standalone AML Screening Service: PEPs, Sanction & More
 {: .no_toc }
 
 <details open markdown="block">
@@ -17,9 +18,6 @@ nav_order: 7
 </details>
 
 ---
-
-# Standalone AML Screening Service: PEPs, Sanction & More
-{: .no_toc }
 
 ## Overview
 
