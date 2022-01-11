@@ -23,9 +23,11 @@ heading_anchors: true
 
 
 # IDWise Smart Onboarding SDK for Android
+{: .no_toc }
+
 This SDK allows you to integrate the IDWise Digital Identity Verification technology inside your app with minimal fuss. Whenever your app wants to verify a user, it simply calls a single function in our SDK (`startJourney`) which will start an ID verification journey for that user. This will present a highly customisable UI that guides the user through a series of steps that prompts them for their ID documents and/or biometrics depending on how you have configured your journey flow in IDWise backend systems. At the end of this process your app will receive a `journeyId` (via callback functions) which your backend code can use to securely get the result of this verification process. It's that simple!
 
-### Our latest stable SDK version is:
+### Latest Stable Version
 2.0.18
 
 ## Step 1: Integrating with your build scripts
@@ -66,7 +68,7 @@ dependencies {
 
 [`Click here for an example for build.gradle`](https://github.com/idwise/idwise-android-sdk-documentation/blob/main/example%20build.gradle)
 
-## Step 2: Starting an ID verification journey:
+## Step 2: Starting an ID verification journey
 You can find an example of how to start an ID verification process in the file [`example-activity.kt`](https://github.com/idwise/idwise-android-sdk-documentation/blob/main/example-activity.kt).
 
 Your app can start an ID verification process by making a call to the `startJourney` method which takes the following parameters:
@@ -80,7 +82,7 @@ Your app can start an ID verification process by making a call to the `startJour
 
 The `journeyId` can then be used by your backend code to securely get the result of the ID verification.
 
-## Step 3: Customising the UI for the ID verification journey:
+## Step 3: Customising the UI for the ID verification journey
 
 The text prompts, images, and colours for both the light and dark modes within an ID verification journey are all customisable. This customisation is performed in our cloud which has the following advantages:
 
@@ -89,7 +91,7 @@ The text prompts, images, and colours for both the light and dark modes within a
 
 It almost works like magic!
 
-## If you use Proguard for obfuscation or shrinking:
+## If you use Proguard
 You need to update your build as follow:
 
 	// generate release apk
@@ -108,7 +110,7 @@ And add the following file to your app [`proguard.pro`](https://github.com/idwis
 
 Please reach out to our IDWise support team for details on how to customise the UI for the ID verification journey.
 
-## Onboarding Journey Scenarios:
+## Onboarding Journey Scenarios
 Please [`click here`](onboarding-journey-scenarios.html) for detailed explanation of common onboarding journey scanerios and how to deal with each of these scenarios.
 
 
