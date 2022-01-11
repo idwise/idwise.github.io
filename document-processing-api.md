@@ -4,7 +4,23 @@ parent: IDWise Developers
 title: Document Processing API 
 nav_order: 5
 ---
+# Navigation Structure
+{: .no_toc }
+
+<details open markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
+1. TOC
+{:toc}
+</details>
+
+---
+
 # IDWise Document Processing API
+{: .no_toc }
+
 
 Integrating with IDWise document processing API couldn't be easier! It is a standard HTTP API, it processes an image and returns the recognition and information extraction results synchronously as part of the HTTP response as JSON.
 
