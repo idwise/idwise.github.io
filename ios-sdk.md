@@ -6,6 +6,18 @@ nav_order: 3
 ---
 
 # IDWise Smart Onboarding SDK for iOS
+{: .no_toc }
+
+<details open markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
+1. TOC
+{:toc}
+</details>
+
+---
 
 In an increasingly digital world, relying solely on conventional and manual remote validation methods involving database checks, IP addresses and credit bureau checks is cumbersome, inefficient and opens your customers' sensitive data to a variety of data breach security risks. IDWise’s cutting-edge document verification, face match and liveness detection solution establishes a robust layer of trust between your business and your prospective customer so that you can focus your effort on developing your business faster and with more confidence while stopping even the most sophisticated fraudsters in their tracks.
 
@@ -91,7 +103,5 @@ This identifier can be used to fetch the data and status of the journey from IDW
 
 The steps that compose part of the journey and the prompts that user see are all cutomisable through IDWise cloud system.
 
-## Code Example:
+## Code Example
 Please find the [`following example`](https://github.com/idwise/idwise-ios-sdk-documentation/tree/main/IDWiseExample) for an XCode project that showcases the integration with IDWise iOS Framework.
-
-Copyright IDWise Ltd (www.idwise.com). All rights reserved.
