@@ -112,7 +112,7 @@ The result of the query will be similar to the following example:
 ]
 ```
 
-### Request failure messages:
+## Request failure messages:
 
 ```json
 {
