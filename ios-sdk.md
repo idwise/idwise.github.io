@@ -25,7 +25,7 @@ This git repository contains the official IDWiseSDK meant to be used in iOS appl
 
 ## Requirements
 
-The minimum deployment target for IDWiseSDK is iOS 13.0. In order to use the SDK your application minimum deployment target should be iOS 13.0 or higher.
+The minimum deployment target for IDWiseSDK is iOS 12.0. In order to use the SDK your application minimum deployment target should be iOS 12.0 or higher.
 On your development machine you need to have XCode and CocoaPods installed. Both Intel and M1 (Apple Sillicon) based machines are supported. When working with Cocoapods you might have to run some commands through Rosetta Stone compatibility mode.
 
 
@@ -66,10 +66,18 @@ import IDWise
 
 IDWise SDK is designed to start on top of a UIViewController in your application. Each user onboarding or verification transaction is named a user journey.
 
-To start a new journey just provide the UIViewController from which you want the flow to start then call `IDWiseSDK.start` method:
+To start a new journey just provide the UIViewController from which you want the flow to start then call `IDWiseSDK.initialize` method first with your API key and API secret and then wait for closure which will give a boolean isSucceeded and error (SDKError) object. If initialization is successful then you will get isSucceeded as true and error as nil and in failure case you will get isSucceeded as false and error object with a code and a message about error.In following example, we call initialize method and then wait for It's result and then call startJourney method.The initialize method can be called anywhere before startJourney method is invoked, calling initialize method before startJourney method is a must condition.
 
 ```swift
-    IDWise.start(journeyDefinitionId: '<YOUR_CUSTOMER_ID>', referenceNumber: '<YOUR_REFERENCE_NO>', locale: "en", delegate: self)
+            IDWise.initialize(apiKey: "<YOUR_API_KEY>", apiSecret: "<YOUR_API_SECRET>") { isSucceeded, error in
+            if isSucceeded && error == nil {
+                IDWise.startJourney(journeyDefinitionId: "<YOUR_CUSTOMER_ID>", referenceNumber: "<YOUR_REFERENCE_NO>", locale: "en", delegate: self)
+            }
+            else {
+                // Deal with error here
+                print(isSucceeded ,error?.code , error?.message)
+            }
+        }
 ``` 
 
 This will make IDWise SDK show a UI with a wizard to guide the user through completing the onboarding journey
@@ -84,6 +92,10 @@ For example we can implement the protocol as an extension on the ViewController 
 
 ```swift
 extension ViewController:IDWiseSDKDelegate {
+    func onError(errorMessage: IDWiseSDKError) {
+       
+    }
+    
     func JourneyCancelled() {
         
     }
