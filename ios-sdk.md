@@ -66,7 +66,7 @@ import IDWise
 
 IDWise SDK is designed to start on top of a UIViewController in your application. Each user onboarding or verification transaction is named a user journey.
 
-To start a new journey just provide the UIViewController from which you want the flow to start then call `IDWiseSDK.initialize` method first with your API key and API secret and then wait for closure which will give a boolean isSucceeded and error (SDKError) object. If initialization is successful then you will get isSucceeded as true and error as nil and in failure case you will get isSucceeded as false and error object with a code and a message about error.In following example, we call initialize method and then wait for It's result and then call startJourney method.The initialize method can be called anywhere before startJourney method is invoked, calling initialize method before startJourney method is a must condition.
+To start a new journey just provide the UIViewController from which you want the flow to start then call `IDWiseSDK.initialize` method first with your API key and API secret and then wait for closure which will give a boolean isSucceeded and error (SDKError) object. If initialization is successful then you will get isSucceeded as true and error as nil and in failure case you will get isSucceeded as false and error object with a code and a message about error.In following example, we call initialize method and then wait for It's result and then call startJourney method.
 
 ```swift
             IDWise.initialize(apiKey: "<YOUR_API_KEY>", apiSecret: "<YOUR_API_SECRET>") { isSucceeded, error in
@@ -114,6 +114,7 @@ When the journey is started it is assigned a unique id called Journey ID in IDWi
 This identifier can be used to fetch the data and status of the journey from IDWise Journey Fetch API at any time.
 
 The steps that compose part of the journey and the prompts that user see are all cutomisable through IDWise cloud system.
+
 
 ## Code Example
 Please find the [`following example`](https://github.com/idwise/idwise-ios-sdk-documentation/tree/main/IDWiseExample) for an XCode project that showcases the integration with IDWise iOS Framework.
