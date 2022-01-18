@@ -19,7 +19,7 @@ heading_anchors: true
 
 ---
 
-This SDK allows you to integrate the IDWise Digital Identity Verification technology inside your app with minimal fuss. In order to start the verification journey, you have to initialize the SDK first, by calling `IDWise.initialize` with `apiKey` & `apiSecret` along with a `initializeCallback`. After you got the callback event with `isSucceeded == true`, you can simply call a single function in our SDK (`startJourney`) which will start an ID verification journey for that user. This will present a highly customisable UI that guides the user through a series of steps that prompts them for their ID documents and/or biometrics depending on how you have configured your journey flow in IDWise backend systems. At the end of this process your app will receive a `journeyId` (via callback functions) which your backend code can use to securely get the result of this verification process. It's that simple!
+This SDK allows you to integrate the IDWise Digital Identity Verification technology inside your app with minimal fuss. In order to start the verification journey, you have to initialize the SDK first, by calling `IDWise.initialize` with `apiKey` & `apiSecret` along with a `initializeCallback`. After you got the callback event with `isSuccess == true`, you can simply call a single function in our SDK (`startJourney`) which will start an ID verification journey for that user. This will present a highly customisable UI that guides the user through a series of steps that prompts them for their ID documents and/or biometrics depending on how you have configured your journey flow in IDWise backend systems. At the end of this process your app will receive a `journeyId` (via callback functions) which your backend code can use to securely get the result of this verification process. It's that simple!
 
 ### Latest Stable Version
 3.0.0
@@ -65,7 +65,7 @@ dependencies {
 ## Step 2: Starting an ID verification journey
 You can find an example of how to start an ID verification process in the file [`example-activity.kt`](https://github.com/idwise/idwise-android-sdk-documentation/blob/main/example-activity.kt).
 
-Your app can start an ID verification process by making a call to the `startJourney` method which takes the following parameters:
+After successfully initializing the SDK with your `apiKey` & `apiSecret`, Your app can start an ID verification process by making a call to the `startJourney` method which takes the following parameters:
 
 * **journeyTemplateId** (also called Journey Definition ID): This is a unique identifier that identifies your journey definition. IDWise shares this with you when you register for using IDWise system.
 * **referenceNo**: (Optional) A parameter that you can use to associate an arbitrary identifier (reference number) with the user making the current journey. This is helpful to link the journey back to the user and/or application that started the journey, you will recieve this in the webhook request.
@@ -77,42 +77,42 @@ The `JourneyInfo.journeyId`, received in `onJourneyStarted` & `onJourneyComplete
 
 **Here is the Sample Integration**
 
-`
-IDWise.initialize(
+
+
+	IDWise.initialize(
                 "<YOUR_API_KEY>", //Provided by IDWise
                 "<YOUR_API_SECRET>" //Provided by IDWise
             ) { isSuccess: Boolean, error: IDWiseSDKError? ->
+	    
+		    if (isSuccess) {
+			    IDWise.startJourney(
+				context,
+				"<YOUR_JOURNEY_TEMPLATE_ID>", //Provided by IDWise
+				"<REFERENCE_NUMBER>", 
+				"en",
+				object : IDWiseSDKCallback {
+				    override fun onJourneyStarted(journeyInfo: JourneyInfo) {
+					Log.d("IDWiseSDKCallback", "onJourneyStarted")
+				    }
 
-                if (isSuccess) {
-                    IDWise.startJourney(
-                        context,
-                        "<YOUR_JOURNEY_TEMPLATE_ID>", //Provided by IDWise
-                        "<REFERENCE_NUMBER>", 
-                        "en",
-                        object : IDWiseSDKCallback {
-                            override fun onJourneyStarted(journeyInfo: JourneyInfo) {
-                                Log.d("IDWiseSDKCallback", "onJourneyStarted")
-                            }
+				    override fun onJourneyCompleted(
+					journeyInfo: JourneyInfo,
+					isSucceeded: Boolean
+				    ) {
+					Log.d("IDWiseSDKCallback", "onJourneyCompleted")
+				    }
 
-                            override fun onJourneyCompleted(
-                                journeyInfo: JourneyInfo,
-                                isSucceeded: Boolean
-                            ) {
-                                Log.d("IDWiseSDKCallback", "onJourneyCompleted")
-                            }
+				    override fun onJourneyCancelled(journeyInfo: JourneyInfo?) {
+					Log.d("IDWiseSDKCallback", "onJourneyCancelled")
+				    }
 
-                            override fun onJourneyCancelled(journeyInfo: JourneyInfo?) {
-                                Log.d("IDWiseSDKCallback", "onJourneyCancelled")
-                            }
+				    override fun onError(error: IDWiseSDKError) {
 
-                            override fun onError(error: IDWiseSDKError) {
-
-                                Log.d("IDWiseSDKCallback", "onError ${error.message}")
-                            }
-                        })
-                }
+					Log.d("IDWiseSDKCallback", "onError ${error.message}")
+				    }
+				})
+			}
             }
-`
 
 ## Step 3: Customising the UI
 
@@ -143,6 +143,15 @@ You need to update your build as follow:
 And add the following file to your app [`proguard.pro`](https://github.com/idwise/idwise-android-sdk-documentation/blob/main/proguard.pro), in case the first simpler configuration doesn't work, please try the second more comprehensive configuration in [`proguard-2.pro`](https://github.com/idwise/idwise-android-sdk-documentation/blob/main/proguard-2.pro)
 
 Please reach out to our IDWise support team for details on how to customise the UI for the ID verification journey.
+
+## Common Error Codes and their Causes
+
+| IDWiseErrorCode     | Int Value | Cause                                                                              |
+|---------------------|-----------|------------------------------------------------------------------------------------|
+| INVALID_PARAMETERS  | 11        | apiKey or apiSecret are null or empty                                              |
+| SDK_NOT_INITIALIZED | 22        | Either You haven't Called the IDWise.initialize or you haven't waited for callback |
+| WRONG_CREDENTIALS   | 33        | Either apiKey or apiSecret or both are incorrect                                   |
+| INTERNAL_ERROR      | 44        | Internal Error occurred while processing the request                               |
 
 ## Onboarding Journey Scenarios
 Please [`click here`](onboarding-journey-scenarios.html) for detailed explanation of common onboarding journey scanerios and how to deal with each of these scenarios.
