@@ -19,10 +19,10 @@ heading_anchors: true
 
 ---
 
-This SDK allows you to integrate the IDWise Digital Identity Verification technology inside your app with minimal fuss. Whenever your app wants to verify a user, it simply calls a single function in our SDK (`startJourney`) which will start an ID verification journey for that user. This will present a highly customisable UI that guides the user through a series of steps that prompts them for their ID documents and/or biometrics depending on how you have configured your journey flow in IDWise backend systems. At the end of this process your app will receive a `journeyId` (via callback functions) which your backend code can use to securely get the result of this verification process. It's that simple!
+This SDK allows you to integrate the IDWise Digital Identity Verification technology inside your app with minimal fuss. In order to start the verification journey, you have to initialize the SDK first, by calling `IDWise.initialize` with `apiKey` & `apiSecret` along with a `initializeCallback`. After you got the callback event with `isSucceeded == true`, you can simply call a single function in our SDK (`startJourney`) which will start an ID verification journey for that user. This will present a highly customisable UI that guides the user through a series of steps that prompts them for their ID documents and/or biometrics depending on how you have configured your journey flow in IDWise backend systems. At the end of this process your app will receive a `journeyId` (via callback functions) which your backend code can use to securely get the result of this verification process. It's that simple!
 
 ### Latest Stable Version
-2.0.18
+3.0.0
 
 ## Step 1: Integrating with your build scripts
 - In your `build.gradle` file, add `multiDexEnabled true` and `dataBinding true` in these sections:
@@ -69,12 +69,50 @@ Your app can start an ID verification process by making a call to the `startJour
 
 * **journeyTemplateId** (also called Journey Definition ID): This is a unique identifier that identifies your journey definition. IDWise shares this with you when you register for using IDWise system.
 * **referenceNo**: (Optional) A parameter that you can use to associate an arbitrary identifier (reference number) with the user making the current journey. This is helpful to link the journey back to the user and/or application that started the journey, you will recieve this in the webhook request.
-* **completionCallback**: This callback has one parameter (journeyId), and is called when the journey has been completed.
-* **cancelCallback**: This callback has one parameter (journeyId) and is called when the customer cancels the journey (clicks back and confirms cancellation).
-* **startedCallback**: This callback has one parameter (journeyInfo) and is called when the user starts the journey.
-* **locale**: (Optional), iso code of locale (language) for the UI elements (please contact IDWise support for the list of supported locales, we are happy to support more upon reqiest).
 
-The `journeyId` can then be used by your backend code to securely get the result of the ID verification.
+* **locale**: (Optional), iso code of locale (language) for the UI elements (please contact IDWise support for the list of supported locales, we are happy to support more upon reqiest).
+* **IDWiseSDKCallback**: An interface implementation with multiple callback events. That are `onJourneyStarted`, `onJourneyCompleted`, `onJourneyCancelled` and `onError`.
+
+The `JourneyInfo.journeyId`, received in `onJourneyStarted` & `onJourneyCompleted`, can then be used by your backend code to securely get the result of the ID verification.
+
+**Here is the Sample Integration**
+
+`
+IDWise.initialize(
+                "<YOUR_API_KEY>", //Provided by IDWise
+                "<YOUR_API_SECRET>" //Provided by IDWise
+            ) { isSuccess: Boolean, error: IDWiseSDKError? ->
+
+                if (isSuccess) {
+                    IDWise.startJourney(
+                        context,
+                        "<YOUR_JOURNEY_TEMPLATE_ID>", //Provided by IDWise
+                        "<REFERENCE_NUMBER>", 
+                        "en",
+                        object : IDWiseSDKCallback {
+                            override fun onJourneyStarted(journeyInfo: JourneyInfo) {
+                                Log.d("IDWiseSDKCallback", "onJourneyStarted")
+                            }
+
+                            override fun onJourneyCompleted(
+                                journeyInfo: JourneyInfo,
+                                isSucceeded: Boolean
+                            ) {
+                                Log.d("IDWiseSDKCallback", "onJourneyCompleted")
+                            }
+
+                            override fun onJourneyCancelled(journeyInfo: JourneyInfo?) {
+                                Log.d("IDWiseSDKCallback", "onJourneyCancelled")
+                            }
+
+                            override fun onError(error: IDWiseSDKError) {
+
+                                Log.d("IDWiseSDKCallback", "onError ${error.message}")
+                            }
+                        })
+                }
+            }
+`
 
 ## Step 3: Customising the UI
 
