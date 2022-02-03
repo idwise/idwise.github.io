@@ -19,10 +19,13 @@ heading_anchors: true
 
 ---
 
-This SDK allows you to integrate the IDWise Digital Identity Verification technology inside your app with minimal fuss. In order to start the verification journey, you have to initialize the SDK first, by calling `IDWise.initialize` with `apiKey` & `apiSecret` along with a `initializeCallback`. After you got the callback event with `isSuccess == true`, you can simply call a single function in our SDK (`startJourney`) which will start an ID verification journey for that user. This will present a highly customisable UI that guides the user through a series of steps that prompts them for their ID documents and/or biometrics depending on how you have configured your journey flow in IDWise backend systems. At the end of this process your app will receive a `journeyId` (via callback functions) which your backend code can use to securely get the result of this verification process. It's that simple!
+This SDK allows you to integrate the IDWise Digital Identity Verification technology inside your app with minimal fuss. 
+Whenever your app want's to verify a user, simply initialize the SDK and call a single method i.e. `startJourney(...)`. It's that simple. Isn't it?
+
+Here is how you can setup and start using IDWise SDK.
 
 ### Latest Stable Version
-3.0.0
+3.0.1
 
 ## Step 1: Integrating with your build scripts
 - In your `build.gradle` file, add `multiDexEnabled true` and `dataBinding true` in these sections:
@@ -65,7 +68,14 @@ dependencies {
 ## Step 2: Starting an ID verification journey
 You can find an example of how to start an ID verification process in the file [`example-activity.kt`](https://github.com/idwise/idwise-android-sdk-documentation/blob/main/example-activity.kt).
 
-After successfully initializing the SDK with your `apiKey` & `apiSecret`, Your app can start an ID verification process by making a call to the `startJourney` method which takes the following parameters:
+**Initialize the SDK**
+From inside your Activity or Fragment, You can initialize the like this
+
+	IDWise.initialize("<CLIENT_KEY>") { error: IDWiseSDKError? ->
+           error?.printStackTrace()
+        }
+
+After successfully initializing the SDK with your `CLIENT_KEY` provided by IDWIse, Your app can start an ID verification process by making a call to the `startJourney` method which takes the following parameters:
 
 * **journeyTemplateId** (also called Journey Definition ID): This is a unique identifier that identifies your journey definition. IDWise shares this with you when you register for using IDWise system.
 * **referenceNo**: (Optional) A parameter that you can use to associate an arbitrary identifier (reference number) with the user making the current journey. This is helpful to link the journey back to the user and/or application that started the journey, you will recieve this in the webhook request.
@@ -75,17 +85,10 @@ After successfully initializing the SDK with your `apiKey` & `apiSecret`, Your a
 
 The `JourneyInfo.journeyId`, received in `onJourneyStarted` & `onJourneyCompleted`, can then be used by your backend code to securely get the result of the ID verification.
 
-**Here is the Sample Integration**
+**Here is the Sample for Starting the Journey**
 
 
-
-	IDWise.initialize(
-                "<YOUR_API_KEY>", //Provided by IDWise
-                "<YOUR_API_SECRET>" //Provided by IDWise
-            ) { isSuccess: Boolean, error: IDWiseSDKError? ->
-	    
-		    if (isSuccess) {
-			    IDWise.startJourney(
+			IDWise.startJourney(
 				context,
 				"<YOUR_JOURNEY_TEMPLATE_ID>", //Provided by IDWise
 				"<REFERENCE_NUMBER>", 
