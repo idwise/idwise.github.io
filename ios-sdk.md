@@ -66,18 +66,16 @@ import IDWise
 
 IDWise SDK is designed to start on top of a UIViewController in your application. Each user onboarding or verification transaction is named a user journey.
 
-To start a new journey just provide the UIViewController from which you want the flow to start then call `IDWiseSDK.initialize` method first with your API key and API secret and then wait for closure which will give a boolean isSucceeded and error (SDKError) object. If initialization is successful then you will get isSucceeded as true and error as nil and in failure case you will get isSucceeded as false and error object with a code and a message about error.In following example, we call initialize method and then wait for It's result and then call startJourney method.
+To start a new journey just provide the UIViewController from which you want the flow to start then call `IDWiseSDK.initialize` method first with your provided client key and then you can call `IDWise.startJourney` method. If initialization is failed for any reason, you will get an error object with a code and a message explaining the reason of the error. In the following example, we called initialize method and then called startJourney method.
 
 ```swift
-            IDWise.initialize(apiKey: "<YOUR_API_KEY>", apiSecret: "<YOUR_API_SECRET>") { isSucceeded, error in
-            if isSucceeded && error == nil {
-                IDWise.startJourney(journeyDefinitionId: "<YOUR_CUSTOMER_ID>", referenceNumber: "<YOUR_REFERENCE_NO>", locale: "en", delegate: self)
-            }
-            else {
+        IDWise.initialize(clientKey: "<YOUR_CLIENT_KEY>") { error in
                 // Deal with error here
-                print(isSucceeded ,error?.code , error?.message)
-            }
+                print(error?.message)
         }
+        
+        IDWise.startJourney(journeyDefinitionId: "<YOUR_CUSTOMER_ID>", referenceNumber: "<YOUR_REFERENCE_NO>", locale: "en", delegate: self)
+        
 ``` 
 
 This will make IDWise SDK show a UI with a wizard to guide the user through completing the onboarding journey
