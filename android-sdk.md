@@ -114,8 +114,7 @@ The `JourneyInfo.journeyId`, received in `onJourneyStarted` & `onJourneyComplete
 					Log.d("IDWiseSDKCallback", "onError ${error.message}")
 				    }
 				})
-			}
-            }
+			
 
 ## Step 3: Customising the UI
 
