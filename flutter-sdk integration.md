@@ -177,4 +177,4 @@ The steps that compose part of the journey and the prompts that user see are all
 ### Native Code to start Journey (Android)
 
 ## Code Example
-Please find the [`following example`](https://github.com/idwise/idwise-flutter-example/tree/main/ios) for an XCode project that showcases the integration with IDWise iOS Framework.
+Please find the [`following example`](https://github.com/idwise/idwise-flutter-example/tree/main/ios) for a Flutter project that showcases the integration with IDWise iOS and Android Framework.
