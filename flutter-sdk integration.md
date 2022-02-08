@@ -128,7 +128,7 @@ static const platformChannel = MethodChannel("<METHOD_CHANNEL_NAME>");
 
 Now, we will use methodChannel object to invoke our native platform code. Calling the native code is an asynchronous operation so we need to create a method which returns a Future and is an async method like below. This is all the code that we need to do on flutter side and everything else will be handeled in native platform classes.
 
-```flutter
+```
   Future<void> _startSDK() async {
     try {
       /**
