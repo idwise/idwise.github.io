@@ -2,7 +2,7 @@
 layout: default
 parent: IDWise Developers
 title: IDWise Flutter Integration
-nav_order: 3
+nav_order: 4.5
 heading_anchors: true
 ---
 # IDWise Smart Onboarding SDK for Flutter
