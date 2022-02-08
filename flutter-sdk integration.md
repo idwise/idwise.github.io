@@ -24,6 +24,8 @@ Flutter also has disabled support for builds through VSCode starting from iOS 14
 
 ### Android ###
 
+The `minSdkVersion` is 16 and `targetSdkVersion` is set to 31 in IDWise Android SDK. It is recommended to install the Latest Android Studio on your development machine. 
+
 ## iOS Installation
 
 To install pods in your flutter project, first go to projectfolder/ios. You can create a podfile If does not exist already by running command "pod init" on terminal by going into this ios directory. If you already have a podfile, you can follow following steps.
@@ -51,8 +53,46 @@ After adding our dependency in your Podfile run:
 ```
 pod install
 ```
+## Android Installation
+Add the following in your app level `build.gradle` file located at `projectRoot/android/app/build.gradle`
 
-## Usage
+```
+  android {
+    ...
+    defaultConfig {
+      ...
+      multiDexEnabled true
+    }
+    buildFeatures {
+      ...
+      dataBinding true
+    }
+  }
+```
+
+Add following repositories in you project-level `build.gradle` file located at `projectRoot/android/build.gradle`
+```
+repositories {
+	maven { 
+		url 'http://mobile-sdk.idwise.ai/releases/' 
+            	allowInsecureProtocol = true
+	}
+	maven { url 'https://jitpack.io' }
+}
+```
+
+Finally, Add the following dependency in your app level `build.gradle` file located at `projectRoot/android/app/build.gradle`.
+Replace the `x.y.z` with the latest IDWise SDK version
+
+```
+dependencies {
+	...
+	implementation 'com.idwise:android-sdk:x.y.z'
+}
+```
+
+
+## Flutter Usage
 
 Invoking IDWise SDK is very simple. First import IDWise package in your .dart file from where you want to invoke IDWise SDK:
 
@@ -141,7 +181,7 @@ Finally, we will implement channel's handler method and depending on method name
 
 This will make IDWise SDK show a UI with a wizard to guide the user through completing the onboarding journey
 
-This method takes two parameters:
+This method takes 4 parameters:
 - `journeyDefinitionId`: Specifies the journey definition (aka template) to base this new journey on. Journey definitions are created based on your requirements and specify what documents and biometrics to collect from the user and in what order. JourneyDefinitionId is shared with you by IDWise team as part of your use-case and requirements discussions.
 - `referenceNo` : A custom identifier to associate with this journey to enable you to link it back easily or associate it with a user on your system.
 - `locale` : Language code of the language to be used to display the journey user interface. This is either an ISO 639-1 (2-letter for example en) or IETF BCP 47 (2-letter plus extended language specified for example zh-HK or zh-CN)
@@ -176,5 +216,77 @@ The steps that compose part of the journey and the prompts that user see are all
 
 ### Native Code to start Journey (Android)
 
-## Code Example
-Please find the [`following example`](https://github.com/idwise/idwise-flutter-example/tree/main/ios) for a Flutter project that showcases the integration with IDWise iOS and Android Framework.
+
+Inside your `Activity` which is extended from `FlutterActivity`, you need to `override` the `configureFlutterEngine(flutterEngine: FlutterEngine)` method. Add the following code inside this method to handle the `initialize` and `startJourney` requests from your flutter code e.g `main.dart`.
+
+**initialize**
+You can initialize the SDK by calling `IDWise.initialize(...)`. It takes "CLIENT_KEY", provided by IDWise and an `errorCallback`.
+
+**startJourney**
+After successfully initializing the SDK with your `CLIENT_KEY` provided by IDWIse, Your app can start an ID verification process by making a call to the `startJourney` method which takes the following parameters:
+
+* **journeyTemplateId** (also called Journey Definition ID): This is a unique identifier that identifies your journey definition. IDWise shares this with you when you register for using IDWise system.
+* **referenceNo**: (Optional) A parameter that you can use to associate an arbitrary identifier (reference number) with the user making the current journey. This is helpful to link the journey back to the user and/or application that started the journey, you will recieve this in the webhook request.
+
+* **locale**: (Optional), iso code of locale (language) for the UI elements (please contact IDWise support for the list of supported locales, we are happy to support more upon reqiest).
+* **IDWiseSDKCallback**: An interface implementation with multiple callback events. That are `onJourneyStarted`, `onJourneyCompleted`, `onJourneyCancelled` and `onError`.
+
+The `JourneyInfo.journeyId`, received in `onJourneyStarted` & `onJourneyCompleted`, can then be used by your backend code to securely get the result of the ID verification.
+
+
+```
+MethodChannel(
+            flutterEngine.dartExecutor.binaryMessenger,
+            "YOUR_CHANNEL_NAME" //Example: "com.idwise.fluttersampleproject/idwise"
+        ).setMethodCallHandler { call, result ->
+
+            when (call.method) {
+                "initialize" -> {
+                    IDWise.initialize("<YOUR_CLIENT_KEY>") { error ->
+                        result.error("ERROR", error!!.message, null)
+                    }
+                }
+
+                "startJourney" -> {
+                    IDWise.startJourney(
+                        this,
+                        "<YOUR_JOURNEY_DEFINITION_ID>", //Provided by IDWise
+                        "<REFERENCE_NUMBER>", //OPTIONAL
+                        "en", //Locale
+                        callback = object : IDWiseSDKCallback {
+                            override fun onJourneyStarted(journeyInfo: JourneyInfo) {
+                                Log.d("IDWiseSDKCallback", "onJourneyStarted")
+                            }
+
+                            override fun onJourneyCompleted(
+                                journeyInfo: JourneyInfo,
+                                isSucceeded: Boolean
+                            ) {
+                                Log.d("IDWiseSDKCallback", "onJourneyCompleted")
+                            }
+
+                            override fun onJourneyCancelled(journeyInfo: JourneyInfo?) {
+                                Log.d("IDWiseSDKCallback", "onJourneyCancelled")
+                            }
+
+                            override fun onError(error: IDWiseSDKError) {
+                                Log.d(
+                                    "IDWiseSDKCallback",
+                                    "onError ${error.message}"
+                                )
+                            }
+                        }
+                    )
+
+                }
+
+                else -> result.error("NO_SUCH_METHOD", "NO SUCH METHOD", null)
+            }
+        }
+
+```
+## Android Code Example
+You can find the [`MainActivity.kt`](https://github.com/idwise/idwise-flutter-example/tree/main/android/app/src/main/kotlin/com/example/sample_project/MainActivity.kt) for sample code for Android Integration.
+
+## iOS Code Example
+Please find the [`following example`](https://github.com/idwise/idwise-flutter-example/tree/main/ios) for a Flutter project that showcases the integration with IDWise iOS Framework.
