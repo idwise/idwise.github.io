@@ -1,7 +1,7 @@
 ---
 layout: default
 parent: IDWise Developers
-title: IDWise Flutter Integration
+title: Flutter Integration
 nav_order: 4.5
 heading_anchors: true
 ---
