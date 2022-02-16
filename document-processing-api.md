@@ -50,4 +50,11 @@ Example on how to invoke the API via (curl) command-line tool, you need to add t
 
 `curl --location --request POST 'https://api.idwise.com/process/document' --header 'Authorization: Basic YmN..........DRi' --form 'front=@"/C:/my-image.jpg"'`
 
+## Result
+The result will be formatted as a JSON which includes:
+1. Document Type Information (country and type, e.g. Driving License, Identity Card, Passport,...).
+2. Extracted Fields (you can find a list of all possible fields here: [https://idwi.se/fields](https://idwi.se/fields)).
+4. Validation Decision (Pass / Fail).
+5. If provided in the input: face matching result.
+
 Please contact IDWise at `github-sales (at) idwise.com` to get your hands on a API credintials to take the solution for a wild ride!
