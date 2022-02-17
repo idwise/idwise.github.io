@@ -1,8 +1,7 @@
 ---
 layout: default
 parent: IDWise Developers
-title: iOS SDK
-nav_order: 3
+title: iOS SDK - Advanced Mode
 ---
 
 # IDWise Smart Onboarding SDK for iOS
