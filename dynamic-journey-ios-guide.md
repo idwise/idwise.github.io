@@ -1,11 +1,11 @@
 ---
 layout: default
 parent: IDWise Developers
-title: iOS SDK - Advanced Mode
+title: iOS SDK - Dynamic Mode
 nav_exclude: true
 ---
 
-# IDWise Smart Onboarding SDK for iOS - Advanced Mode
+# IDWise Smart Onboarding SDK for iOS - Dynamic Mode
 {: .no_toc }
 
 <details open markdown="block">
@@ -64,7 +64,8 @@ import IDWise
 
 ### Dynamic Journey
 
-In  dynamic journey, IDWise provide the full control to the hosting application to show own UI and handle journey and step events more flexibly. This makes IDWise journey more configurable for the hosting application to not only show desired UI but also to perform any business logic on journey and step events.
+The rest of this document explains how to set up and start using IDWise SDK in Dynamic Journey mode.
+Alternatively, if you want to use Simple Journey mode which would get you up and running quicker and with less code if you do not need advanced control over the journey please check Simple Journey Mode [`here`](https://github.com/idwise/idwise.github.io/blob/main/ios-sdk.md)
 
 ### Starting a dynamic user journey
 
@@ -82,7 +83,7 @@ To start a new dynamic journey just provide the UIViewController from which you 
         
 ``` 
 
-This will make IDWise SDK show a UI with a wizard to guide the user through completing the onboarding journey
+This will make IDWise SDK start a journey and make it the current journey. You can next start steps of this journey and guide the user through completing the necessary steps in the desired order.
 
 This method takes two parameters:
 - `journeyDefinitionId`: Specifies the journey definition (aka template) to base this new journey on. Journey definitions are created based on your requirements and specify what documents and biometrics to collect from the user and in what order. JourneyDefinitionId is shared with you by IDWise team as part of your use-case and requirements discussions.
@@ -119,16 +120,18 @@ This identifier can be used to fetch the data and status of the journey from IDW
 
 ### Starting the Steps
 
-When `JourneyStarted` triggered successfuly, you can call the `IDWise.startStep()` to start the specific verfication Step. IDWise.startStep takes the following parameters:
+After calling `startJourney` method and subsequently when `JourneyStarted` method is triggered successfully, you can call the `IDWise.startStep` method.
 
 ```swift
 IDWise.startStep(stepId: Int)
 ```
 
-stepId: ID of the step you want to start. (Will be provided by IDWise against each step)
-Step events will trigger the events in IDWiseSDKStepDelegate passed in startDynamicJourney
+`IDWise.startStep` method takes the following parameters:
 
-We can implement the protocol 'IDWiseSDKStepDelegate' as an extension on the ViewController same way as above to recieve the step events:
+stepId: ID of the step you want to start. (Will be provided by IDWise for each step)
+The methods in `IDWiseStepDelegate`  will be triggered as step is handled and processed
+
+We can implement the protocol `IDWiseSDKStepDelegate` as an extension on the ViewController same way as above to recieve the step events:
 
 ```swift
 extension ViewController:IDWiseSDKStepDelegate {
