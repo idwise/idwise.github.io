@@ -1,6 +1,7 @@
 ---
 layout: default
 parent: Android SDK
+grand_parent: IDWise Developers
 title: Advanced Mode - Android
 nav_order: 1
 ---
