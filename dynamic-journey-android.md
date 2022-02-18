@@ -30,9 +30,6 @@ Alternatively, if you want to use Simple Journey mode which would get you up and
 In dynamic journey mode, IDWise provides full control to the hosting application to show its own UI and handle journey and step events more flexibly. This makes IDWise journey more configurable for the hosting application to not only show its own UI, control when to start each step and in what order and subscribe to events for progress of each step.
 Here is how you can setup and start using IDWise SDK.
 
-### Latest Stable Version
-3.0.3
-
 ## Step 1: Integrating with your build scripts
 - In your `build.gradle` file, add `multiDexEnabled true` and `dataBinding true` in these sections:
 ```
