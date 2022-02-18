@@ -2,6 +2,7 @@
 layout: default
 parent: iOS SDK
 title: Advanced Mode - iOS
+nav_order: 1
 ---
 
 # IDWise Smart Onboarding SDK for iOS - Dynamic Mode
