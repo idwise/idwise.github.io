@@ -1,6 +1,7 @@
 ---
 layout: default
 parent: iOS SDK
+grand_parent: IDWise Developers
 title: Advanced Mode - iOS
 nav_order: 1
 ---
