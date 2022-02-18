@@ -25,7 +25,7 @@ Whenever your app want's to verify a user, simply initialize the SDK and call a 
 Here is how you can setup and start using IDWise SDK.
 
 ### Latest Stable Version
-3.0.2
+3.0.3
 
 ## Step 1: Integrating with your build scripts
 - In your `build.gradle` file, add `multiDexEnabled true` and `dataBinding true` in these sections:
