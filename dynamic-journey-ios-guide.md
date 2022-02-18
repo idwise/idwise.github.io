@@ -118,7 +118,7 @@ When the journey is started it is assigned a unique id called Journey ID in IDWi
 This identifier can be used to fetch the data and status of the journey from IDWise Journey Fetch API at any time.
 
 
-### Starting the Steps
+### Starting Journey Steps
 
 After calling `startJourney` method and subsequently when `JourneyStarted` method is triggered successfully, you can call the `IDWise.startStep` method.
 
