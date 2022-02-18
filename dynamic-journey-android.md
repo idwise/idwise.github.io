@@ -1,10 +1,9 @@
 ---
 layout: default
-parent: IDWise Developers
-title: IDWise Smart Onboarding SDK for Android - Dynamic Mode
+parent: Android SDK
+title: Advanced Mode - Android
 nav_order: 2
 heading_anchors: true
-nav_exclude: true
 ---
 
 # IDWise Smart Onboarding SDK for Android - Advanced Mode
