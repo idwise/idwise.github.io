@@ -1,8 +1,7 @@
 ---
 layout: default
-parent: IDWise Developers
-title: iOS SDK - Dynamic Mode
-nav_exclude: true
+parent: iOS SDK
+title: Advanced Mode - iOS
 ---
 
 # IDWise Smart Onboarding SDK for iOS - Dynamic Mode
