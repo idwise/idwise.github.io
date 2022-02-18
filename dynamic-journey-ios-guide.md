@@ -2,9 +2,10 @@
 layout: default
 parent: IDWise Developers
 title: iOS SDK - Advanced Mode
+nav_exclude: true
 ---
 
-# IDWise Smart Onboarding SDK for iOS
+# IDWise Smart Onboarding SDK for iOS - Advanced Mode
 {: .no_toc }
 
 <details open markdown="block">
