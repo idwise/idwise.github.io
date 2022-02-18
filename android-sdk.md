@@ -150,9 +150,9 @@ Please reach out to our IDWise support team for details on how to customise the 
 
 | IDWiseErrorCode     | Int Value | Cause                                                                              |
 |---------------------|-----------|------------------------------------------------------------------------------------|
-| INVALID_PARAMETERS  | 11        | apiKey or apiSecret are null or empty                                              |
+| INVALID_PARAMETERS  | 11        | clientKey is invalid or empty.                                                     |
 | SDK_NOT_INITIALIZED | 22        | Either You haven't Called the IDWise.initialize or you haven't waited for callback |
-| WRONG_CREDENTIALS   | 33        | Either apiKey or apiSecret or both are incorrect                                   |
+| WRONG_CREDENTIALS   | 33        | clientKey is incorrect                                                             |
 | INTERNAL_ERROR      | 44        | Internal Error occurred while processing the request                               |
 
 ## Onboarding Journey Scenarios
