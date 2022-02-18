@@ -1,7 +1,7 @@
 ---
 layout: default
 parent: IDWise Developers
-title: IDWise Smart Onboarding SDK for Android - Advanced Mode
+title: IDWise Smart Onboarding SDK for Android - Dynamic Mode
 nav_order: 2
 heading_anchors: true
 nav_exclude: true
@@ -141,9 +141,9 @@ Following is the sample implementation of `journeyCallback` and `stepCallback`
 
 When `onJourneyStarted(...)` triggered successfuly, you can call the `IDWise.startStep(...)` to start the specific verfication Step. `IDWise.startStep` takes the following parameters:
 * **context:** `Activity` or `Fragment` context
-* **stepId:** ID of the step you want to start. (Will be provided by IDWise against each step)
+* **stepId:** ID of the step you want to start. (Will be provided by IDWise for each step)
 
-Step events will trigger the events in `IDWiseSDKStepCallback` passed in `startDynamicJourney`
+The step events (provided in `IDWiseSDKStepCallback` parameter provided to  `startDynamicJourney` method) will be triggered as step is handled and processed.
 
 
 ## Step 4: Customising the UI
