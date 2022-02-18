@@ -20,10 +20,14 @@ nav_exclude: true
 </details>
 
 ---
-### Dynamic Journey
+
+This document explains how to set up and start using IDWise SDK in Dynamic Journey mode.
+Alternatively, if you want to use Simple Journey mode which would get you up and running quicker and with less code if you do not need advanced control over the journey please check [`Simple Journey Mode here`](https://developers.idwise.com/android-sdk.html)
+
+### Dynamic Journey Mode
 
 
-In dynamic journey, IDWise provide the full control to the hosting application to show its own UI and handle journey and step events more flexibly. This makes IDWise journey more configurable for the hosting application to not only show desired UI but also to perform any business logic on journey and step events.
+In dynamic journey mode, IDWise provides full control to the hosting application to show its own UI and handle journey and step events more flexibly. This makes IDWise journey more configurable for the hosting application to not only show its own UI, control when to start each step and in what order and subscribe to events for progress of each step.
 Here is how you can setup and start using IDWise SDK.
 
 ### Latest Stable Version
@@ -154,7 +158,7 @@ It almost works like magic!
 Please reach out to the support team to help with this customisation!
 
 ## If you use Proguard
-You need to update your build as follow:
+You need to update your app level `build.gradle` as follow:
 
 	// generate release apk
 	buildTypes {
