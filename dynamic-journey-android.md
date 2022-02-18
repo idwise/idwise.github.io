@@ -1,11 +1,13 @@
 ---
 layout: default
 parent: IDWise Developers
-title: Android SDK 
+title: IDWise Smart Onboarding SDK for Android - Advanced Mode
 nav_order: 2
 heading_anchors: true
+nav_exclude: true
 ---
-# IDWise Smart Onboarding SDK for Android
+
+# IDWise Smart Onboarding SDK for Android - Advanced Mode
 {: .no_toc }
 
 <details open markdown="block">
