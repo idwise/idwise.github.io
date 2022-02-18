@@ -158,7 +158,12 @@ Please reach out to our IDWise support team for details on how to customise the 
 ## Onboarding Journey Scenarios
 Please [`click here`](onboarding-journey-scenarios.html) for detailed explanation of common onboarding journey scanerios and how to deal with each of these scenarios.
 
+## Advanced Dynamic Journey Mode
+In some scenarios, your use case might require more flexibility and control over the user journey flow and full control over the user interface / UX above and beyond the wide range of customisations we offer and more than the above sequential flow which simplifies integration, we are introducing: the `Advanced Dynamic Journey` mode, to both of our Android and iOS SDKs to cover some edge advanced use-cases.
 
+From experience, the above simple integration should cover the vast majority of use cases, and allow for a good degree of customisation for the steps and for the UI/UX from the IDWise backend (which applies instantly without the need to update the host app).
+
+If you believe that the simple integration still doesn't cover your use-case, you can find the documentation for this new mode here: [`Advanced Dynamic Journey`](https://idwi.se/android-advanced)
 
 ## Keep in touch!
 Please get in touch if you want to make any adjustments or customisations to your users journey.
