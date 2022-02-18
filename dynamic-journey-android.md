@@ -2,8 +2,7 @@
 layout: default
 parent: Android SDK
 title: Advanced Mode - Android
-nav_order: 2
-heading_anchors: true
+nav_order: 1
 ---
 
 # IDWise Smart Onboarding SDK for Android - Advanced Mode
