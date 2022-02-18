@@ -6,7 +6,7 @@ title: Advanced Mode - iOS
 nav_order: 1
 ---
 
-# IDWise Smart Onboarding SDK for iOS - Dynamic Mode
+# IDWise Smart Onboarding SDK for iOS - Advanced Dynamic Mode
 {: .no_toc }
 
 <details open markdown="block">
