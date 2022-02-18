@@ -6,7 +6,7 @@ title: Advanced Mode - Android
 nav_order: 1
 ---
 
-# IDWise Smart Onboarding SDK for Android - Advanced Mode
+# IDWise Smart Onboarding SDK for Android - Advanced Dynamic Mode
 {: .no_toc }
 
 <details open markdown="block">
