@@ -2,6 +2,7 @@
 layout: default
 parent: IDWise Developers
 title: iOS SDK
+has_children: true
 nav_order: 3
 ---
 
