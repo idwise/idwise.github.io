@@ -126,7 +126,7 @@ This identifier can be used to fetch the data and status of the journey from IDW
 After calling `startJourney` method and subsequently when `JourneyStarted` method is triggered successfully, you can call the `IDWise.startStep` method.
 
 ```swift
-IDWise.startStep(stepId: Int)
+IDWise.startStep(stepId: String)
 ```
 
 `IDWise.startStep` method takes the following parameters:
@@ -140,8 +140,8 @@ We can implement the protocol `IDWiseSDKStepDelegate` as an extension on the Vie
 extension ViewController:IDWiseSDKStepDelegate {
     
      //This method will be triggered when Image processing is completed at the backend.
-     //stepResult contains the details of the processing output
-    func onStepResult(stepId: Int, stepResult: StepResult) {
+     //stepId will be the Id of the step that is just completed
+    func onStepResult(stepId: Int) {
         // An example of showing custom UI
         LoadingView.hide()
     }
