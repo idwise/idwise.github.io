@@ -57,6 +57,23 @@ Other fields are optional which are:
     - **Basic**: only contains Global Peps and Sanctions
     - **Enhanced**: contains Basic (Gloval PEPs and Sanctions) + Adverse Media, Reputation Risk Databases, Regulatory Enforcement List, and People of Interest. Please contact support@idwise.com for more details about the specific lists we support.
     
+### Request Example
+
+```json
+{
+	"full_name": "",
+	"first_name": "Elizabeth",
+	"last_name": "Windsor",
+	"middle_name": "Alexandra Mary",
+	"birth_date": "1926-04-21",
+	"sex": "F",
+	"search_countries": [
+		"GB"
+	],
+	"match_threshold": "80",
+	"check_type": "Enhanced"
+}
+```
 
 ### Response
 
