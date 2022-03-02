@@ -141,9 +141,12 @@ extension ViewController:IDWiseSDKStepDelegate {
     
      //This method will be triggered when Image processing is completed at the backend.
      //stepId will be the Id of the step that is just completed
-    func onStepResult(stepId: Int) {
+    func onStepResult(stepId: Int,stepResult: StepResult?) {
         // An example of showing custom UI
         LoadingView.hide()
+        if let result = stepResult {
+          print(result.document?.documentType)
+        }
     }
     
      //This method will be triggered when user has captured the image/selfie from the camera successfully
