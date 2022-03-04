@@ -67,7 +67,7 @@ dependencies {
 
 [`Click here for an example for build.gradle`](https://github.com/idwise/idwise-android-sdk-documentation/blob/main/example%20build.gradle)
 
-## Step 2: Starting an ID verification  journey
+## Step 2: Starting a new ID verification  journey
 You can find an example of how to start an ID verification process in the file [`example-activity.kt`](https://github.com/idwise/idwise-android-sdk-documentation/blob/main/example-activity.kt).
 
 **Initialize the SDK**
@@ -93,13 +93,38 @@ The `JourneyInfo.journeyId`, received in `onJourneyStarted` & `onJourneyComplete
 
           IDWise.startDynamicJourney(
               context,
-              "<YOUR_JOURNEY_TEMPLATE_ID>", //Provided by IDWise
+              "<YOUR_JOURNEY_DEFINITION_ID>", //Provided by IDWise
               "<REFERENCE_NUMBER>", 
               "en",
               journeyCallback,
               stepCallback
            )
  
+
+### Resume an existing journey
+You can resume the exiting, incompleted journey at any time.
+Following is the sample to Resume an existing journey
+
+	IDWise.resumeDynamicJourney(
+            context,
+            "<YOUR_JOURNEY_DEFINITION_ID>", //Provided by IDWise
+            "<JOURNEY_ID>", journey id of the journey you want to resume. which you got in onJourneyStarted callback
+            "en",
+            journeyCallback,
+            stepCallback
+        )
+
+* **journeyDefinitionId** (also called Journey Definition ID): This is a unique identifier that identifies your journey definition. IDWise shares this with you when you register for using IDWise system.
+
+* **journeyId**: journeyId of the journey you want to resume. which you got in onJourneyStarted callback when you started the journey first time.
+
+* **locale**: (Optional), iso code of locale (language) for the UI elements (please contact IDWise support for the list of supported locales, we are happy to support more upon reqiest).
+* **IDWiseSDKCallback**: An interface implementation with multiple callback events. That are `onJourneyStarted`, `onJourneyCompleted`, `onJourneyCancelled` and `onError`.
+* **IDWiseStepCallback**: A callback interface to notify the Step Events like `onStepCaptured` and `onStepResult`.
+
+The `JourneyInfo.journeyId`, received in `onJourneyStarted` & `onJourneyCompleted`, can then be used by your backend code to securely get the result of the ID verification.
+
+
 Following is the sample implementation of `journeyCallback` and `stepCallback`
 
         val journeyCallback = object : IDWiseSDKCallback {
@@ -109,6 +134,11 @@ Following is the sample implementation of `journeyCallback` and `stepCallback`
 
               override fun onJourneyCompleted(journeyInfo: JourneyInfo,isSucceeded: Boolean) {
                 Log.d("IDWiseSDKCallback", "onJourneyCompleted")
+              }
+	      
+	      
+              override fun onJourneyResumed(journeyInfo: JourneyInfo,isSucceeded: Boolean) {
+                Log.d("IDWiseSDKCallback", "onJourneyResumed")
               }
 
               override fun onJourneyCancelled(journeyInfo: JourneyInfo?) {
@@ -135,9 +165,18 @@ Following is the sample implementation of `journeyCallback` and `stepCallback`
 
 ## Step 3: Starting the Steps
 
-When `onJourneyStarted(...)` triggered successfuly, you can call the `IDWise.startStep(...)` to start the specific verfication Step. `IDWise.startStep` takes the following parameters:
+When `onJourneyStarted(...)` or `onJourneyResumed(...)` triggered successfuly, you can call the `IDWise.startStep(...)` to start the specific verfication Step. `IDWise.startStep` takes the following parameters:
+
 * **context:** `Activity` or `Fragment` context
 * **stepId:** ID of the step you want to start. (Will be provided by IDWise for each step)
+
+Here is the sample implementation of starting a step
+
+	IDWise.startStep(context, stepId)
+	
+You can also pass a file as a `ByteArray`. Following is an example
+
+	IDWise.startStepFromFileUpload(context, stepId, byteArray)
 
 The step events (provided in `IDWiseSDKStepCallback` parameter provided to  `startDynamicJourney` method) will be triggered as step is handled and processed.
 
