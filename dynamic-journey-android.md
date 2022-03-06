@@ -114,7 +114,7 @@ Following is the sample to Resume an existing journey
             stepCallback
         )
 
-* **journeyDefinitionId** (also called Journey Definition ID): This is a unique identifier that identifies your journey definition. IDWise shares this with you when you register for using IDWise system.
+* **journeyDefinitionId** This is a unique identifier that identifies your journey definition. IDWise shares this with you when you register for using IDWise system.
 
 * **journeyId**: journeyId of the journey you want to resume. which you got in onJourneyStarted callback when you started the journey first time.
 
@@ -165,7 +165,7 @@ Following is the sample implementation of `journeyCallback` and `stepCallback`
 
 ## Step 3: Starting the Steps
 
-When `onJourneyStarted(...)` or `onJourneyResumed(...)` triggered successfuly, you can call the `IDWise.startStep(...)` to start the specific verfication Step. `IDWise.startStep` takes the following parameters:
+When `onJourneyStarted(...)` or `onJourneyResumed(...)` are triggered successfuly, you can call the `IDWise.startStep(...)` to start the specific verfication Step. `IDWise.startStep` takes the following parameters:
 
 * **context:** `Activity` or `Fragment` context
 * **stepId:** ID of the step you want to start. (Will be provided by IDWise for each step)
