@@ -133,7 +133,8 @@ IDWise.startStep(stepId: String)
 
 stepId: ID of the step you want to start. (Will be provided by IDWise for each step)
 
-You can also pass a PDF or an Image as `Data`. Important Note: Size of the Data should be less then or equal to 4Mb. Following is an example
+You can also pass a PDF or an Image as `Data` and for that you can use following method named `startStepFromFileUpload`.
+ Important Note: Size of the Data should be less then or equal to 4Mb. Following is an example
 
 ```swift
    IDWise.startStepFromFileUpload(stepId: String, data: Data)
@@ -142,6 +143,7 @@ You can also pass a PDF or an Image as `Data`. Important Note: Size of the Data 
 `IDWise.startStepFromFileUpload` method takes the following parameter:
 
 stepId: ID of the step you want to start. (Will be provided by IDWise for each step)
+
 data: Data representation of an image file or a PDF file ( Data bytes must be less than or equal to 4Mb )
 
 The methods in `IDWiseStepDelegate`  will be triggered as step is handled and processed
