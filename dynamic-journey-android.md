@@ -174,11 +174,11 @@ Here is the sample implementation of starting a step
 
 	IDWise.startStep(context, stepId)
 	
-You can also pass a file as a `ByteArray`. Following is an example
+You can also pass a PDF or an Image File as a `ByteArray`. `Important Note`: Size of the byteArray should be less then 6MB. Following is an example
 
 	IDWise.startStepFromFileUpload(context, stepId, byteArray)
 
-The step events (provided in `IDWiseSDKStepCallback` parameter provided to  `startDynamicJourney` method) will be triggered as step is handled and processed.
+The step events (provided in `IDWiseSDKStepCallback` parameter provided to  `startDynamicJourney` or `resumeDynamicJourney` method) will be triggered as step is handled and processed.
 
 
 ## Step 4: Customising the UI
