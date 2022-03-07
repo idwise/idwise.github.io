@@ -129,9 +129,21 @@ After calling `startJourney` method and subsequently when `JourneyStarted` metho
 IDWise.startStep(stepId: String)
 ```
 
-`IDWise.startStep` method takes the following parameters:
+`IDWise.startStep` method takes the following parameter:
 
 stepId: ID of the step you want to start. (Will be provided by IDWise for each step)
+
+You can also pass a PDF or an Image as `Data`. Important Note: Size of the Data should be less then or equal to 4Mb. Following is an example
+
+```swift
+   IDWise.startStepFromFileUpload(stepId: String, data: Data)
+```
+
+`IDWise.startStepFromFileUpload` method takes the following parameter:
+
+stepId: ID of the step you want to start. (Will be provided by IDWise for each step)
+data: Data representation of an image file or a PDF file ( Data bytes must be less than or equal to 4Mb )
+
 The methods in `IDWiseStepDelegate`  will be triggered as step is handled and processed
 
 We can implement the protocol `IDWiseSDKStepDelegate` as an extension on the ViewController same way as above to recieve the step events:
