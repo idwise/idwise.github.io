@@ -95,7 +95,7 @@ This method takes following parameters:
 - `journeyDelegate`: This parameter is used to provide a set of event handlers to handle the different events that are triggered from IDWise SDK. These events indicate the lifetime of a journey and provide oppurtunity for your application to react to certain journey events.
 - `stepDelegate`: This parameter is used to provide a set of event handlers to handle the different events that are triggered from IDWise SDK. These events indicate the lifetime of a verification step and provide oppurtunity for your application to react to certain step events.
 
-## Resuming an existing journey
+### Resuming an existing journey
 
 You can resume the exiting, incompleted journey at any time. Following is the sample to Resume an existing journey.
 
