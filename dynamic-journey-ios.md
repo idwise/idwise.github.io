@@ -88,12 +88,27 @@ To start a new dynamic journey just provide the UIViewController from which you 
 
 This will make IDWise SDK start a journey and make it the current journey. You can next start steps of this journey and guide the user through completing the necessary steps in the desired order.
 
-This method takes two parameters:
+This method takes following parameters:
 - `journeyDefinitionId`: Specifies the journey definition (aka template) to base this new journey on. Journey definitions are created based on your requirements and specify what documents and biometrics to collect from the user and in what order. JourneyDefinitionId is shared with you by IDWise team as part of your use-case and requirements discussions.
 - `referenceNo` : A custom identifier to associate with this journey to enable you to link it back easily or associate it with a user on your system.
-- `locale` : Language code of the language to be used to display the journey user interface. This is either an ISO 639-1 (2-letter for example en) or IETF BCP 47 (2-letter plus extended language specified for example zh-HK or zh-CN)
+- `locale` (Optional) : Language code of the language to be used to display the journey user interface. This is either an ISO 639-1 (2-letter for example en) or IETF BCP 47 (2-letter plus extended language specified for example zh-HK or zh-CN)
 - `journeyDelegate`: This parameter is used to provide a set of event handlers to handle the different events that are triggered from IDWise SDK. These events indicate the lifetime of a journey and provide oppurtunity for your application to react to certain journey events.
 - `stepDelegate`: This parameter is used to provide a set of event handlers to handle the different events that are triggered from IDWise SDK. These events indicate the lifetime of a verification step and provide oppurtunity for your application to react to certain step events.
+
+## Resuming an existing journey
+
+You can resume the exiting, incompleted journey at any time. Following is the sample to Resume an existing journey.
+
+```swift
+IDWise.resumeDynamicJourney(journeyDefinitionId: "<YOUR_CUSTOMER_ID>",journeyId: "<JOURNEY_ID>",locale: "en", journeyDelegate: self, stepDelegate: self)
+```
+This method takes following parameters:
+- `journeyDefinitionId`: Specifies the journey definition (aka template) to base this new journey on. Journey definitions are created based on your requirements and specify what documents and biometrics to collect from the user and in what order. JourneyDefinitionId is shared with you by IDWise team as part of your use-case and requirements discussions.
+- `journeyId`: journeyId of the journey you want to resume. which you got in onJourneyStarted callback when you started the journey first time.
+- `locale` (Optional) : Language code of the language to be used to display the journey user interface. This is either an ISO 639-1 (2-letter for example en) or IETF BCP 47 (2-letter plus extended language specified for example zh-HK or zh-CN)
+- `journeyDelegate`: This parameter is used to provide a set of event handlers to handle the different events that are triggered from IDWise SDK. These events indicate the lifetime of a journey and provide oppurtunity for your application to react to certain journey events.
+- `stepDelegate`: This parameter is used to provide a set of event handlers to handle the different events that are triggered from IDWise SDK. These events indicate the lifetime of a verification step and provide oppurtunity for your application to react to certain step events.
+
 
 For example we can implement the protocol 'IDWiseSDKJourneyDelegate' as an extension on the ViewController like so:
 
@@ -110,6 +125,10 @@ extension ViewController:IDWiseSDKJourneyDelegate {
     func JourneyStarted(journeyID: String) {
         
     }
+
+    func onJourneyResumed(journeyID: String) {
+
+    }
     
     func JourneyFinished() {
         
@@ -118,6 +137,7 @@ extension ViewController:IDWiseSDKJourneyDelegate {
 ```
 
 When the journey is started it is assigned a unique id called Journey ID in IDWise system and this is provided as a parameter, `journeyID` with the triggering of `JourneyStarted` event.
+We can use this `journeyID` when we need to resume the journey.
 This identifier can be used to fetch the data and status of the journey from IDWise Journey Fetch API at any time.
 
 
