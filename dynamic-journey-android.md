@@ -2,11 +2,11 @@
 layout: default
 parent: Android SDK
 grand_parent: IDWise Developers
-title: Advanced Mode - Android
+title: Dynamic Journey - Android
 nav_order: 1
 ---
 
-# IDWise Smart Onboarding SDK for Android - Advanced Dynamic Mode
+# IDWise Smart Onboarding SDK for Android - Advanced Dynamic Journey Mode
 {: .no_toc }
 
 <details open markdown="block">
