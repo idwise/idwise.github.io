@@ -2,11 +2,11 @@
 layout: default
 parent: iOS SDK
 grand_parent: IDWise Developers
-title: Advanced Mode - iOS
+title: Dynamic Journey - iOS
 nav_order: 1
 ---
 
-# IDWise Smart Onboarding SDK for iOS - Advanced Dynamic Mode
+# IDWise Smart Onboarding SDK for iOS - Advanced Dynamic Journey Mode
 {: .no_toc }
 
 <details open markdown="block">
