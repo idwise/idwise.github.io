@@ -38,6 +38,7 @@ Copy the files `https://app.idwise.ai/idwise.min.js` and `https://app.idwise.ai/
     ```
     <script>
       let idwise = IDWise.initialize({
+        businessId: 'aa3bd297-9fbe-4127-a588-1560250ba017', // this is the same as journey definition id
         locale: 'en',
         clientKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx='
       })
@@ -63,7 +64,7 @@ different events fired by IDWise SDK. There are currently two events supported: 
       .then((idwise) => {
         idwise.startJourney({
           mount: '#idwise-mount',
-          journeyTemplateId: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx',
+          journeyTemplateId: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', // journey definition id
           eventHandlers: {
             onFinished: function(details) {
               alert('Thanks for completing the registration')
