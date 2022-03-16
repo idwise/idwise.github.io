@@ -11,9 +11,9 @@ It presents a highly customisable UI that guides the user through a series of st
 
 Please follow these steps to integrate with the document capturing SDK:
 1. Add IDWise library files
-Copy the files `https://github.com/idwise/idwise-web-sdk/blob/main/lib/idwise.min.js` and `https://github.com/idwise/idwise-web-sdk/blob/main/lib/idwise.min.css` as assets/static files to your web server distribution files or your CDN to make them available to be served to your web users along your other web assets
+Copy the files `https://app.idwise.ai/idwise.min.js` and `https://app.idwise.ai/idwise.min.css` as assets/static files to your web server distribution files or your CDN to make them available to be served to your web users along your other web assets
 
-2. Add a reference to the style sheet file “https://github.com/idwise/idwise-web-sdk/blob/main/lib/idwise.min.css” in the web page that will host IDWise Web SDK. For example:
+2. Add a reference to the style sheet file “https://app.idwise.ai/idwise.min.css” in the web page that will host IDWise Web SDK. For example:
 
     ```
     <link href="./lib/idwise.min.css" rel="stylesheet">
@@ -58,9 +58,8 @@ different events fired by IDWise SDK. There are currently two events supported: 
     ```
     <script>
       let idwise = IDWise.initialize({
-        businessId: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx',
-        apiKey: 'xxxxxxxx',
-        apiSecret: 'xxxxxxxx'
+        locale: 'en',
+        clientKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx='
       })
       .then((idwise) => {
         idwise.startJourney({
