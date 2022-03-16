@@ -38,9 +38,8 @@ Copy the files `https://app.idwise.ai/idwise.min.js` and `https://app.idwise.ai/
     ```
     <script>
       let idwise = IDWise.initialize({
-        businessId: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx',
-        apiKey: 'xxxxxxxx',
-        apiSecret: 'xxxxxxxx'
+        locale: 'en',
+        clientKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx='
       })
     </script>
     ```
