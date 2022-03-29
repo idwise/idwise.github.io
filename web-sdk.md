@@ -48,9 +48,10 @@ Copy the files `https://app.idwise.ai/idwise.min.js` and `https://app.idwise.ai/
     This call returns a promise to a session instance. The session instance will be used to access the functionality of IDWise system in next steps
 
 6. Use the IDWise session instance to start a new journey. To do so you can call `startJourney` function. The function takes three parameters:
-    * `journeyDefinitionId` Identifies the steps of the journey to be started. This is provided to you by IDWise team based on your requirements and what documents or biometrics you want to ask your users for
-    * `mount` The HTML DOM element where IDWise UI elements should be added. This was specified in Step 4 above
-    * `eventHandlers` An object with list of callbacks to invoke to handle the
+    * `journeyDefinitionId` (Mandatory) Identifies the steps of the journey to be started. This is provided to you by IDWise team based on your requirements and what documents or biometrics you want to ask your users for
+    * `userId` (Optional but recommended) An identifier that uniquely idenfies the user carrying out this journey in your system. This identifier will be attached to this journey and will be provided when fetching the journey data and can be used to link the journey back in your system
+    * `mount` (Mandatory) The HTML DOM element where IDWise UI elements should be added. This was specified in Step 4 above
+    * `eventHandlers` (Optional but recommended) An object with list of callbacks to invoke to handle the
 different events fired by IDWise SDK. There are currently two events supported: onStarted and onFinished. Which indicate the start and completion of the journey
 
     The following example code shows an overall script covering steps 5 and 6 above:
@@ -66,6 +67,7 @@ different events fired by IDWise SDK. There are currently two events supported: 
         idwise.startJourney({
           mount: '#idwise-mount',
           journeyTemplateId: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', // journey definition id
+          userId: "842098029309823", // An identifier that uniquely idenfies the user carrying out this journey
           eventHandlers: {
             onFinished: function(details) {
               alert('Thanks for completing the registration')
