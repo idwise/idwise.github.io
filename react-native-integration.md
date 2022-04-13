@@ -103,9 +103,23 @@ dependencies {
 ```
 ### Android Linking ###
 
-In order to Link the React Code with android, we need to create a Module, let's call it `IDWiseModule`. You can see the You can find the sample [`IDWiseModule.java`](https://github.com/idwise/idwise-react-native-example/blob/main/android/app/src/main/java/com/idwisereactnativesample/IDWiseModule.java) for sample code for Android Integration.
-  
+In order to Link the React Code with android, we need to create a Module, let's call it `IDWiseModule`. You can find the sample [`IDWiseModule.java`](https://github.com/idwise/idwise-react-native-example/blob/main/android/app/src/main/java/com/idwisereactnativesample/IDWiseModule.java) for sample code.
 
+In order to use `IDWiseModule` we need to create a React Package, let's call it `IDWisePackage`. You can find the sample [`IDWisePackage.java`](https://github.com/idwise/idwise-react-native-example/blob/main/android/app/src/main/java/com/idwisereactnativesample/IDWisePackage.java) for sample code.
+
+Now we can add our newly created `IDWisePackage` to our packages, to do this, we need to edit the `MainApplication.java`, located at `projectRoot/android/your/package/name/../MainApplication.java`. In `getPackages()` method, we need to add our Package like below.
+
+```java
+	@Override
+        protected List<ReactPackage> getPackages() {
+          List<ReactPackage> packages = new PackageList(this).getPackages();
+	  
+	  //add IDWisePackage here
+           packages.add(new IDWisePackage());
+	   
+          return packages;
+        }
+```
 
 
 ## React-Native Usage
