@@ -7,4 +7,4 @@ has_children: true
 ---
 
 # React Native Integration Examples 
-* [Android](https://idwi.se/android)
+* [Android](https://developers.idwise.com/android-react-native-integration.html)
