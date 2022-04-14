@@ -1,8 +1,8 @@
 ---
 layout: default
-parent: IDWise Developers
-title: Android SDK - React-Native Integration
-nav_order: 8
+parent: React Native Integration
+title: Android
+nav_order: 8.1
 heading_anchors: true
 ---
 # IDWise Smart Onboarding Android SDK for React-Native
