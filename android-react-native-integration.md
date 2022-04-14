@@ -2,7 +2,7 @@
 layout: default
 parent: React Native Integration
 title: Android
-nav_order: 10
+nav_order: 9.1
 heading_anchors: true
 ---
 # IDWise Smart Onboarding Android SDK for React-Native
