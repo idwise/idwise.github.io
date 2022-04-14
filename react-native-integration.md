@@ -1,11 +1,11 @@
 ---
 layout: default
 parent: IDWise Developers
-title: React-Native Integration
+title: Android SDK - React-Native Integration
 nav_order: 4.6
 heading_anchors: true
 ---
-# IDWise Smart Onboarding SDK for React-Native
+# IDWise Smart Onboarding Android SDK for React-Native
 {: .no_toc }
 <details open markdown="block">
   <summary>
@@ -25,46 +25,10 @@ This git repository contains the official IDWiseSDK meant to be used in React-Na
 
 ## Requirements
 
-### iOS ###
-
-The minimum deployment target for IDWiseSDK is iOS 12.0. In order to use the SDK your application minimum deployment target should be iOS 12.0 or higher.
-On your development machine you need to have XCode and CocoaPods installed. Both Intel and M1 (Apple Sillicon) based machines are supported. When working with Cocoapods you might have to run some commands through Rosetta Stone compatibility mode.
-
-If you are building iOS project on VSCode and using an M1 machine then It's recommended to use Xcode for iOS builds because VSCode does not support Roestta mode and we need Rosetta option on both terminal and Xcode to run our project without any Issues of linking architecture.
-React-Native also has disabled support for builds through VSCode starting from iOS 14, so we need Xcode for iOS builds anyway. 
-
-### Android ###
-
 The `minSdkVersion` is 16 and `targetSdkVersion` is set to 31 in IDWise Android SDK. It is recommended to install the Latest Android Studio on your development machine. 
 
-## iOS Installation
 
-To install pods in your flutter project, first go to projectfolder/ios. You can create a podfile If does not exist already by running command "pod init" on terminal by going into this ios directory. If you already have a podfile, you can follow following steps.
-
-IDWiseSDK is available to install via [CocoaPods package manager](https://cocoapods.org) from IDWise private Cocoapods repository.
-To add IDWise SDK to your project, first ensure you have these two lines at the top of your Podfile file:
-
-```ruby
-source 'https://cdn.cocoapods.org/'
-source 'https://github.com/idwise/ios-sdk'
-```
-
-This adds IDWise private Cocoapods repository as a source to install packages from
-
-Next add this line also to your Podfile but this time underneath your `target` node for your project:
-
-```ruby
-pod 'IDWise'
-```
-
-You can have a look at the example `Podfile` provided in the root of this repository to see an example `Podfile` with both the changes above completed
-
-After adding our dependency in your Podfile run: 
-
-```
-pod install
-```
-## Android Installation
+## Installation
 Add the following in your app level `build.gradle` file located at `projectRoot/android/app/build.gradle`
 
 ```
@@ -101,7 +65,7 @@ dependencies {
 	implementation 'com.idwise:android-sdk:x.y.z'
 }
 ```
-### Android Linking ###
+### Linking ###
 
 In order to Link the React Code with android, we need to create a Module, let's call it `IDWiseModule`. You can find the sample [`IDWiseModule.java`](https://github.com/idwise/idwise-react-native-example/blob/main/android/app/src/main/java/com/idwisereactnativesample/IDWiseModule.java) for sample code.
 
