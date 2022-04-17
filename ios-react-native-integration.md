@@ -63,7 +63,6 @@ After adding our dependency in your Podfile run:
 ```
 pod install
 ```
-}
 
 ### With cocoapods-user-defined-build-types Plugin:
 To add IDWise SDK to your project, first ensure you have these two lines at the top of your Podfile file:
@@ -95,7 +94,6 @@ After adding our dependency in your Podfile run:
 ```
 pod install
 ```
-}
 
 ### Linking ###
 
