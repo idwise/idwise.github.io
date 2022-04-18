@@ -100,7 +100,7 @@ const { IDWiseModule } = NativeModules;
 In order to use the SDK, we need to initialize it first with the `<CLIENT_KEY>` provided by IDWise. You can pre-load this on `componentDidMount()` if you want to. Here is how we can initialize the SDK.
 
 ```javascript
-IDWiseModule.initialize("<CLIENT_KEY>");
+IDWiseModule.initializeSDK("<CLIENT_KEY>");
 ```
 
 ### Starting the Journey
@@ -127,7 +127,7 @@ useEffect(() => {
     });
 
     eventEmitter.addListener('journeyCompleted', (event) => {
-      console.log(`Journey Completed with id ${event.journeyId} & isSuccess ${event.isSuccess}`);
+      console.log(`Journey Completed with id ${event.journeyId}`);
     });
 
     eventEmitter.addListener('journeyCancelled', (event) => {
