@@ -31,9 +31,12 @@ On your development machine you need to have XCode and CocoaPods installed. Both
 
 
 ## Installation
-IDWiseSDK is available to install via [CocoaPods package manager](https://cocoapods.org) from IDWise private Cocoapods repository.IDWise is a dynamic framework and requires the podfile to use `use_frameworks!` directive to be used so dynamic pods/frameworks can install and run successfully.
+IDWiseSDK is available to install via [CocoaPods package manager](https://cocoapods.org) from IDWise private Cocoapods repository. IDWise is a dynamic framework and requires the podfile to use `use_frameworks!` directive to be used so dynamic pods/frameworks can install and run successfully.
+
 React Native’s native iOS dependencies are compiled as static libraries and many react-native node modules are only ever compiled and tested as static libraries. When trying to incorporate a dynamic framework (which Swift dependencies are often bundled as), compilation problems often ensue.
-As aforementioned, Cocoapods builds pods by default as static libraries. To use a framework like this we normally normally use the `use_frameworks!` Cocoapods directive at the top of our Podfile. However, this causes ALL pods to be compiled as dynamic frameworks. Not only will some React Native pods fail, but a large number of 3rd party React Native libraries will as well.
+
+As aforementioned, Cocoapods builds pods by default as static libraries. To use a framework like this we normally use the `use_frameworks!` Cocoapods directive at the top of our Podfile. However, this causes ALL pods to be compiled as dynamic frameworks. Not only will some React Native pods fail, but a large number of 3rd party React Native libraries will as well.
+
 If you can find a way where you can use `use_frameworks!` directive and still able to install `IDWise` pod and other React Native native iOS dependecies (Flipper, Folly, YogaKit etc) and successfully run the react native project then It's fine. Otherwise, the workaround is to use a plugin over cocoapods which can dynamically install specific libraries as static or dynamic during pod installation process.
 
 You can use this plugin to install pods `https://github.com/joncardasis/cocoapods-user-defined-build-types` which enables us to dictate the specific build type of a pod ( dynamic in our case ). You can go through the README section of this plugin as well.
