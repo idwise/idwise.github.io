@@ -129,7 +129,6 @@ Throughout the journey, IDWise SDK sends back some events to the Hosting app. He
 
 ```javascript
 
-     if (Platform.OS === 'ios') {
       const eventEmitter = new NativeEventEmitter(IDWiseModule);
 
       eventEmitter.addListener('journeyStarted', event =>
@@ -148,7 +147,6 @@ Throughout the journey, IDWise SDK sends back some events to the Hosting app. He
       console.log(`Journey Completed with id ${event.journeyId}`);
     });
 
-     } 
      
 ```
 
