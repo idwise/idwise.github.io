@@ -29,6 +29,14 @@ This git repository contains the official IDWiseSDK meant to be used in iOS appl
 The minimum deployment target for IDWiseSDK is iOS 12.0. In order to use the SDK your application minimum deployment target should be iOS 12.0 or higher.
 On your development machine you need to have XCode and CocoaPods installed. Both Intel and M1 (Apple Sillicon) based machines are supported. When working with Cocoapods you might have to run some commands through Rosetta Stone compatibility mode.
 
+## Xcode Supported Version
+
+IDWise SDK always supports latest Xcode version only. The current latest release of IDWise SDK (IDWise 3.3.0) supports below Xcode versions.
+
+|     Xcode      |  
+| :---           |   
+|  Xcode 13.3    | 
+|  Xcode 13.3.1  | 
 
 ## Installation
 IDWiseSDK is available to install via [CocoaPods package manager](https://cocoapods.org) from IDWise private Cocoapods repository.
