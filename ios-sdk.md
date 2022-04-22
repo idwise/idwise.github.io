@@ -31,7 +31,7 @@ On your development machine you need to have XCode and CocoaPods installed. Both
 
 ## Xcode Supported Version
 
-IDWise SDK always supports latest Xcode version only. The current latest release of IDWise SDK (IDWise 3.3.0) supports below Xcode versions.
+IDWise SDK always supports latest Xcode version only. The current latest release of IDWise SDK (IDWise 3.3.1) supports below Xcode versions.
 
 |     Xcode      |  
 | :---           |   
