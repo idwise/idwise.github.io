@@ -78,9 +78,11 @@ IDWise SDK is designed to start on top of a UIViewController in your application
 To start a new journey just provide the UIViewController from which you want the flow to start then call `IDWiseSDK.initialize` method first with your provided client key and then you can call `IDWise.startJourney` method. If initialization is failed for any reason, you will get an error object with a code and a message explaining the reason of the error. In the following example, we called initialize method and then called startJourney method.
 
 ```swift
-        IDWise.initialize(clientKey: "<YOUR_CLIENT_KEY>") { error in
+        IDWise.initialize(clientKey: "<YOUR_CLIENT_KEY>") { err in
                 // Deal with error here
-                print(error?.message)
+            if let error = err {
+              // handle error, show some alert or any other logic
+            }
         }
         
         IDWise.startJourney(journeyDefinitionId: "<YOUR_CUSTOMER_ID>", referenceNumber: "<YOUR_REFERENCE_NO>", locale: "en", journeyDelegate: self)
