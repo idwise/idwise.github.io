@@ -9,4 +9,4 @@ Please contact us at https://idwise.com/contact to get access the detailed API d
 
 ## Sequence Diagram:
 
-![download (3)](https://raw.githubusercontent.com/idwise/idwise.github.io/main/api-seq-diagram.svg)
+![download (3)](https://raw.githubusercontent.com/idwise/idwise.github.io/main/assets/api-seq-diagram.svg)
