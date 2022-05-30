@@ -33,7 +33,7 @@ Dear Candidate!
 
 We are so excited to meet you for our IDWise Engineering Interview soon!
 
-This file should help you understand the structure of the interview.
+**We want you to succeed!** that is why we prepared this page which should help you understand the structure of the interview.
 
 # Interview Structure
 
