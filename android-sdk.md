@@ -29,9 +29,7 @@ Here is how you can setup and start using IDWise SDK.
 3.2.1
 
 ## Integration Video!
-<iframe width="560" height="315" src="https://www.youtube.com/embed/qttRKzerxas" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-{% include youtube.html id='QH2-TGUlwu4' %}
+{% include youtube.html id='qttRKzerxas' %}
 
 
 ## Step 1: Integrating with your build scripts
