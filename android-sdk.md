@@ -28,6 +28,9 @@ Here is how you can setup and start using IDWise SDK.
 ### Latest Stable Version
 3.2.1
 
+## Integration Video!
+<iframe width="560" height="315" src="https://www.youtube.com/embed/qttRKzerxas" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Step 1: Integrating with your build scripts
 - In your `build.gradle` file, add `multiDexEnabled true` and `dataBinding true` in these sections:
 ```
