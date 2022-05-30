@@ -28,7 +28,8 @@ Here is how you can setup and start using IDWise SDK.
 ### Latest Stable Version
 3.2.1
 
-## Integration Video!
+## Integration Video
+Get integrated quickly by watching a 5 minutes video:
 {% include youtube.html id='qttRKzerxas' %}
 
 
