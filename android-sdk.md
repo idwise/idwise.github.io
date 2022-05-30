@@ -19,6 +19,8 @@ heading_anchors: true
 </details>
 
 ---
+<link rel="stylesheet" href="/assets/css/styles.css">
+
 
 This SDK allows you to integrate the IDWise Digital Identity Verification technology inside your app with minimal fuss. 
 Whenever your app want's to verify a user, simply initialize the SDK and call a single method i.e. `startJourney(...)`. It's that simple. Isn't it?
