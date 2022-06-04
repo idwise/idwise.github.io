@@ -38,6 +38,11 @@ IDWise SDK always supports latest Xcode version only. The current latest release
 |  Xcode 13.4    | 
 
 
+## Integration Video
+Get integrated quickly by watching a 4 minutes video:
+{% include youtube.html id='SuLtp3y-EME' %}
+
+
 ## Installation
 IDWiseSDK is available to install via [CocoaPods package manager](https://cocoapods.org) from IDWise private Cocoapods repository.
 To add IDWise SDK to your project, first ensure you have these two lines at the top of your Podfile file:
