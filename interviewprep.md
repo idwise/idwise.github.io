@@ -47,8 +47,8 @@ The interview is generally split to two separate sessions: the first one covers 
 
 ## What will you need on the day?
 * ⏰ **Time:** Please block the time for the interview, 2.5 hours at least, as some of the parts can go over a bit.
-* 🌐 **Good Internet Conenction:** to ensure that your interview is not interrupted and you get the best experience.
-* 🎧 **Good Pair of Heaephones:** to allow the best communicatin.
+* 🌐 **Good Internet Conenction:** to ensure that your interview is not interrupted and you get the best experience, camera will be used during the interview.
+* 🎧 **Good Pair of Headphones:** to allow the best communicatin.
 * 💻 **Computer:** it might seem obvious 🙂, but some candidates joined from their phones with no access to a computer, which wouldn't allow for the best interview experience!
 
 ## Coding Interview + Role Specific Questions
@@ -63,9 +63,11 @@ We also would observe the way you approach debugging your code/pseudocode, and h
 
 Also, we will be asking questions specific to the role you are filling, for example, we will touch on AI / ML in this part if the role is for an ML Engineer, or Frontend technologies if the role is for a full stack developer and so on.
 
+You will need to simulate/debug your code with the interviewer without running it (with no IDE).
+
 **Resources**: You can try using [LeetCode](https://leetcode.com/), which is a free tool that contains a lot of examples similar to the ones which will be asking.
 
-**We use [codeshare.io](https://codeshare.io/) for this part of the interview.**
+**We use [codeshare.io](https://codeshare.io/) for this part of the interview, and there will be no execution / IDE during the interview.**
 
 ## System Design
 
