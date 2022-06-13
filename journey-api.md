@@ -6,11 +6,11 @@ nav_order: 6
 ---
 
 You can find here the documentation for both **Endpoints** and **Model**
-## Endpoints Documentation:
-https://idwi.se/journey-api-v2
+## [Endpoints Documentation](https://idwi.se/journey-api-v2)
 
-## Model Documentation:
-https://idwi.se/journey-model-v2
+
+## [Model Documentation](https://idwi.se/journey-model-v2)
+
 
 If you have any issues, please contact us at https://idwise.com/contact
 
