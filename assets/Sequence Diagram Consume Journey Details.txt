@@ -13,7 +13,7 @@ note over Customer App (Android/iOS/Web), IDWise SDK: Journey staps are complete
 
 IDWise SDK->Customer App (Android/iOS/Web): On Journey Compelte Call Back/event (journeyId)
 Customer App (Android/iOS/Web) -> Customer Backend: Get Journey Details (journeyId)
-Customer Backend -> IDWise Backend: api.idwise.com/journey/get/{{journeyId}}
+Customer Backend -> IDWise Backend: Get Journey API {{journeyId}}
 IDWise Backend --> Customer Backend: Journey Details (Fields, Face Match, Validation,...) 
 Customer Backend -->Customer App (Android/iOS/Web): Journey Details
 
@@ -27,7 +27,7 @@ Customer App (Android/iOS/Web)->IDWise SDK: **Start Journey** (referenceNo)
 note over Customer App (Android/iOS/Web), IDWise SDK: Journey staps are completed by the user
 
 IDWise Backend->Customer Backend: Webhook on journey completed (journeyId, referenceNo)
-Customer Backend -> IDWise Backend: api.idwise.com/journey/get/{{journeyId}}
+Customer Backend -> IDWise Backend: Get Journey API {{journeyId}}
 IDWise Backend --> Customer Backend: Journey Details (Fields, Face Match, Validation,...) 
 
 note over Customer Backend: Save journey details to a local database\nand use the data to update customer record\n(use referenceNo that was passed to\n`**Start Journey**` to link customer record to journey)
