@@ -7,6 +7,7 @@ nav_order: 3
 ---
 
 # IDWise Smart Onboarding SDK for iOS
+
 {: .no_toc }
 
 <details open markdown="block">
@@ -27,19 +28,22 @@ This git repository contains the official IDWise SDK meant to be used in iOS app
 IDWise SDK always supports latest Xcode version only. The current latest release of IDWise SDK (IDWise 3.3.3) supports below Xcode versions.
 
 |     Xcode      |  
-| :---           |   
-|  Xcode 13.4    | 
-
+| :---           |
+|  Xcode 13.4    |
+|  Xcode 13.4.1  |
 
 ## Integration Video
+
 Get integrated quickly by watching a 4 minutes video:
 {% include youtube.html id='SuLtp3y-EME' %}
 
 ## Requirements
+
 The minimum deployment target for IDWiseSDK is iOS 12.0. In order to use the SDK your application minimum deployment target should be iOS 12.0 or higher.
 On your development machine you need to have XCode and CocoaPods installed. Both Intel and M1 (Apple Sillicon) based machines are supported. When working with Cocoapods you might have to run some commands through Rosetta Stone compatibility mode.
 
 ## Installation
+
 IDWiseSDK is available to install via [CocoaPods package manager](https://cocoapods.org) from IDWise private Cocoapods repository.
 To add IDWise SDK to your project, first ensure you have these two lines at the top of your Podfile file:
 
@@ -58,7 +62,7 @@ pod 'IDWise'
 
 You can have a look at the example `Podfile` provided in the root of this repository to see an example `Podfile` with both the changes above completed
 
-After adding our dependency in your Podfile run: 
+After adding our dependency in your Podfile run:
 
 ```
 pod install
@@ -88,11 +92,12 @@ To start a new journey just provide the UIViewController from which you want the
         
         IDWise.startJourney(journeyDefinitionId: "<YOUR_CUSTOMER_ID>", referenceNumber: "<YOUR_REFERENCE_NO>", locale: "en", journeyDelegate: self)
         
-``` 
+```
 
 This will make IDWise SDK show a UI with a wizard to guide the user through completing the onboarding journey
 
 This method takes two parameters:
+
 - `journeyDefinitionId`: Specifies the journey definition (aka template) to base this new journey on. Journey definitions are created based on your requirements and specify what documents and biometrics to collect from the user and in what order. JourneyDefinitionId is shared with you by IDWise team as part of your use-case and requirements discussions.
 - `referenceNo` : A custom identifier to associate with this journey to enable you to link it back easily or associate it with a user on your system.
 - `locale` : Language code of the language to be used to display the journey user interface. This is either an ISO 639-1 (2-letter for example en) or IETF BCP 47 (2-letter plus extended language specified for example zh-HK or zh-CN)
@@ -130,9 +135,11 @@ This identifier can be used to fetch the data and status of the journey from IDW
 The steps that compose part of the journey and the prompts that user see are all cutomisable through IDWise cloud system.
 
 ## Code Example
+
 Please find the [`following example`](https://github.com/idwise/idwise-ios-sdk-documentation/tree/main/IDWiseExample) for an XCode project that showcases the integration with IDWise iOS Framework.
 
 ## Advanced Dynamic Journey Mode
+
 In some scenarios, your use case might require more flexibility and control over the user journey flow and full control over the user interface / UX above and beyond the wide range of customisations we offer and more than the above sequential flow which simplifies integration, we are introducing: the `Advanced Dynamic Journey` mode, to both of our Android and iOS SDKs to cover some edge advanced use-cases.
 
 From experience, the above simple integration should cover the vast majority of use cases, and allow for a good degree of customisation for the steps and for the UI/UX from the IDWise backend (which applies instantly without the need to update the host app).
