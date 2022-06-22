@@ -163,6 +163,8 @@ Following is the sample implementation of `journeyCallback` and `stepCallback`
 
          }
 
+From `stepResult` variable in `onStepResult(...)` callback, you can receive the extracted fields. And if the validation is failed, you can get the failure code as `stepResult.failureReasonCode`
+
 ## Step 3: Starting the Steps
 
 When `onJourneyStarted(...)` or `onJourneyResumed(...)` are triggered successfuly, you can call the `IDWise.startStep(...)` to start the specific verfication Step. `IDWise.startStep` takes the following parameters:
