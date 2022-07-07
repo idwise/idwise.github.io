@@ -7,7 +7,7 @@ nav_order: 6
 
 You can find here the documentation for both **Endpoints** and **Model**
 
-### Please note that we are moving to v2 API (https://api.idwise.com/journey/v2/.....), old API will be deprecated by the end of June 2022.
+### Please note that we are moving to v2 API (https://api.idwise.com/journey/v2/.....), old API will not be supported from 1/7/2022.
 
 ## [Endpoints Documentation](https://idwi.se/journey-api-v2)
 
