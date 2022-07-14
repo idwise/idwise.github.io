@@ -25,7 +25,7 @@ Whenever your app want's to verify a user, simply initialize the SDK and call a 
 
 Here is how you can setup and start using IDWise SDK.
 
-### Latest Stable Version
+## Latest Stable Version
 **3.4.0**
 
 ## Integration Video
