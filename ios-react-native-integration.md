@@ -7,6 +7,7 @@ nav_order: 1
 heading_anchors: true
 ---
 # IDWise Smart Onboarding iOS SDK for React-Native
+
 {: .no_toc }
 <details open markdown="block">
   <summary>
@@ -19,18 +20,26 @@ heading_anchors: true
 
 ---
 
-
 In an increasingly digital world, relying solely on conventional and manual remote validation methods involving database checks, IP addresses and credit bureau checks is cumbersome, inefficient and opens your customers' sensitive data to a variety of data breach security risks. IDWise’s cutting-edge document verification, face match and liveness detection solution establishes a robust layer of trust between your business and your prospective customer so that you can focus your effort on developing your business faster and with more confidence while stopping even the most sophisticated fraudsters in their tracks.
 
 This git repository contains the official IDWiseSDK meant to be used in React-Native applications. This README contains all the needed information to test and integrate the IDWiseSDK in your React-Native project.
+
+## Xcode Supported Version
+
+IDWise SDK always supports latest Xcode version only. The current latest release of IDWise SDK (IDWise 3.4.0) supports below Xcode version.
+
+|     Xcode      |  
+| :---           |
+|  Xcode 13.4    |
+|  Xcode 13.4.1  |
 
 ## Requirements
 
 The minimum deployment target for IDWiseSDK is iOS 12.0. In order to use the SDK your application minimum deployment target should be iOS 12.0 or higher.
 On your development machine you need to have XCode and CocoaPods installed. Both Intel and M1 (Apple Sillicon) based machines are supported. When working with Cocoapods you might have to run some commands through Rosetta Stone compatibility mode.
 
-
 ## Installation
+
 IDWiseSDK is available to install via [CocoaPods package manager](https://cocoapods.org) from IDWise private Cocoapods repository. IDWise is a dynamic framework and requires the podfile to use `use_frameworks!` directive to be used so dynamic pods/frameworks can install and run successfully.
 
 React Native’s native iOS dependencies are compiled as static libraries and many react-native node modules are only ever compiled and tested as static libraries. When trying to incorporate a dynamic framework (which Swift dependencies are often bundled as), compilation problems often ensue.
@@ -42,7 +51,8 @@ If you can find a way where you can use `use_frameworks!` directive and still ab
 You can use this plugin to install pods `https://github.com/joncardasis/cocoapods-user-defined-build-types` which enables us to dictate the specific build type of a pod ( dynamic in our case ). You can go through the README section of this plugin as well.
 We can easily install this plugin by typing this command in our terminal `gem install cocoapods-user-defined-build-types`. It will install this plugin over our cocoapods. You can use our sample project's podfile in which we used this plugin for `IDWise` pod's dynamic installation.
 
-### Without cocoapods-user-defined-build-types Plugin:
+### Without cocoapods-user-defined-build-types Plugin
+
 To add IDWise SDK to your project, first ensure you have these two lines at the top of your Podfile file:
 
 ```ruby
@@ -60,14 +70,14 @@ Next add this line also to your Podfile but this time underneath your `target` n
 pod 'IDWise'
 ```
 
-
-After adding our dependency in your Podfile run: 
+After adding our dependency in your Podfile run:
 
 ```
 pod install
 ```
 
-### With cocoapods-user-defined-build-types Plugin:
+### With cocoapods-user-defined-build-types Plugin
+
 To add IDWise SDK to your project, first ensure you have these two lines at the top of your Podfile file:
 
 ```ruby
@@ -92,7 +102,7 @@ Next add this line also to your Podfile but this time underneath your `target` n
 
 You can have a look at the example `Podfile` provided in the ios folder of this repository to see an example `Podfile` with both the changes above completed
 
-After adding our dependency in your Podfile run: 
+After adding our dependency in your Podfile run:
 
 ```
 pod install
@@ -121,6 +131,7 @@ IDWiseModule.initialize("<CLIENT_KEY>");
 ```
 
 ### Starting the Journey
+
 Now we can start the verfication journey by calling `startJourney(..)` of the SDK like below. This will start the verification process and that's it.
 
 ```javascript
@@ -128,6 +139,7 @@ IDWiseModule.startJourney("<JOURNEY_DEFINITION_ID>","<REFERENCE_NO>","<LOCALE>")
 ```
 
 ### Events (Callbacks)
+
 Throughout the journey, IDWise SDK sends back some events to the Hosting app. Here we can listen to those events:
 
 ```javascript
@@ -154,4 +166,5 @@ Throughout the journey, IDWise SDK sends back some events to the Hosting app. He
 ```
 
 ## Sample Project
+
 You can find the [`Sample Project`](https://github.com/idwise/idwise-react-native-example) for sample code for React-Native Integration.
