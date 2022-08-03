@@ -26,7 +26,7 @@ This git repository contains the official IDWiseSDK meant to be used in React-Na
 
 ## Xcode Supported Version
 
-IDWise SDK always supports latest Xcode version only. The current latest release of IDWise SDK (IDWise 3.4.0) supports below Xcode version.
+IDWise SDK always supports latest Xcode version only. The current latest release of IDWise SDK (IDWise 3.4.2) supports below Xcode version.
 
 |     Xcode      |  
 | :---           |
