@@ -28,7 +28,7 @@ You can access this API by integrating to a simple app, or simply by invoking it
 ### API endpoint
 Base URL: https://api.idwise.com
 
-Path: /process/document
+Path: /process/v2/document
 
 ### Authentication
 Basic authentication.
@@ -51,6 +51,7 @@ Example on how to invoke the API via (curl) command-line tool, you need to add t
 `curl --location --request POST 'https://api.idwise.com/process/document' --header 'Authorization: Basic YmN..........DRi' --form 'front=@"/C:/my-image.jpg"'`
 
 ## Result
+### For full details of API response, please find the following documentation: [https://idwi.se/journey-model-v2](https://idwi.se/journey-model-v2)
 The result will be formatted as a JSON which includes:
 1. Document Type Information (country and type, e.g. Driving License, Identity Card, Passport,...).
 2. Extracted Fields (you can find a list of all possible fields here: [https://idwi.se/fields](https://idwi.se/fields)).
