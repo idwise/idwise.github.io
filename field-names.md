@@ -11,7 +11,7 @@ IDWise engine extracts information from documents in a structured and normalised
 * If the date is in a different calender, we add a **suffix depending on the calender**, for example, we add Hijri to the end of each field if the calender is Hijri calender (e.g. "Birth Date Hijri").
 
 ## Fields in Native Language:
-When the field is extracted in the native language of the country (not in English or Latin), we add the suffix "Native" to the field name to ensure that it is not mixed with the English field, e.g. "First Nam Native".
+When the field is extracted in the native language of the country (not in English or Latin), we add the suffix "Native" to the field name to ensure that it is not mixed with the English field, e.g. "First Name Native".
 
 ## ID Number Extraction:
 When we extract document number or personal number, we always change digits to English (Western-Arabic) digits, and remove any separators (e.g. spaces, dots, dashes,...).
