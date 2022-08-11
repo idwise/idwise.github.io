@@ -44,6 +44,7 @@ All paramters are sent as part of POST Body, encoded as form-data (multi-part).
 Here are the parameters
 -   `front` (or `image`) [Required]: of type "file", this should include the image file to be processed, the image can be of any widely used image format (JPG, PDF, ...)
 -   `back`: this parameter is optional, and can be used to process a double-sided document.
+-   `selfie`: this parameter is optional, and can be used to add a selfie to allow fo facematch to work.
 
 ## Example
 Example on how to invoke the API via (curl) command-line tool, you need to add the full authentication header:
@@ -51,8 +52,9 @@ Example on how to invoke the API via (curl) command-line tool, you need to add t
 `curl --location --request POST 'https://api.idwise.com/process/document' --header 'Authorization: Basic YmN..........DRi' --form 'front=@"/C:/my-image.jpg"'`
 
 ## Result
-### For full details of API response, please find the following documentation: [https://idwi.se/journey-model-v2](https://idwi.se/journey-model-v2)
-The result will be formatted as a JSON which includes:
+### Output Model Documentation:
+For full details of API response, please find the following documentation: [https://idwi.se/journey-model-v2](https://idwi.se/journey-model-v2)
+In general, the result will be formatted as a JSON which includes:
 1. Document Type Information (country and type, e.g. Driving License, Identity Card, Passport,...).
 2. Extracted Fields (you can find a list of all possible fields here: [https://idwi.se/fields](https://idwi.se/fields)).
 4. Validation Decision (Pass / Fail).
