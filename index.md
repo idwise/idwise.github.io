@@ -31,7 +31,7 @@ Documentation for this API will be sent to you as part of your onboarding on the
 ## Document Processing API: 
 In case you want to test the ID Verification capability via an API (not via one of the client SDKs above, which we strongly recommend), you can use [this simple API.](https://idwi.se/processing)
 
-This API allows you to send one document (Front side and optionally a backside) as well as a selfie photo, and IDWise will process and return the results (you will not get the benefits of Client SDKs like smart capturing of the document and UI that guides the user through the journey, you will also only be able to process on document as part of the journey if you use this API).
+This API allows you to send one document (Front side and optionally a backside) as well as a selfie photo, and IDWise will process and return the results (you will not get the benefits of Client SDKs like smart capturing of the document and UI that guides the user through the journey, you will also only be able to process a single document as part of the journey if you use this API).
 
 ## API Key & Secret:
 You will be provided by API Key and API Secret upon your onboarding on the platform.
