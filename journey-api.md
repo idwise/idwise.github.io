@@ -3,10 +3,6 @@ layout: default
 parent: IDWise Developers
 title: Journey API 
 nav_order: 6
-callouts:
-  warning:
-    title: Warning
-    color: red
 ---
 
 
@@ -14,8 +10,7 @@ callouts:
 
 You can find here the documentation for both **Endpoints** and **Model**, you can also know about our **Webhooks** feature below.
 
-{: .warning }
-Please note that we are moving to v2 API (https://api.idwise.com/journey/v2/.....), the support for old API has been stopped on the 1/7/2022, the API will be removed in the next few weeks (coordinating with our customers).
+**Please note that we are moving to v2 API (https://api.idwise.com/journey/v2/.....), the support for old API has been stopped on the 1/7/2022, the API will be removed in the next few weeks (coordinating with our customers).**
 
 ## [Endpoints Documentation](https://idwi.se/journey-api-v2)
 
