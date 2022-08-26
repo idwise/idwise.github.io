@@ -23,6 +23,8 @@ nav_order: 7
 
 AML Check service is an API that allows IDWise customers to search for individuals over Anti Money Laundering (AML) datasets which are updated daily.
 
+**Important Note:** IDWise journey definition can be configured to automatically call the AML service as part of the journey without the need to call this stand-alone API, please contact your IDWise account manager to configure this on your journey flow (The AML check result will be incorprated into the journey result as an extra rule, and any matches can be reviewed from the IDWise dashboard, and retreived via journey API).
+
 ## How to use
 
 API only accepts **POST** requests to this url:
