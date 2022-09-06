@@ -1,22 +1,16 @@
----
-layout: forward
-target: https://idwi.se/processing
----
-
-
-# THIS API IS DEPRECATED AND WON'T BE SUPPORTED
-# PLEASE USE THIS API: [https://idwi.se/processing](https://idwi.se/processing)
-
-
-
-
-
+<meta http-equiv="refresh" content="0;URL='https://idwi.se/processing'" />    
 ---
 layout: default
 parent: IDWise Developers
 title: Document Processing API 
 nav_order: 5
 ---
+
+# THIS API IS DEPRECATED AND WON'T BE SUPPORTED
+# PLEASE USE THIS API: [https://idwi.se/processing](https://idwi.se/processing)
+
+
+
 
 # IDWise Document Processing API
 {: .no_toc }
