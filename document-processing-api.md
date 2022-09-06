@@ -1,4 +1,17 @@
 ---
+layout: forward
+target: https://idwi.se/processing
+---
+
+
+# THIS API IS DEPRECATED AND WON'T BE SUPPORTED
+# PLEASE USE THIS API: [https://idwi.se/processing](https://idwi.se/processing)
+
+
+
+
+
+---
 layout: default
 parent: IDWise Developers
 title: Document Processing API 
