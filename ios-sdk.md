@@ -28,7 +28,7 @@ This git repository contains the official IDWise SDK meant to be used in iOS app
 IDWise SDK always supports latest Xcode version only. The current latest release of IDWise SDK supports below Xcode versions.
 
 |     Xcode        |      SDK                    |  
-| :---             |                             |
+| :------------ |:---------------:| -----:|
 |  Xcode 14.0      |      IDWise 3.8.1           |
 |  Xcode 13.4.1    |      IDWise 3.8.0           |
 
