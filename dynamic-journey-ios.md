@@ -227,6 +227,20 @@ extension ViewController:IDWiseSDKStepDelegate {
 
 ## Error Codes
 
+|  Error Code  |            Error Description                                                                                                                   |  
+| -----------  | ------------------------------------                                                                                                           |
+| 11           |   Invalid/Empty Parameter (Client key is empty or Invalid)                                                                                     |
+| 22           |   SDK is not initialized. Please Call IDWise.initialize(:) first                                                                               |
+| 33           |   Wrong API credentials (Client Key) provided                                                                                                  |
+| 44           |   Empty journeyId is provided to resume journey.                                                                                               |
+| 45           |   Provided file size is exceeding the maximum file size                                                                                        |
+| 66           |   No step found against provided stepId to start.                                                                                              |
+| 70           |   Invalid step Id provided, please provide a valid stepId.                                                                                     |
+| -101         |   An unexpected error occurred while processing the request.Make sure you have Internet connected                                              |
+| -102         |   Network seems to be not connected, Please try again with network connected.                                                                  |
+| 55           |   This method is not supported in this Journey Mode                                                                                            |
+| 78           |   Step is not started, please trigger startStep(...) and call confirmStep(...) after onStepResult(...)                                         |
+
 ## Code Example
 
 Please find the [`following example`](https://github.com/idwise/idwise-ios-sdk-documentation/tree/main/IDWiseExample) for an XCode project that showcases the integration with IDWise iOS Framework.
