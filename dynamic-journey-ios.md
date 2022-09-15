@@ -7,6 +7,7 @@ nav_order: 1
 ---
 
 # IDWise Smart Onboarding SDK for iOS - Advanced Dynamic Journey Mode
+
 {: .no_toc }
 
 <details open markdown="block">
@@ -23,16 +24,27 @@ nav_order: 1
 This document explains how to set up and start using IDWise SDK in Dynamic Journey mode.
 Alternatively, if you want to use Simple Journey mode which would get you up and running quicker and with less code if you do not need advanced control over the journey please check [`Simple Journey Mode here`](https://idwi.se/ios)
 
+## Xcode Supported Version
+
+IDWise SDK always supports latest Xcode version only. The current latest release of IDWise SDK supports below Xcode versions.
+
+|     Xcode        |      SDK                    |  
+| :---             |                             |
+|  Xcode 14.0      |      IDWise 3.8.1           |
+|  Xcode 13.4.1    |      IDWise 3.8.0           |
+
 ### Dynamic Journey Mode
+
 In dynamic journey mode, IDWise provides full control to the hosting application to show its own UI and handle journey and step events more flexibly. This makes IDWise journey more configurable for the hosting application to not only show its own UI, control when to start each step and in what order and subscribe to events for progress of each step.
 Here is how you can setup and start using IDWise SDK.
 
 ## Requirements
+
 The minimum deployment target for IDWiseSDK is iOS 12.0. In order to use the SDK your application minimum deployment target should be iOS 12.0 or higher.
 On your development machine you need to have XCode and CocoaPods installed. Both Intel and M1 (Apple Sillicon) based machines are supported. When working with Cocoapods you might have to run some commands through Rosetta Stone compatibility mode.
 
-
 ## Installation
+
 IDWiseSDK is available to install via [CocoaPods package manager](https://cocoapods.org) from IDWise private Cocoapods repository.
 To add IDWise SDK to your project, first ensure you have these two lines at the top of your Podfile file:
 
@@ -51,7 +63,7 @@ pod 'IDWise'
 
 You can have a look at the example `Podfile` provided in the root of this repository to see an example `Podfile` with both the changes above completed
 
-After adding our dependency in your Podfile run: 
+After adding our dependency in your Podfile run:
 
 ```
 pod install
@@ -84,11 +96,12 @@ To start a new dynamic journey just provide the UIViewController from which you 
         
         IDWise.startDynamicJourney(journeyDefinitionId: "<YOUR_CUSTOMER_ID>", referenceNumber: "<YOUR_REFERENCE_NO>", locale: "en", journeyDelegate: self, stepDelegate: self)
         
-``` 
+```
 
 This will make IDWise SDK start a journey and make it the current journey. You can next start steps of this journey and guide the user through completing the necessary steps in the desired order.
 
 This method takes following parameters:
+
 - `journeyDefinitionId`: Specifies the journey definition (aka template) to base this new journey on. Journey definitions are created based on your requirements and specify what documents and biometrics to collect from the user and in what order. JourneyDefinitionId is shared with you by IDWise team as part of your use-case and requirements discussions.
 - `referenceNo` : A custom identifier to associate with this journey to enable you to link it back easily or associate it with a user on your system.
 - `locale` (Optional) : Language code of the language to be used to display the journey user interface. This is either an ISO 639-1 (2-letter for example en) or IETF BCP 47 (2-letter plus extended language specified for example zh-HK or zh-CN)
@@ -102,13 +115,14 @@ You can resume the exiting, incompleted journey at any time. Following is the sa
 ```swift
 IDWise.resumeDynamicJourney(journeyDefinitionId: "<YOUR_CUSTOMER_ID>",journeyId: "<JOURNEY_ID>",locale: "en", journeyDelegate: self, stepDelegate: self)
 ```
+
 This method takes following parameters:
+
 - `journeyDefinitionId`: Specifies the journey definition (aka template) to base this new journey on. Journey definitions are created based on your requirements and specify what documents and biometrics to collect from the user and in what order. JourneyDefinitionId is shared with you by IDWise team as part of your use-case and requirements discussions.
 - `journeyId`: journeyId of the journey you want to resume. which you got in onJourneyStarted callback when you started the journey first time.
 - `locale` (Optional) : Language code of the language to be used to display the journey user interface. This is either an ISO 639-1 (2-letter for example en) or IETF BCP 47 (2-letter plus extended language specified for example zh-HK or zh-CN)
 - `journeyDelegate`: This parameter is used to provide a set of event handlers to handle the different events that are triggered from IDWise SDK. These events indicate the lifetime of a journey and provide oppurtunity for your application to react to certain journey events.
 - `stepDelegate`: This parameter is used to provide a set of event handlers to handle the different events that are triggered from IDWise SDK. These events indicate the lifetime of a verification step and provide oppurtunity for your application to react to certain step events.
-
 
 For example we can implement the protocol 'IDWiseSDKJourneyDelegate' as an extension on the ViewController like so:
 
@@ -140,7 +154,6 @@ When the journey is started it is assigned a unique id called Journey ID in IDWi
 We can use this `journeyID` when we need to resume the journey.
 This identifier can be used to fetch the data and status of the journey from IDWise Journey Fetch API at any time.
 
-
 ### Starting Journey Steps
 
 After calling `startJourney` method and subsequently when `JourneyStarted` method is triggered successfully, you can call the `IDWise.startStep` method.
@@ -166,11 +179,17 @@ stepId: ID of the step you want to start. (Will be provided by IDWise for each s
 
 data: Data representation of an image file or a PDF file ( Data bytes must be less than or equal to 4Mb )
 
+### Confirming the Step
+
+You can confirm the step that sucessfully started and completed by calling method `IDWise.confirmStep(stepId: String)` and passing the stepID as a parameter. StepId passed should be the stepID of the step that has been completed.
+The `confirmStep(stepId)` method should be called after we complete the step. For that prupose, we are calling this method in `onStepResult()` method because we know the step is completed now and we can confirm it. If the `confirmStep(stepId)` is called before the completion of step, we will wait until the step completes but It is reccommended to call it after step completion.
+
 The methods in `IDWiseStepDelegate`  will be triggered as step is handled and processed
 
 We can implement the protocol `IDWiseSDKStepDelegate` as an extension on the ViewController same way as above to recieve the step events:
 
 ```swift
+
 extension ViewController:IDWiseSDKStepDelegate {
     
      //This method will be triggered when Image processing is completed at the backend.
@@ -181,6 +200,10 @@ extension ViewController:IDWiseSDKStepDelegate {
         if let result = stepResult {
           print(result.document?.documentType)
         }
+        LoadingView.show()
+        IDWise.confirmStep(stepId: lastProcessedStepId)
+        // lastProcessedStepId means the stepID that you last started 
+
     }
     
      //This method will be triggered when user has captured the image/selfie from the camera successfully
@@ -188,6 +211,11 @@ extension ViewController:IDWiseSDKStepDelegate {
         // An example of showing custom UI
         LoadingView.show()
     }
+
+     func onStepConfirmed(stepId: String) {
+        LoadingView.hide()
+    }
+
 }
 ```
 
@@ -195,6 +223,10 @@ extension ViewController:IDWiseSDKStepDelegate {
 
 - `onStepResult` : This method will be called when step has been processed and stepResult which will contain information about that specific step will be delivered to hosting application. Hosting application can show custom UI or can perform any business logic in this method.
 
+- `onStepConfirmed` : This method will be called when step has been confirmed successfully you will get back stepID of the step that has been confirmed now.
+
+## Error Codes
 
 ## Code Example
+
 Please find the [`following example`](https://github.com/idwise/idwise-ios-sdk-documentation/tree/main/IDWiseExample) for an XCode project that showcases the integration with IDWise iOS Framework.
