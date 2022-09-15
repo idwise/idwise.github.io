@@ -28,10 +28,10 @@ Alternatively, if you want to use Simple Journey mode which would get you up and
 
 IDWise SDK always supports latest Xcode version only. The current latest release of IDWise SDK supports below Xcode versions.
 
-|     Xcode        |      SDK                    |  
-| :---             |                             |
-|  Xcode 14.0      |      IDWise 3.8.1           |
-|  Xcode 13.4.1    |      IDWise 3.8.0           |
+|  Xcode  | SDK    |  
+| ------- | ------ |
+| 14.0    | 3.8.1  |
+| 13.4.1  | 3.8.0  |
 
 ### Dynamic Journey Mode
 
