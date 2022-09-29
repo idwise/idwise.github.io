@@ -6,7 +6,6 @@ nav_order: 8
 ---
 
 # IDWise is now available on Zapier
- Connect with more than 5000 of your favourate apps!
 {: .no_toc }
 
 <details open markdown="block">
