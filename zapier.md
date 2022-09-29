@@ -21,7 +21,7 @@ nav_order: 8
 
 
 
-[Zapier](https://zapier.com/apps/idwise/integrations) lets you connect APP to 5,000+ other web services. Automated connections called Zaps, set up in minutes with no coding, can automate your day-to-day tasks and build workflows between apps that otherwise wouldn't be possible.
+[Zapier](https://zapier.com/apps/idwise/integrations) lets you connect IDWise to 5,000+ other web services. Automated connections called Zaps, set up in minutes with no coding, can automate your day-to-day tasks and build workflows between apps that otherwise wouldn't be possible.
 
 Each Zap has one app as the **Trigger**, where your information comes from and which causes one or more **Actions** in other apps, where your data gets sent automatically. 
 
@@ -30,7 +30,7 @@ Sign up for a free [Zapier](https://zapier.com/apps/idwise/integrations) account
 
 <script src="https://zapier.com/zapbook/embed/widget.js?services=idwise&container=true&limit=5,"></script>
 
-## How do I connect APP to Zapier?
+## How do I connect IDWise to Zapier?
 
 Log in to your [Zapier account](https://zapier.com/sign-up) or create a new account.
 Navigate to "My Apps" from the top menu bar.
