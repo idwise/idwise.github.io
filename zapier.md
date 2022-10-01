@@ -42,9 +42,6 @@ Need inspiration? See everything that's possible with [IDWise and Zapier](https:
 If you have any additional questions, you can reach out to [https://idwise.com/contact](https://idwise.com/contact).
 
 ## Popular use cases
-
-<script type="module" src="https://cdn.zapier.com/packages/partner-sdk/v0/zapier-elements/zapier-elements.esm.js"></script>
-<link rel="stylesheet" href="https://cdn.zapier.com/packages/partner-sdk/v0/zapier-elements/zapier-elements.css"/>
 <zapier-zap-templates
   apps="idwise,slack,gmail,notion,google-sheets,google-chat,microsoft-teams"
   categories="sales-crm,productivity"
