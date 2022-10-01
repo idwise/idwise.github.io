@@ -40,13 +40,3 @@ Once that's done you can start creating an automation! Use a pre-made Zap or cre
 Need inspiration? See everything that's possible with [IDWise and Zapier](https://zapier.com/apps/idwise/integrations).
 
 If you have any additional questions, you can reach out to [https://idwise.com/contact](https://idwise.com/contact).
-
-## Popular use cases
-<zapier-zap-templates
-  apps="idwise,slack,gmail,notion,google-sheets,google-chat,microsoft-teams"
-  categories="sales-crm,productivity"
-  create-without-template="hide"
-  limit="5"
-  use-this-zap="show"
-  theme="light"
-></zapier-zap-templates>
