@@ -2,7 +2,7 @@
 layout: default
 parent: Zapier Integration
 title: Manage Your Zaps
-nav_order: 1
+nav_order: 2
 ---
 <script type="module" src="https://cdn.zapier.com/packages/partner-sdk/v0/zapier-elements/zapier-elements.esm.js"></script>
 <link rel="stylesheet" href="https://cdn.zapier.com/packages/partner-sdk/v0/zapier-elements/zapier-elements.css"/>
