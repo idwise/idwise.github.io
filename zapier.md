@@ -3,6 +3,8 @@ layout: default
 parent: IDWise Developers
 title: Zapier Integration
 nav_order: 8
+has_children: true
+heading_anchors: true
 ---
 
 # IDWise is now available on Zapier
