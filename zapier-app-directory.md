@@ -1,6 +1,7 @@
 ---
 layout: default
 parent: Zapier Integration
+grand_parent: IDWise Developers
 title: Zapier App Directory
 nav_order: 1
 ---
