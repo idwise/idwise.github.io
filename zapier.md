@@ -41,4 +41,8 @@ Use your credentials to connect your IDWise account to Zapier.
 Once that's done you can start creating an automation! Use a pre-made Zap or create your own with the Zap Editor. Creating a Zap requires no coding knowledge and you'll be walked step-by-step through the setup. 
 Need inspiration? See everything that's possible with [IDWise and Zapier](https://zapier.com/apps/idwise/integrations).
 
+## Additional Information:
+Here is [an article prepared by the Zapier team](https://help.zapier.com/hc/en-us/articles/9633703591053-How-to-get-started-with-IDWise-on-Zapier) to help you understand the capabilities of the IDWise integration:
+
+
 If you have any additional questions, you can reach out to [https://idwise.com/contact](https://idwise.com/contact).
