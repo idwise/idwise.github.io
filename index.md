@@ -4,15 +4,15 @@ title: IDWise Developers
 nav_order: 1
 has_children: true
 ---
-# Not already a customer?
+# Developers Guide to Integrate With IDWise
+There are many ways to integrate with our system, including a mobile SDK, or by sending images of documents through an API:
+
+## Not Already a Customer?
 <div style="margin: auto;width: 50%;padding: 10px;" markdown="1">
 <span class="fs-5" >[Get IDWise Free Trial Now](https://www.idwise.com/contact?utm_source=idwise-developer&utm_medium=us&utm_content=developers-home-page-cta){: .btn .btn-purple target="_blank" }
   </span>
 </div>
 
-
-# Developers Guide to Integrate With IDWise
-There are many ways to integrate with our system, including a mobile SDK, or by sending images of documents through an API:
 
 ## Client SDKs:
 We strongly recommend using the following Client SDKs to integrate the IDWise KYC capability into your app, we strive to make the integration effort minimal while maintaining a rich and customisable experience:
