@@ -20,10 +20,9 @@ heading_anchors: true
 </details>
 
 ---
-<div style="margin: auto;width: 50%;padding: 10px;">
-<span class="fs-5" >
-[Get IDWise Free Trial Now](https://idwise.com/contact){: .btn }
-</span>
+<div style="margin: auto;width: 50%;padding: 10px;" markdown="1">
+<span class="fs-5" >[Get IDWise Free Trial Now](https://idwise.com/contact){: .btn .btn-purple target="_blank" }
+  </span>
 </div>
 
 
