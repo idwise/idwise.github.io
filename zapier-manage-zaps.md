@@ -6,6 +6,13 @@ title: Manage Your Zaps
 nav_order: 2
 ---
 
+
+<div style="margin: auto;width: 50%;padding: 10px;" markdown="1">
+<span class="fs-5" >[Get IDWise Free Trial Now](https://www.idwise.com/contact?utm_source=idwise-developer&utm_medium=us&utm_content=zapier-manage-zaps-free-trial-cta){: .btn .btn-purple target="_blank" }
+  </span>
+</div>
+
+
 <script type="module" src="https://cdn.zapier.com/packages/partner-sdk/v0/zapier-elements/zapier-elements.esm.js"></script>
 <link rel="stylesheet" href="https://cdn.zapier.com/packages/partner-sdk/v0/zapier-elements/zapier-elements.css"/>
 
