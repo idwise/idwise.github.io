@@ -25,8 +25,16 @@ Whenever your app want's to verify a user, simply initialize the SDK and call a 
 
 Here is how you can setup and start using IDWise SDK.
 
+## Not Already a Customer?
+<div style="margin: auto;width: 50%;padding: 10px;" markdown="1">
+<span class="fs-5" >[Get IDWise Free Trial Now](https://www.idwise.com/contact?utm_source=idwise-developer&utm_medium=us&utm_content=android-sdk-cta){: .btn .btn-purple target="_blank" }
+  </span>
+</div>
+
+
+
 ## Latest Stable Version
-**3.7.1**
+**3.9.3**
 
 ## Integration Video
 Get integrated quickly by watching a 5 minutes video:

@@ -39,7 +39,7 @@ We are so excited to meet you for our IDWise Engineering Interview soon!
 
 Our interview consists of 3 main components:
 
-1.  Coding + Role Specific 60-75 minutes
+1.  Coding (Data Structures & Algorithms) + Role Specific 60-75 minutes
 2.  System Design 30-45 minutes
 3.  Project Retrospective + Final Q&A 15-30 minutes
 
@@ -53,7 +53,7 @@ The interview is generally split to two separate sessions: the first one covers 
 
 ## Coding Interview + Role Specific Questions
 
-This part of the interview focuses on your coding and problem-solving skills, where you'll solve general coding questions, In this interview, there will be a high emphasis on testing your understanding of concepts like data structures, algorithms, and design.
+This part of the interview focuses on your coding and problem-solving skills (Data Structures & Algorithms), where you'll solve general coding questions, In this interview, there will be a high emphasis on testing your understanding of concepts like data structures, algorithms, and design.
 
 Your technical knowledge, coding ability, and creativity will be tested.
 

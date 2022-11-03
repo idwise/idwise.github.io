@@ -9,29 +9,34 @@ nav_order: 4
 This SDK allows you to integrate the IDWise Digital Identity Verification technology in your web app with minimal effort
 It presents a highly customisable UI that guides the user through a series of steps that prompts them for their ID documents and/or biometrics depending on how you have configured your journey flow in IDWise backend system. At the end of this process your app will receive a callback with information about the completed journey which your backend code can use to securely get the results of this journey. It's that simple!
 
+## Not Already a Customer?
+<div style="margin: auto;width: 50%;padding: 10px;" markdown="1">
+<span class="fs-5" >[Get IDWise Free Trial Now](https://www.idwise.com/contact?utm_source=idwise-developer&utm_medium=us&utm_content=aml-api-cta){: .btn .btn-purple target="_blank" }
+  </span>
+</div>
+
+
+## Integration Steps
 Please follow these steps to integrate with the document capturing SDK:
-1. Add IDWise library files
-Copy the files `https://app.idwise.ai/idwise.min.js` and `https://app.idwise.ai/idwise.min.css` as assets/static files to your web server distribution files or your CDN to make them available to be served to your web users along your other web assets
-
-2. Add a reference to the style sheet file “https://app.idwise.ai/idwise.min.css” in the web page that will host IDWise Web SDK. For example:
+1. Add a reference to the style sheet file “https://app.idwise.ai/idwise.min.css” in the web page that will host IDWise Web SDK. For example:
 
     ```
-    <link href="./lib/idwise.min.css" rel="stylesheet">
+    <link href="https://app.idwise.ai/idwise.min.css" rel="stylesheet">
     ```
 
-3. Add a reference to the script file `idwise.min.js` in the web page that will host IDWise Web SDK. For example:
+2. Add a reference to the script file `idwise.min.js` in the web page that will host IDWise Web SDK. For example:
 
     ```
-    <script src="./lib/idwise.min.js"></script>
+    <script src="https://app.idwise.ai/idwise.min.js"></script>
     ```
 
-4. Decide which element that will host the IDWise UI. This can be any block element and can be as simple as this example:
+3. Decide which element that will host the IDWise UI. This can be any block element and can be as simple as this example:
 
     ```
     <div id="idwise-mount"></div>
     ```
 
-5. Start the initialization of IDWise SDK library using `initialize` function. This function takes three parameters which identify your business and are shared with you during your registration process with IDWise.
+4. Start the initialization of IDWise SDK library using `initialize` function. This function takes three parameters which identify your business and are shared with you during your registration process with IDWise.
 
     Example code for the inialization:
 
@@ -47,7 +52,7 @@ Copy the files `https://app.idwise.ai/idwise.min.js` and `https://app.idwise.ai/
 
     This call returns a promise to a session instance. The session instance will be used to access the functionality of IDWise system in next steps
 
-6. Use the IDWise session instance to start a new journey. To do so you can call `startJourney` function. The function takes three parameters:
+5. Use the IDWise session instance to start a new journey. To do so you can call `startJourney` function. The function takes three parameters:
     * `journeyDefinitionId` (Mandatory) Identifies the steps of the journey to be started. This is provided to you by IDWise team based on your requirements and what documents or biometrics you want to ask your users for
     * `userId` (Optional but recommended) An identifier that uniquely idenfies the user carrying out this journey in your system. This identifier will be attached to this journey and will be provided when fetching the journey data and can be used to link the journey back in your system
     * `mount` (Mandatory) The HTML DOM element where IDWise UI elements should be added. This was specified in Step 4 above
