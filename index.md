@@ -25,10 +25,8 @@ Business ID (Journey Template ID) for the above client SDKs will be provided by 
 
 ## Backend API:
 This API helps you get information about IDWise journeys from your backend.
-Documentation for this API will be sent to you as part of your onboarding on the IDWise platform by the engineering team.
+You can find the [documentation here](https://idwi.se/journey-api).
 
-## Anti Money Laundering (AML) Standalone API: 
-[AML Check service](https://idwi.se/aml) is an API that allows IDWise customers to search for individuals over Anti Money Laundering (AML) datasets which are updated daily, including Politically Exposed Person (PEPs) and global sanctions, and many more lists.
 
 ## API Key & Secret:
 You will be provided by API Key and API Secret upon your onboarding on the platform.
