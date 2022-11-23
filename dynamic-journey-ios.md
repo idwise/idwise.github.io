@@ -229,7 +229,9 @@ extension ViewController:IDWiseSDKStepDelegate {
 
 You can call this `IDWise.getJourneySummary(journeyId: String, callback: @escaping ((JourneySummary?,IDWiseSDKError?)->()))` method anytime to get status of your journey passing the `journeyId` to this method. You will receive a callback with  `JourneySummary` or an `IDWiseSDKError` in case anything fails at server side or in authentication.
 
-`JourneySummary`: Following is the JourneySummary structure you will receive.
+`journeyId`: JourneyId against which you need journey summary.
+
+`JourneySummary`: This is the JourneySummary object and It's structure is as follow:
 
 ```swift
 public struct JourneySummary: Decodable {
