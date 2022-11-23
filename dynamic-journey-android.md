@@ -152,7 +152,7 @@ Following is the sample implementation of `journeyCallback` and `stepCallback`
         
         
         val stepCallback = object : IDWiseSDKStepCallback {
-            override fun onStepCaptured(stepId: Int, bitmap: Bitmap?) {
+            override fun onStepCaptured(stepId: Int, bitmap: Bitmap?, croppedBitmap: Bitmap?) {
                 //This event triggers when User has captured the image from the camera
             }
 
@@ -160,6 +160,10 @@ Following is the sample implementation of `journeyCallback` and `stepCallback`
                 //This event is triggered when Image processing is completed at the backend.
                 //stepResult contains the details of the processing output
             }
+	    
+	    override fun onStepConfirmed(stepId: String) {
+            	Log.d("onStepConfirmed", "Step $stepId confirmed!!")
+	    }
 
          }
 
@@ -182,8 +186,12 @@ You can also pass a PDF or an Image File as a `ByteArray`. `Important Note`: Siz
 
 The step events (provided in `IDWiseSDKStepCallback` parameter provided to  `startDynamicJourney` or `resumeDynamicJourney` method) will be triggered as step is handled and processed.
 
+## Step 4: Confirm the Captured Image
+If you are not using IDWise SDK's default Confirmation Screen, you have to confirm the the captured image by calling 
+`IDWise.confirmStep(stepId)`
+You can trigger this after `onStepResult(...)` is triggered. After successful confirmation, `onStepConfirmed(...)` will be triggered.
 
-## Step 4: Customising the UI
+## Step 5: Customising the UI
 
 The text prompts, images, and colours for both the light and dark modes within an ID verification journey are all customisable. This customisation is performed in our cloud which has the following advantages:
 
@@ -193,6 +201,16 @@ The text prompts, images, and colours for both the light and dark modes within a
 It almost works like magic!
 
 Please reach out to the support team to help with this customisation!
+
+## Get Summary of the Verification Journey
+You can get the Status of the journey anytime by calling the following function
+
+`
+ IDWise.getJourneySummary(journeyId) { journeySummary, error ->
+     // journeySummary contains the status of all steps and overall journey status
+  }
+`
+
 
 ## If you use Proguard
 You need to update your app level `build.gradle` as follow:
