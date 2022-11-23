@@ -192,8 +192,14 @@ We can implement the protocol `IDWiseSDKStepDelegate` as an extension on the Vie
 
 extension ViewController:IDWiseSDKStepDelegate {
     
-     //This method will be triggered when Image processing is completed at the backend.
-     //stepId will be the Id of the step that is just completed
+    //This method will be triggered when user has captured the image/selfie from the camera successfully
+    func onStepCaptured(stepId: Int, capturedImage: UIImage) {
+        // An example of showing custom UI
+        LoadingView.show()
+    }
+    
+    //This method will be triggered when Image processing is completed at the backend.
+    //stepId will be the Id of the step that is just completed
     func onStepResult(stepId: Int,stepResult: StepResult?) {
         // An example of showing custom UI
         LoadingView.hide()
@@ -205,12 +211,6 @@ extension ViewController:IDWiseSDKStepDelegate {
         // lastProcessedStepId means the stepID that you last started 
 
     }
-    
-     //This method will be triggered when user has captured the image/selfie from the camera successfully
-    func onStepCaptured(stepId: Int, capturedImage: UIImage) {
-        // An example of showing custom UI
-        LoadingView.show()
-    }
 
      func onStepConfirmed(stepId: String) {
         LoadingView.hide()
@@ -219,7 +219,7 @@ extension ViewController:IDWiseSDKStepDelegate {
 }
 ```
 
-- `onStepCaptured` : This method will be called when user have successfully captured the document or selfie. Control will be shifted to hosting application and any custom UI can be shown or business logic can be performed by hosting application.
+- `onStepCaptured` : This method will be called when user has captured the document or selfie. Control will be shifted to hosting application and any custom UI can be shown or business logic can be performed by hosting application.
 
 - `onStepResult` : This method will be called when step has been processed and stepResult which will contain information about that specific step will be delivered to hosting application. Hosting application can show custom UI or can perform any business logic in this method.
 
