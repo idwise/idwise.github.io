@@ -222,10 +222,6 @@ Please reach out to our IDWise support team for details on how to customise the 
 | WRONG_CREDENTIALS   | 33        | Either apiKey or apiSecret or both are incorrect                                   |
 | INTERNAL_ERROR      | 44        | Internal Error occurred while processing the request                               |
 
-## Onboarding Journey Scenarios
-Please [`click here`](onboarding-journey-scenarios.html) for detailed explanation of common onboarding journey scanerios and how to deal with each of these scenarios.
-
-
 
 ## Keep in touch!
 Please get in touch if you want to make any adjustments or customisations to your users journey.
