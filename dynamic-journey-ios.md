@@ -30,7 +30,7 @@ IDWise SDK always supports latest Xcode version only. The current latest release
 
 |  Xcode  | SDK    |  
 | ------- | ------ |
-| 14.1    | 3.9.2  |
+| 14.1    | 3.10.0 |
 | 14.0    | 3.9.1  |
 
 ### Dynamic Journey Mode
@@ -128,24 +128,24 @@ For example we can implement the protocol 'IDWiseSDKJourneyDelegate' as an exten
 
 ```swift
 extension ViewController:IDWiseSDKJourneyDelegate {
-    func onError(error: IDWiseSDKError) {
-       
-    }
-    
-    func JourneyCancelled() {
-        
-    }
-    
     func JourneyStarted(journeyID: String) {
         
     }
 
+    func JourneyCancelled() {
+        
+    }
+    
     func onJourneyResumed(journeyID: String) {
 
     }
     
     func JourneyFinished() {
         
+    }
+
+    func onError(error: IDWiseSDKError) {
+       
     }
 }
 ```
@@ -192,7 +192,7 @@ We can implement the protocol `IDWiseSDKStepDelegate` as an extension on the Vie
 
 extension ViewController:IDWiseSDKStepDelegate {
     
-    //This method will be triggered when user has captured the image/selfie from the camera successfully
+    // This method will be triggered when user has captured the image/selfie from the camera
     func onStepCaptured(stepId: Int, capturedImage: UIImage) {
         // An example of showing custom UI
         LoadingView.show()
@@ -219,11 +219,11 @@ extension ViewController:IDWiseSDKStepDelegate {
 }
 ```
 
-- `onStepCaptured` : This method will be called when user has captured the document or selfie. Control will be shifted to hosting application and any custom UI can be shown or business logic can be performed by hosting application.
+- `onStepCaptured` : This handler will be triggered when user has captured the document or selfie. Control will be returned to your application by this point and you can show any UI or run business logic to guide the user through the rest of the journey. At this point the captured image will have started uploading to backend in the background but would have not finished processing
 
-- `onStepResult` : This method will be called when step has been processed and stepResult which will contain information about that specific step will be delivered to hosting application. Hosting application can show custom UI or can perform any business logic in this method.
+- `onStepResult` : This handler will be triggered when step has finished processing. stepResult will contain information about the corresponding step. Your application can show any UI or can perform any business logic in this method
 
-- `onStepConfirmed` : This method will be called when step has been confirmed successfully you will get back stepID of the step that has been confirmed now.
+- `onStepConfirmed` : This handler will be called when step has been confirmed successfully you will get back stepID of the step that has been confirmed now
 
 ## Error Codes
 
