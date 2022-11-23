@@ -225,6 +225,41 @@ extension ViewController:IDWiseSDKStepDelegate {
 
 - `onStepConfirmed` : This handler will be called when step has been confirmed successfully you will get back stepID of the step that has been confirmed now
 
+### Getting the Journey Summary
+
+You can call this `IDWise.getJourneySummary(journeyId: String, callback: @escaping ((JourneySummary?,IDWiseSDKError?)->()))` method anytime to get status of your journey passing the `journeyId` to this method. You will receive a callback with  `JourneySummary` or an `IDWiseSDKError` in case anything fails at server side or in authentication.
+
+`journeyId`: JourneyId against which you need journey summary.
+
+`JourneySummary`: This is the JourneySummary object and It's structure is as follow:
+
+```swift
+public struct JourneySummary: Decodable {
+    public let journeyId: String
+    public let isCompleted: Bool
+    public let stepSummaries: [StepSummary]
+    
+    public struct StepSummary: Decodable {
+        public let definition: StepDefinition
+        public let result: StepStatus?
+    }
+    
+    public struct StepDefinition: Decodable {
+        public let stepId: Int
+    }
+    
+    public struct StepStatus: Decodable {
+        public let hasPassedRules: Bool?
+        public let isConcluded: Bool?
+        public let status: String?
+        public let errorUserFeedbackCode: String?
+        public let errorUserFeedbackTitle: String?
+        public let errorUserFeedbackDetails: String?
+
+    }
+}
+```
+
 ## Error Codes
 
 |  Error Code  |            Error Description                                                                                                                   |  
