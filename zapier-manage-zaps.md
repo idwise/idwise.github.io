@@ -5,9 +5,11 @@ grand_parent: IDWise Developers
 title: Manage Your Zaps
 nav_order: 2
 ---
-
 <script type="module" src="https://cdn.zapier.com/packages/partner-sdk/v0/zapier-elements/zapier-elements.esm.js"></script>
 <link rel="stylesheet" href="https://cdn.zapier.com/packages/partner-sdk/v0/zapier-elements/zapier-elements.css"/>
+
+
+
 
 # You can find all the IDWise Zaps here!
 You will only see the list of Zaps below if you are already logged in to your [Zapier](https://zapier.com/apps/idwise/integrations) account and have created at least one Zap involving [IDWise](https://zapier.com/apps/idwise/integrations).
@@ -19,8 +21,12 @@ If you haven't already, please [sign up here](https://zapier.com/sign-up?next=%2
   </span>
 </div>
 
-<zapier-zap-manager
+<zapier-full-experience
   client-id="6XjoPYxW9R53gjSlqjVzkeF4MPmRhN14nFQMUbWs"
-  link-target="same-tab"
-  theme="auto"
-></zapier-zap-manager>
+  theme="light"
+  app-search-bar-display="show"
+  zap-limit="10"
+  zap-style="row"
+  zap-call-to-action-display="show"
+  zap-create-from-scratch-display="show"
+></zapier-full-experience>
