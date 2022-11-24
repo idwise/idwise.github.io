@@ -24,7 +24,8 @@ If you haven't already, please [sign up here](https://zapier.com/sign-up?next=%2
 <zapier-full-experience
   client-id="6XjoPYxW9R53gjSlqjVzkeF4MPmRhN14nFQMUbWs"
   theme="light"
-  app-search-bar-display="show"
+  intro-copy-display="hide"
+  app-selection-display="hide"
   zap-limit="10"
   zap-style="row"
   zap-call-to-action-display="show"
