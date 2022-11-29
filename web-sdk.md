@@ -83,7 +83,7 @@ different events fired by IDWise SDK. There are currently two events supported: 
     </script>
     ```
 
-You can access the identifier of the journey that was completed by accessing the parameter provided on the `onFinished` event callback. This identifier can be used to retrieve the data associated with this journey from IDWise Data Fetch API once you get the webhook call to your backend.
+You can access the identifier of the journey that was completed by accessing the parameter provided on the `onFinished` event callback. This identifier can be used to retrieve the data associated with this journey from IDWise Data Fetch API once you get the [webhook call](https://idwi.se/webhooks) to your backend.
 
 Note that IDWise SDK will automatically remove the UI elements it created and clean up the used resources when a journey completes and after triggering the `onFinished` event.
 
