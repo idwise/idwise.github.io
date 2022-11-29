@@ -137,7 +137,7 @@ extension ViewController:IDWiseSDKJourneyDelegate {
 ```
 
 When the journey is started it is assigned a unique id called Journey ID in IDWise system and this is provided as a parameter, `journeyID` with the triggering of `JourneyStarted` event.
-This identifier can be used to fetch the data and status of the journey from IDWise Journey Fetch API at any time.
+This identifier can be used to fetch the data and status of the journey from IDWise Journey Fetch API once you get the webhook call to your backend.
 
 The steps that compose part of the journey and the prompts that user see are all cutomisable through IDWise cloud system.
 
