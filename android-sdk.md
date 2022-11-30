@@ -34,7 +34,7 @@ Here is how you can setup and start using IDWise SDK.
 
 
 ## Latest Stable Version
-**3.9.3**
+**3.10.0**
 
 ## Integration Video
 Get integrated quickly by watching a 5 minutes video:
