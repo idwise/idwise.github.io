@@ -10,6 +10,8 @@ IDWise Webhooks
 ===============
 {: .no_toc }
 
+It is essential that you use IDWise webhooks for your backend-to-backend integration. Webhooks are used to send notifications from the IDWise backend to your server via simple secure HTTPS calls.
+
 <details open markdown="block">
   <summary>
     Table of contents
@@ -19,8 +21,6 @@ IDWise Webhooks
 {:toc}
 </details>
 
----
-It is essential that you use IDWise webhooks for your backend-to-backend integration. Webhooks are used to send notifications from the IDWise backend to your server via simple secure HTTPS calls.
 
 * * * * *
 
