@@ -73,13 +73,17 @@ The IDWise server will send a JSON HTTP POST request to the URL configured, with
 }
 ```
 
-### Where EVENT_NAME is the event concerned, as mentioned above, we support:
+Here are the possible values:
+
+### EVENT_NAME
+It represents the event concerned, as mentioned above, we support:
 
 -   Finished Journey
 -   Manually Reviewed
 -   AML Monitor Update
 
-### SYSTEM_DECISION (Code) can be one of the following:
+### SYSTEM_DECISION
+It can be one of the following:
 
 -   **Complete**: The journey has been successfully completed (it shows on the UI as passed).
 -   **Incomplete**: The journey has not been completed yet (the user didn't finish all steps).
