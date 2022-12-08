@@ -6,14 +6,6 @@ title: IDWise Webhooks
 nav_order: 1
 ---
 
----
-layout: default
-parent: Android SDK
-grand_parent: IDWise Developers
-title: Dynamic Journey - Android
-nav_order: 1
----
-
 IDWise Webhooks
 ===============
 {: .no_toc }
