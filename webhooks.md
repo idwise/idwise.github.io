@@ -6,9 +6,28 @@ title: IDWise Webhooks
 nav_order: 1
 ---
 
+---
+layout: default
+parent: Android SDK
+grand_parent: IDWise Developers
+title: Dynamic Journey - Android
+nav_order: 1
+---
+
 IDWise Webhooks
 ===============
+{: .no_toc }
 
+<details open markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
+1. TOC
+{:toc}
+</details>
+
+---
 It is essential that you use IDWise webhooks for your backend-to-backend integration. Webhooks are used to send notifications from the IDWise backend to your server via simple secure HTTPS calls.
 
 * * * * *
