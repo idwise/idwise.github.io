@@ -2,11 +2,11 @@
 layout: default
 parent: Journey API
 grand_parent: IDWise Developers
-title: IDWise Webhooks
+title: IDWise Step Webhooks
 nav_order: 1
 ---
 
-IDWise Webhooks
+IDWise Step Webhooks
 ===============
 {: .no_toc }
 
@@ -22,31 +22,11 @@ It is essential that you use IDWise webhooks for your backend-to-backend integra
 </details>
 
 
-* * * * *
 
-Types of webhooks:
-------------------
-
-There are two types of webhooks supported by IDWise:
-
-### Journey Completed Webhook:
-
-This webhook triggers when the journey has been completed and processing is finalised on the IDWise backend.
-
-### Manual Review Webhook:
-
-This webhook triggers once a manual review has been completed on the IDWise dashboard (where the system decision was either confirmed or overridden by a dashboard user).
-
-### AML Monitor Update Webhook:
-
-This webhook triggers when there is an update on a monitored AML record (for example, the person was added to a sanctions list or is no longer deemed to be politically exposed).
-
-* * * * *
-
-Configuring webhooks:
+Configuring step webhooks:
 ---------------------
 
-If interested, please send the webhook URL(s) you want to use to <support@idwise.com> to allow the team to add it to your configuration.
+If interested, please send the step webhook URL(s) you want to use to <support@idwise.com> to allow the team to add it to your configuration.
 
 ### Experimental webhook (for testing):
 
@@ -67,8 +47,8 @@ The IDWise server will send a JSON HTTP POST request to the URL configured, with
   "body": {
     "journeyId": "62e6...........5d0c",
     "referenceNo": "840...........23",
-    "systemDecision": "**SYSTEM_DECISION**",
-    "finalDecision": "**FINAL_DECISION**"
+    "stepId":"1",
+    "stepType":"Document"
   }
 }
 ```
@@ -78,18 +58,13 @@ Here are the possible values:
 ### EVENT_NAME
 It represents the event concerned, as mentioned above, we support:
 
--   Finished Journey
--   Manually Reviewed
--   AML Monitor Update
+-   Step Submitted
 
-### SYSTEM_DECISION
-It can be one of the following:
+### Body:
 
--   **Complete**: The journey has been successfully completed (it shows on the UI as passed).
--   **Incomplete**: The journey has not been completed yet (the user didn't finish all steps).
--   **Refer**: At least one of the steps has failed, and the journey needs to be referred for a manual review.
+The webhook body will contains the following:
 
-### FINAL_DECISION:
-
--   **Approved**: The journey has been approved by a manual reviewer.
--   **Rejected**: The journey has been rejected by a manual reviewer.
+-   **journeyId**: The journey Id of the submitted step.
+-   **referenceNo**: The reference number.
+-   **stepId**: The id of the submitted step.
+-   **stepType**: The step type it can be either 'Document' or 'Selfie'.
