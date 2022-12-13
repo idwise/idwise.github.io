@@ -28,16 +28,11 @@ Configuring step webhooks:
 
 If interested, please send the step webhook URL(s) you want to use to <support@idwise.com> to allow the team to add it to your configuration.
 
-### Experimental webhook (for testing):
 
-You can also use a website called <https://webhook.site/> to get a webhook that you can use during the development and testing phase (on top of your app webhook); IDWise supports adding multiple URLs as webhooks.
-
-* * * * *
-
-How does it work?
+How it works?
 -----------------
 
-The webhook mechanism is essentially a way for IDWise to inform your backend of updates on a particular journey, for example, when the journey is complete.
+The webhook mechanism is essentially a way for IDWise to inform your backend of updates on a particular journey, for example, when a document is submitted.
 
 The IDWise server will send a JSON HTTP POST request to the URL configured, with the following details:
 
@@ -68,3 +63,10 @@ The webhook body will contains the following:
 -   **referenceNo**: The reference number.
 -   **stepId**: The id of the submitted step.
 -   **stepType**: The step type it can be either 'Document' or 'Selfie'.
+
+
+### Experimental webhook (for testing):
+
+You can also use a website called <https://webhook.site/> to get a webhook that you can use during the development and testing phase (on top of your app webhook); IDWise supports adding multiple URLs as webhooks.
+
+* * * * *
