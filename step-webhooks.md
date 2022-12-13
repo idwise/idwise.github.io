@@ -10,7 +10,7 @@ IDWise Step Webhooks
 ===============
 {: .no_toc }
 
-It is essential that you use IDWise webhooks for your backend-to-backend integration. Webhooks are used to send notifications from the IDWise backend to your server via simple secure HTTPS calls.
+It's important to use IDWise Step Webhooks for integration between backends. Step webhooks are used to send notifications of changes made at each step from the IDWise backend to the server via simple and secure HTTPS calls.
 
 <details open markdown="block">
   <summary>
@@ -60,7 +60,7 @@ It represents the event concerned, as mentioned above, we support:
 
 -   Step Submitted
 
-### Body:
+### Body
 
 The webhook body will contains the following:
 
