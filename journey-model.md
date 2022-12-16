@@ -65,7 +65,7 @@ First, here are the top-level elements of the graph (with explanation for each e
 -   [`applicant`](#applicant-element): Common data representing the applicant (user) who made the journey.
 -   [`aml`](#aml-element): Holds the results of carrying out AML (Anti-Money Laundering) and background checks. If the journey is not configured with AML checks enabled then this element will be `null`. See the following sections for details on the format of the `aml` elements.
 
-## Document Elements
+## Document Element
 
 This object represents the set of documents in this journey. Each child element inside `documents` contains the results of processing a document that was submitted as part of the journey.
 
