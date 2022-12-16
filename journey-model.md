@@ -36,6 +36,7 @@ First, here are the top-level elements of the graph (with explanation for each e
 	**"applicant[`🔗`](<https://www.notion.so/IDWise-Journey-Model-Documentation-0d828b91fcb64f399b897a2b12f828e3>)"**: {},
 	"**aml[`🔗`](<https://www.notion.so/IDWise-Journey-Model-Documentation-0d828b91fcb64f399b897a2b12f828e3>)**":{}
 }
+<a href='https://www.notion.so/IDWise-Journey-Model-Documentation-0d828b91fcb64f399b897a2b12f828e3'>IDWise Journey Model Documentation 🔗</a>
 
 ```
 
