@@ -28,7 +28,7 @@ This documentation details the various elements of the result graph after proces
 
 First, here are the top-level elements of the graph (with explanation for each element below):
 
-```JAVASCRIPT
+```json
 {
 	"journey_id": "",
 	"customer_id": "",
@@ -73,7 +73,7 @@ Document processing result includes the type of the document, the data extracted
 
 This is an example for documents element (with detailed explanation below):
 
-```
+```json
 "documents": {
 		"0": {
 			"step_title": "UAE Passport",
@@ -144,7 +144,7 @@ Here are the elements that constitute a `document` element:
 -   `issuing_country`: The name of the country which issued this document.
 -   `issuing_country_code`: The 3-letter ISO country code of the country which issued this document.
 -   `extracted_fields`: A dictionary (aka object) containing the data fields that were read from the document. Each element of this dictionary has the following:
-    -   key: is the name of the field (e.g `First Name`, `Last Name`, `Birth Date` ..etc). For a list of all supported fields, please check [this page](https://www.notion.so/Extracted-Fields-aff911457fa946e79d9759c181614249).
+    -   key: is the name of the field (e.g `First Name`, `Last Name`, `Birth Date` ..etc). For a list of all supported fields, please check [this page](https://idwi.se/fields).
     -   value: is an object that has the following attributes:
         -   `value`: The field value encoded as a string. For all date fields, the value will be encoded in ISO 8601 date format. if the field is of type `Photo` (e.g `Signature`), `value` will be `null`.
         -   `read_accuracy`: It represents the expected accuracy of the reading value, and it can either `High` or `Low`.
@@ -165,7 +165,7 @@ Here are the elements that constitute a `document` element:
 
 This an example for the selfie result object:
 
-```
+```json
 "selfie": {		
 		"status" : "Complete",
 		"is_live": true,
@@ -186,7 +186,7 @@ This object contains the business rule results. business rules are set of checks
 
 This is an example for the rule result object
 
-```
+```json
 "rule_results": {
 		"proof_policy": {
 			"name": "Proof Policy",
@@ -226,13 +226,13 @@ Each item in this object represents one rule, Here are the elements that constit
     -   `result_description`: A tailored description massage for each result status.
     -   `reference_object`: Shows the related object for the check.
 
-here is the full list of [Rules](https://www.notion.so/IDWise-Journey-Model-Documentation-0d828b91fcb64f399b897a2b12f828e3)
+here is the full list of [Rules](#supported-rules-checks)
 
 ### Applicant Element
 
 Contains general information for the applicant.
 
-```
+```json
 "applicant": {
 		"applicant_id":"",
 		"profile_image_path":"95652fb54cfa6c15d477a44781f171b8",		
@@ -245,7 +245,7 @@ Contains general information for the applicant.
 
 ### AML Element
 
-```
+```json
 	"aml": {
 		"applicability": "Applicable",
 		"matches": [
