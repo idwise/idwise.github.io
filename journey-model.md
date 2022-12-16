@@ -75,64 +75,63 @@ This is an example for documents element (with detailed explanation below):
 
 ```json
 "documents": {
-		"0": {
-			"step_title": "UAE Passport",
-			"progress": "Completed",
-			"has_passed_rules": true,			
-			"document_type": "Passport",
-			"issuing_country": "United Arab Emirates",
-			"issuing_country_code": "ARE",
-			"extracted_fields": {
-				"First Name": {
-					"value": "Sami",
-					"read_accuracy": "Low"
-					"type": "string"
-				},
-				"Last Name": {
-					"value": "Adam",
-					"read_accuracy": "High"
-					"type": "string"
-				},
-				"Photo": {
-					"value": null,
-					"read_accuracy": null
-					"type": "image"
-				}
-			},			
-			"validation_result": {
-				"validation_outcome": "Failed",
-				"validation_checks": [
-					{
-						"name": "Document Classification (Front)",
-						"description": "Verifies supportability of the type of document and its ability to be fully authenticated.",
-						"result": "Failed",
-						"result_description": "The document type could not be determined"
-					}
-				]
+	"0": {
+		"step_title": "UAE Passport",
+		"progress": "Completed",
+		"has_passed_rules": true,
+		"document_type": "Passport",
+		"issuing_country": "United Arab Emirates",
+		"issuing_country_code": "ARE",
+		"extracted_fields": {
+			"First Name": {
+				"value": "Sami",
+				"read_accuracy": "Low",
+				"type": "string"
 			},
-			"face_match_result": {
-				"is_matched": true,
-				"score": 99,
-				"images": [
-					{
-						"image_path": "95602fb54c...............1f181b9",
-						"image_source": "Selfie"
-					},
-					{
-						"image_path": "05602fb54cf...............f181b0",
-						"image_source": "Document"
-					}
-				]
+			"Last Name": {
+				"value": "Adam",
+				"read_accuracy": "High",
+				"type": "string"
 			},
-			"images": {
-				"input_image_path": "98682fb54c...............1f181b9",
-				"back_side_image_path": null,
-				"front_side_cropped_image_path": "95602fb54...............81f181b9",
-				"back_side_cropped_image_path": null
+			"Photo": {
+				"value": null,
+				"read_accuracy": null,
+				"type": "image"
 			}
+		},
+		"validation_result": {
+			"validation_outcome": "Failed",
+			"validation_checks": [
+				{
+					"name": "Document Classification (Front)",
+					"description": "Verifies supportability of the type of document and its ability to be fully authenticated.",
+					"result": "Failed",
+					"result_description": "The document type could not be determined"
+				}
+			]
+		},
+		"face_match_result": {
+			"is_matched": true,
+			"score": 99,
+			"images": [
+				{
+					"image_path": "95602fb54c...............1f181b9",
+					"image_source": "Selfie"
+				},
+				{
+					"image_path": "05602fb54cf...............f181b0",
+					"image_source": "Document"
+				}
+			]
+		},
+		"images": {
+			"input_image_path": "98682fb54c...............1f181b9",
+			"back_side_image_path": null,
+			"front_side_cropped_image_path": "95602fb54...............81f181b9",
+			"back_side_cropped_image_path": null
 		}
 	}
-
+}
 ```
 
 Here are the elements that constitute a `document` element:
@@ -166,11 +165,11 @@ Here are the elements that constitute a `document` element:
 This an example for the selfie result object:
 
 ```json
-"selfie": {		
-		"status" : "Complete",
-		"is_live": true,
-		"image_path": "95652fb54cfa6c15d477a44781f171b8"		
-	}
+"selfie": {
+	"status": "Complete",
+	"is_live": true,
+	"image_path": "95652fb54cfa6c15d477a44781f171b8"
+}
 
 ```
 
@@ -188,28 +187,34 @@ This is an example for the rule result object
 
 ```json
 "rule_results": {
-		"proof_policy": {
-			"name": "Proof Policy",
-			"result": "Passed",
-			"description": "Confirms that the document provided is of the accepted types for this journey step",
-			"information": "The document type and issuing country of the document provided by the user is checked against a list of allowed document types and/or issuing countries configured as accepted on this step. If the step is configured to accept a driving licence only but the user provided another type of document, this check would fail",						
-			"tips": "Check the type of the document provided and the issuing country and confirm if they are accepted for this type of application",
-			"details": [
-				{
-					"title":"Passport - Front",
-					"result": "Passed",
-					"result_description": "Document is confirmed to be of one of the accepted types",
-					"reference_object": {"object_key":"documents", "instance_key":"passport_step"}					
-				},
-				{
-					"title":"Driving Licence - Front",
-					"result": "Passed",
-					"result_description": "Document is confirmed to be of one of the accepted types",
-					"reference_object": {"object_key":"documents", "instance_key":"0"}					
+	"proof_policy": {
+		"name": "Proof Policy",
+		"result": "Passed",
+		"description": "Confirms that the document provided is of the accepted types for this journey step",
+		"information": "The document type and issuing country of the document provided by the user is checked against a list of allowed document types and/or issuing countries configured as accepted on this step. If the step is configured to accept a driving licence only but the user provided another type of document, this check would fail",
+		"tips": "Check the type of the document provided and the issuing country and confirm if they are accepted for this type of application",
+		"details": [
+			{
+				"title": "Passport - Front",
+				"result": "Passed",
+				"result_description": "Document is confirmed to be of one of the accepted types",
+				"reference_object": {
+					"object_key": "documents",
+					"instance_key": "passport_step"
 				}
-			]
-		}
+			},
+			{
+				"title": "Driving Licence - Front",
+				"result": "Passed",
+				"result_description": "Document is confirmed to be of one of the accepted types",
+				"reference_object": {
+					"object_key": "documents",
+					"instance_key": "0"
+				}
+			}
+		]
 	}
+}
 
 ```
 
@@ -247,48 +252,50 @@ Contains general information for the applicant.
 
 ```json
 	"aml": {
-		"applicability": "Applicable",
-		"matches": [
-			{
-				"score": 82,
-				"name": "Sami Adam",
-				"countries": [
-					"EA"
-				],
-				"datesOfBirth": [1986],
-				"notes": [],
-				"datasets": [
-					"Politically Exposed Person"
-				],
-				"aliases": [
-					{
-						"firstName": "Sami",
-						"middleName": "",
-						"lastName": "Adam",
-						"type": "Name Spelling Variation"
-					},
-					{
-						"firstName": "Sami",
-						"middleName": "Adam",
-						"lastName": "",
-						"type": "Name Spelling Variation"
-					}
-				],
-				"addresses": [
-					{
-						"addressType": "Business",
-						"line1": "Gamal",
-						"line2": "Gaza",
-						"postcode": "",
-						"city": "Cairo",
-						"county": "",
-						"countryIsoCode": "EA"
-					}
-				],
-				"sex": "Male"
-			}
-		]
-	}
+	"applicability": "Applicable",
+	"matches": [
+		{
+			"score": 82,
+			"name": "Sami Adam",
+			"countries": [
+				"EA"
+			],
+			"datesOfBirth": [
+				1986
+			],
+			"notes": [],
+			"datasets": [
+				"Politically Exposed Person"
+			],
+			"aliases": [
+				{
+					"firstName": "Sami",
+					"middleName": "",
+					"lastName": "Adam",
+					"type": "Name Spelling Variation"
+				},
+				{
+					"firstName": "Sami",
+					"middleName": "Adam",
+					"lastName": "",
+					"type": "Name Spelling Variation"
+				}
+			],
+			"addresses": [
+				{
+					"addressType": "Business",
+					"line1": "Gamal",
+					"line2": "Gaza",
+					"postcode": "",
+					"city": "Cairo",
+					"county": "",
+					"countryIsoCode": "EA"
+				}
+			],
+			"sex": "Male"
+		}
+	]
+}
 
 ```
 
