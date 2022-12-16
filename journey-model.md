@@ -2,7 +2,7 @@
 layout: default
 parent: Journey API
 grand_parent: IDWise Developers
-title: IDWise Journey Model Documentation
+title: Journey Model Documentation
 nav_order: 1
 ---
 
