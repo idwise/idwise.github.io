@@ -15,8 +15,7 @@ API Version: V2 - Model Version: 3.0
 
 This documentation details the various elements of the result graph after processing a journey in IDWise system. A journey is comprised of documents and biometrics submitted by an applicant. After processing these documents and biometrics, you can access these results by calling IDWise API.
 
-Journey Model Top-Level Elements
---------------------------------
+# Journey Model Top-Level Elements
 
 First, here are the top-level elements of the graph (with explanation for each element below):
 
@@ -30,17 +29,12 @@ First, here are the top-level elements of the graph (with explanation for each e
 	"system_decision": "",
 	"final_decision":"",
 	"model_version": "",
-	**"documents[`🔗`](<https://www.notion.so/IDWise-Journey-Model-Documentation-0d828b91fcb64f399b897a2b12f828e3>)"**: {},
-	**"selfie[`🔗`](<https://www.notion.so/IDWise-Journey-Model-Documentation-0d828b91fcb64f399b897a2b12f828e3>)"**: {},
-	**"rule_results[`🔗`](<https://www.notion.so/IDWise-Journey-Model-Documentation-0d828b91fcb64f399b897a2b12f828e3>)"**: {},
-	**"applicant[`🔗`](<https://www.notion.so/IDWise-Journey-Model-Documentation-0d828b91fcb64f399b897a2b12f828e3>)"**: {},
-	"**aml[`🔗`](<https://www.notion.so/IDWise-Journey-Model-Documentation-0d828b91fcb64f399b897a2b12f828e3>)**":{}
+	"document": {},
+	"selfie": {},
+	"rule_results": {},
+	"applicant": {},
+	"aml":{}
 }
-<a href='https://www.notion.so/IDWise-Journey-Model-Documentation-0d828b91fcb64f399b897a2b12f828e3'>IDWise Journey Model Documentation 🔗</a>
-
-{{ '/IDWise-Journey-Model-Documentation-0d828b91fcb64f399b897a2b12f828e3' | relative_url }}
-{{ 'https://www.notion.so/IDWise-Journey-Model-Documentation-0d828b91fcb64f399b897a2b12f828e3' | IDWise Journey Model Documentation 🔗 }}
-
 ```
 
 -   `journey_id`: The unique identifier of the journey. This identifier is used across IDWise systems to refer to the journey and is auto-generated at the first moment the user starts the journey.
@@ -62,8 +56,7 @@ First, here are the top-level elements of the graph (with explanation for each e
 -   `applicant`: Common data representing the applicant (user) who made the journey.
 -   `aml`: Holds the results of carrying out AML (Anti-Money Laundering) and background checks. If the journey is not configured with AML checks enabled then this element will be `null`. See the following sections for details on the format of the `aml` elements.
 
-Document Elements
------------------
+## Document Elements
 
 This object represents the set of documents in this journey. Each child element inside `documents` contains the results of processing a document that was submitted as part of the journey.
 
@@ -159,8 +152,7 @@ Here are the elements that constitute a `document` element:
     -   `front_cropped_image_path`: The path of the front cropped image.
     -   `back_cropped_image_path`: The path of the back cropped image. if the back image wasn't submitted the value will be `null`
 
-Selfie element
---------------
+## Selfie Element
 
 This an example for the selfie result object:
 
@@ -179,8 +171,7 @@ This object represents the face liveness status, it has the following attributes
 -   `is_live`: A boolean indicates whether the submitted selfie image is live or not. The liveness is already reflected on `status` element.
 -   `image_path`: The image identifier for the submitted selfie image which can be used to retrieve the image through Image Retrieval API.
 
-Rule Result Element
--------------------
+## Rule Result Element
 
 This object contains the business rule results. business rules are set of checks that can be defined by customers to apply some constraints on the onboarding journeys like what are acceptable document types for each step or prevent a user from submitting expired documents ..etc.
 
@@ -228,8 +219,7 @@ Each item in this object represents one rule, Here are the elements that constit
 
 here is the full list of [Rules](https://www.notion.so/IDWise-Journey-Model-Documentation-0d828b91fcb64f399b897a2b12f828e3)
 
-Applicant element
------------------
+## Applicant Element
 
 Contains general information for the applicant.
 
@@ -244,8 +234,7 @@ Contains general information for the applicant.
 
 ```
 
-AML Element
------------
+## AML Element
 
 ```
 	"aml": {
@@ -314,11 +303,9 @@ Shows the applicant's records over Anti Money Laundering (AML) databases if exis
     -   `addresses`: The list of addresses.
     -   `sex`: The gender of the person.
 
-    Appendix
-    ========
+# Appendix
 
-    Supported Rules (Checks):
-    -------------------------
+## Supported Rules (Checks):
 
     | Key | Title | Description |
     | --- | --- | --- |
