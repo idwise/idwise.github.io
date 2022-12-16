@@ -315,18 +315,20 @@ Shows the applicant's records over Anti Money Laundering (AML) databases if exis
 ## Appendix
 
 ### Supported Rules (Checks):
+| Key | Title | Description |
+| --- | --- | --- |
+| document_validation | Authentic Document | Confirms the authenticity of the submitted documents, likely free of any evidence of manipulation. |
+| same_subject | Same Person | Verifies that all steps in the journey belong to the same person. |
+| no_duplicate_documents | Non-duplicate Document | Confirms that the same document is not submitted more than once. |
+| no_duplicate_applicant | Unique Applicant | Confirms whether the applicant is matched with already existing applicants. |
+| no_aml_records | Datasets (e-KYC/AML) | Confirms whether the applicant has records in electronic Know Your Customer (e-KYC) and Anti Money Laundering (AML) databases, screening for Politically Exposed Persons (PEPs) and Sanctions. |
+| unrecognized_document | Recognised Document | Verifies the recognition of the submitted documents as a precisely supported document type. |
+| proof_policy | Proof Policy | Confirms that the document provided is of the accepted type for each particular journey step. |
+| expired_document | Un-expired Document | Confirms that the documents provided are not expired. |
 
-    | Key | Title | Description |
-    | --- | --- | --- |
-    | document_validation | Authentic Document | Confirms the authenticity of the submitted documents, likely free of any evidence of manipulation. |
-    | same_subject | Same Person | Verifies that all steps in the journey belong to the same person. |
-    | no_duplicate_documents | Non-duplicate Document | Confirms that the same document is not submitted more than once. |
-    | no_duplicate_applicant | Unique Applicant | Confirms whether the applicant is matched with already existing applicants. |
-    | no_aml_records | Datasets (e-KYC/AML) | Confirms whether the applicant has records in electronic Know Your Customer (e-KYC) and Anti Money Laundering (AML) databases, screening for Politically Exposed Persons (PEPs) and Sanctions. |
-    | unrecognized_document | Recognised Document | Verifies the recognition of the submitted documents as a precisely supported document type. |
-    | proof_policy | Proof Policy | Confirms that the document provided is of the accepted type for each particular journey step. |
-    | expired_document | Un-expired Document | Confirms that the documents provided are not expired. |
 
-    The rules you will get depend on the configuration of your journey definition. So some of these rules might not apply in your case. If you need to make adjustments to the rules on your journey definition please contact IDWise support team.
+
+
+The rules you will get depend on the configuration of your journey definition. So some of these rules might not apply in your case. If you need to make adjustments to the rules on your journey definition please contact IDWise support team.
 
 [Extracted Fields](https://idwi.se/fields)
