@@ -1,5 +1,3 @@
-gem 'jekyll-relative-links'
-
 ---
 layout: default
 parent: Journey API
