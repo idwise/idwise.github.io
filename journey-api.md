@@ -19,8 +19,6 @@ You can find here the documentation for both **Endpoints** and **Model**, you ca
 
 ## [Journey Webhooks](https://idwi.se/webhooks)
 
-## [Journey Step Webhooks](https://idwi.se/step-webhooks)
-
 If you have any issues, please contact us at https://idwise.com/contact
 
 ## Sequence Diagram:
