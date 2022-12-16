@@ -8,14 +8,23 @@ nav_order: 1
 
 
 
-IDWise Journey Model Documentation
-==================================
+# IDWise Journey Model Documentation
+{: .no_toc }
+
+<details open markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
+1. TOC
+{:toc}
+</details>
 
 API Version: V2 - Model Version: 3.0
 
 This documentation details the various elements of the result graph after processing a journey in IDWise system. A journey is comprised of documents and biometrics submitted by an applicant. After processing these documents and biometrics, you can access these results by calling IDWise API.
 
-# Journey Model Top-Level Elements
+## Journey Model Top-Level Elements
 
 First, here are the top-level elements of the graph (with explanation for each element below):
 
@@ -50,11 +59,11 @@ First, here are the top-level elements of the graph (with explanation for each e
     -   `Approved` : if the journey approved by the reviewer.
     -   `Rejected` : if the journey rejected by the reviewer.
 -   `model_version`: Represents which version of the result graph this journey follows. Different versions of the graph might have different elements.
--   `documents`: The processing results of documents submitted as part of the journey. This is a dictionary (JSON object) where the *key* represents the `step_id` associated with a given document and the *value* represents the `document` object itself. See the following sections for details on the format of `document` elements.
--   `selfie`: Represents the processing results of the live selfie taken during the journey. If the journey is configured with no `Selfie` step then this element will be `null`. See the following sections for details on the format of the `selfie` element.
--   `rule_results`: The business rules that were applied on this journey and their outcomes. These rules can configure the acceptance criteria for a journey to pass. Examples include: Acceptable types of documents to be provided, ensure the documents are non-expired.
--   `applicant`: Common data representing the applicant (user) who made the journey.
--   `aml`: Holds the results of carrying out AML (Anti-Money Laundering) and background checks. If the journey is not configured with AML checks enabled then this element will be `null`. See the following sections for details on the format of the `aml` elements.
+-   [`documents`](#document-element): The processing results of documents submitted as part of the journey. This is a dictionary (JSON object) where the *key* represents the `step_id` associated with a given document and the *value* represents the `document` object itself. See the following sections for details on the format of `document` elements.
+-   [`selfie`](#selfie-element): Represents the processing results of the live selfie taken during the journey. If the journey is configured with no `Selfie` step then this element will be `null`. See the following sections for details on the format of the `selfie` element.
+-   [`rule_results`](#rule-result-element): The business rules that were applied on this journey and their outcomes. These rules can configure the acceptance criteria for a journey to pass. Examples include: Acceptable types of documents to be provided, ensure the documents are non-expired.
+-   [`applicant`](#applicant-element): Common data representing the applicant (user) who made the journey.
+-   [`aml`](#aml-element): Holds the results of carrying out AML (Anti-Money Laundering) and background checks. If the journey is not configured with AML checks enabled then this element will be `null`. See the following sections for details on the format of the `aml` elements.
 
 ## Document Elements
 
@@ -152,7 +161,7 @@ Here are the elements that constitute a `document` element:
     -   `front_cropped_image_path`: The path of the front cropped image.
     -   `back_cropped_image_path`: The path of the back cropped image. if the back image wasn't submitted the value will be `null`
 
-## Selfie Element
+### Selfie Element
 
 This an example for the selfie result object:
 
@@ -171,7 +180,7 @@ This object represents the face liveness status, it has the following attributes
 -   `is_live`: A boolean indicates whether the submitted selfie image is live or not. The liveness is already reflected on `status` element.
 -   `image_path`: The image identifier for the submitted selfie image which can be used to retrieve the image through Image Retrieval API.
 
-## Rule Result Element
+### Rule Result Element
 
 This object contains the business rule results. business rules are set of checks that can be defined by customers to apply some constraints on the onboarding journeys like what are acceptable document types for each step or prevent a user from submitting expired documents ..etc.
 
@@ -219,7 +228,7 @@ Each item in this object represents one rule, Here are the elements that constit
 
 here is the full list of [Rules](https://www.notion.so/IDWise-Journey-Model-Documentation-0d828b91fcb64f399b897a2b12f828e3)
 
-## Applicant Element
+### Applicant Element
 
 Contains general information for the applicant.
 
@@ -234,7 +243,7 @@ Contains general information for the applicant.
 
 ```
 
-## AML Element
+### AML Element
 
 ```
 	"aml": {
@@ -303,9 +312,9 @@ Shows the applicant's records over Anti Money Laundering (AML) databases if exis
     -   `addresses`: The list of addresses.
     -   `sex`: The gender of the person.
 
-# Appendix
+## Appendix
 
-## Supported Rules (Checks):
+### Supported Rules (Checks):
 
     | Key | Title | Description |
     | --- | --- | --- |
@@ -320,4 +329,4 @@ Shows the applicant's records over Anti Money Laundering (AML) databases if exis
 
     The rules you will get depend on the configuration of your journey definition. So some of these rules might not apply in your case. If you need to make adjustments to the rules on your journey definition please contact IDWise support team.
 
-[Extracted Fields](https://www.notion.so/Extracted-Fields-aff911457fa946e79d9759c181614249)
+[Extracted Fields](https://idwi.se/fields)
