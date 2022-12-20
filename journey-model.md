@@ -38,7 +38,7 @@ First, here are the top-level elements of the graph (with explanation for each e
 	"system_decision": "",
 	"final_decision":"",
 	"model_version": "",
-	"document": {},
+	"documents": {},
 	"selfie": {},
 	"rule_results": {},
 	"applicant": {},
