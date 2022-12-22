@@ -3,7 +3,6 @@ layout: default
 parent: IDWise Developers
 title: Ionic, Cordova & Capacitor
 nav_order: 4.7
-has_children: true
 ---
 
 # Reach out for support!
