@@ -7,7 +7,7 @@ Fields Extracted by IDWise
 
 IDWise engine extracts information from documents in a structured and normalised way, we follow the conventions below:
 
-Dates Fields:
+Date Fields:
 -------------
 
 -   We extract dates always in ISO 8601 format: YYYY-MM-DD.
