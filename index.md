@@ -27,9 +27,12 @@ Business ID (Journey Template ID) for the above client SDKs will be provided by 
 This API helps you get information about IDWise journeys from your backend.
 You can find the [documentation here](https://idwi.se/journey-api).
 
-
 ## API Key & Secret:
 You will be provided by API Key and API Secret upon your onboarding on the platform.
+
+
+## Typical Integration Scenario Sequence Diagram:
+![download (3)](https://raw.githubusercontent.com/idwise/idwise.github.io/main/assets/api-seq-diagram.svg)
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ## Happy integration!
