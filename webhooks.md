@@ -43,8 +43,7 @@ This webhook triggers when there is an update on a monitored AML record (for exa
 
 * * * * *
 
-Configuring webhooks:
----------------------
+### Configuring webhooks:
 
 If interested, please send the webhook URL(s) you want to use to <support@idwise.com> to allow the team to add it to your configuration.
 
@@ -52,10 +51,14 @@ If interested, please send the webhook URL(s) you want to use to <support@idwise
 
 You can also use a website called <https://webhook.site/> to get a webhook that you can use during the development and testing phase (on top of your app webhook); IDWise supports adding multiple URLs as webhooks.
 
+### Implementing Webhook Handler:
+You need to create a **publicly accessible** webhook endpoint for IDWise to send notifications to. This webhook endpoint will receive a JSON payload every time a new notification is triggered. The JSON payload will contain the details of the notification.
+
+The webhook endpoint created for IDWise might be triggered multiple times for the same journey. It is essential to ensure that the handler is designed to handle such scenarios. Your handler code needs to be **idempotent**.
+
 * * * * *
 
-How does it work?
------------------
+### How does it work?
 
 The webhook mechanism is essentially a way for IDWise to inform your backend of updates on a particular journey, for example, when the journey is complete.
 
