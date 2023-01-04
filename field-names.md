@@ -5,7 +5,9 @@ nav_exclude: true
 Fields Extracted by IDWise
 ==========================
 
-IDWise engine extracts information from documents in a structured and normalised way, we follow the conventions below:
+IDWise engine extracts information from documents in a structured and normalised way, we follow the conventions below.
+
+{% include cta.md %}
 
 Date Fields:
 -------------
