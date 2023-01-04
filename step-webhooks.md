@@ -7,11 +7,8 @@ nav_order: 1
 nav_exclude: true
 ---
 
-IDWise Step Webhooks
-===============
+# IDWise Step Webhooks
 {: .no_toc }
-
-It's important to use IDWise Step Webhooks for integration between backends. Step webhooks are used to send notifications of changes made at each step from the IDWise backend to the server via simple and secure HTTPS calls.
 
 <details open markdown="block">
   <summary>
@@ -22,16 +19,18 @@ It's important to use IDWise Step Webhooks for integration between backends. Ste
 {:toc}
 </details>
 
+It's important to use IDWise Step Webhooks for integration between backends. Step webhooks are used to send notifications of changes made at each step from the IDWise backend to the server via simple and secure HTTPS calls.
+
+{% include cta.md %}
 
 
-Configuring step webhooks:
----------------------
+
+## Configuring step webhooks:
 
 If interested, please send the step webhook URL(s) you want to use to <support@idwise.com> to allow the team to add it to your configuration.
 
 
-How it works?
------------------
+## How it works?
 
 The webhook mechanism is essentially a way for IDWise to inform your backend of updates on a particular journey, for example, when a document is submitted.
 
