@@ -6,6 +6,8 @@ has_children: true
 nav_order: 6
 ---
 
+{% include cta.md %}
+
 
 You can find here the documentation for both **Endpoints** and **Model**, you can also know about our **Webhooks** feature below.
 
