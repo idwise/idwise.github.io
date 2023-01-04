@@ -23,12 +23,8 @@ nav_order: 3
 
 This git repository contains the official IDWise SDK meant to be used in iOS applications. This README contains all the needed information to test and integrate the IDWise SDK in your project.
 
-## Not Already a Customer?
+{% include cta.md %}
 
-<div style="margin: auto;width: 50%;padding: 10px;" markdown="1">
-<span class="fs-5" >[Get IDWise Free Trial Now](https://www.idwise.com/contact?utm_source=idwise-developer&utm_medium=us&utm_content=ios-sdk-cta){: .btn .btn-purple target="_blank" }
-  </span>
-</div>
 
 ## Xcode Supported Version
 
