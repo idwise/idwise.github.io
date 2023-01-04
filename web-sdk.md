@@ -5,15 +5,23 @@ title: Web SDK
 nav_order: 4
 ---
 # IDWise Javascript Document Capture SDK
+{: .no_toc }
 
-This SDK allows you to integrate the IDWise Digital Identity Verification technology in your web app with minimal effort
+<details open markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
+1. TOC
+{:toc}
+</details>
+---
+
+
+This SDK allows you to integrate the IDWise Digital Identity Verification technology in your web app with minimal effort.
 It presents a highly customisable UI that guides the user through a series of steps that prompts them for their ID documents and/or biometrics depending on how you have configured your journey flow in IDWise backend system. At the end of this process your app will receive a callback with information about the completed journey which your backend code can use to securely get the results of this journey. It's that simple!
 
-## Not Already a Customer?
-<div style="margin: auto;width: 50%;padding: 10px;" markdown="1">
-<span class="fs-5" >[Get IDWise Free Trial Now](https://www.idwise.com/contact?utm_source=idwise-developer&utm_medium=us&utm_content=aml-api-cta){: .btn .btn-purple target="_blank" }
-  </span>
-</div>
+{% include cta.md %}
 
 
 ## Integration Steps
