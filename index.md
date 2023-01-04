@@ -8,7 +8,7 @@ has_children: true
 There are many ways to integrate with our system, including a mobile SDK, or by sending images of documents through an API:
 
 ## Not Already a Customer?
-<div style="margin: auto;width: 50%;padding: 10px;" markdown="1">
+<div style="margin: auto;width: 80%;padding: 10px;text-align: center; " markdown="1">
 <span class="fs-5" >[Get IDWise Free Trial Now](https://www.idwise.com/contact?utm_source=idwise-developer&utm_medium=us&utm_content=developers-home-page-cta){: .btn .btn-purple target="_blank" }
   </span>
 </div>
