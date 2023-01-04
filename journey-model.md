@@ -24,6 +24,9 @@ API Version: V2 - Model Version: 3.0
 
 This documentation details the various elements of the result graph after processing a journey in IDWise system. A journey is comprised of documents and biometrics submitted by an applicant. After processing these documents and biometrics, you can access these results by calling IDWise API.
 
+{% include cta.md %}
+
+
 ## Journey Model Top-Level Elements
 
 First, here are the top-level elements of the graph (with explanation for each element below):
