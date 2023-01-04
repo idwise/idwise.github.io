@@ -7,7 +7,10 @@ nav_exclude: true
 
 # Onboarding Journey Scenarios
 
-IDWise helps customers boost onboarding conversion rate, and enables customers to cater for multiple integration scenarios, here are some examples of how to handle different situations within your app:
+IDWise helps customers boost onboarding conversion rate, and enables customers to cater for multiple integration scenarios, here are some examples of how to handle different situations within your app.
+
+{% include cta.md %}
+
 
 ## 1. Happy path - completed journey!
 The end user starts the onboarding journey, and completes all steps in one go, your client app (mobile frontend) will get the following call backs:
