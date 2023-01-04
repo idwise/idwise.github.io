@@ -9,7 +9,6 @@ There are many ways to integrate with our system, including a mobile SDK, or by 
 
 {% include cta.md %}
 
--
 ## Client SDKs:
 We strongly recommend using the following Client SDKs to integrate the IDWise KYC capability into your app, we strive to make the integration effort minimal while maintaining a rich and customisable experience:
 
