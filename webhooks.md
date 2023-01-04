@@ -53,7 +53,7 @@ You can also use a website called <https://webhook.site/> to get a webhook that 
 ## Implementing Webhook Handler:
 You need to create a **publicly accessible** webhook endpoint for IDWise to send notifications to. This webhook endpoint will receive a JSON payload every time a new notification is triggered. The JSON payload will contain the details of the notification.
 
-The webhook endpoint created for IDWise might be triggered multiple times for the same journey. It is essential to ensure that the handler is designed to handle such scenarios. Your handler code needs to be **idempotent**.
+The webhook endpoint created for IDWise might be triggered multiple times for the same journey. It is essential to ensure that the handler is designed to handle such scenarios. Your handler code needs to be **idempotent** (where multiple identical requests have the same effect as a single request, meaning that the API has the same result whether it is called once or multiple times.)
 
 * * * * *
 
