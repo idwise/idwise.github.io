@@ -7,6 +7,10 @@ nav_exclude: true
 ---
 # iOS Lightweight SDK
 
+The IDWise iOS SDK is a lightweight version that allows easy integration into iOS apps while still providing robust identity verification. It has a lighter weight process for checking the quality of captured frames, but this does not impact image quality.
+
+{% include cta.md %}
+
 ## Xcode Supported Version
 
 IDWiseLight SDK always supports latest Xcode version only. The current latest release of IDWiseLight SDK supports below Xcode versions.
@@ -14,6 +18,8 @@ IDWiseLight SDK always supports latest Xcode version only. The current latest re
 |  Xcode  | SDK    |  
 | ------- | ------ |
 | 14.1    | 3.10.0  |
+
+
 
 ## Installation
 
