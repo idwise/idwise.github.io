@@ -6,6 +6,17 @@ nav_order: 4
 ---
 
 # IDWise Javascript Document Capture SDK
+{: .no_toc }
+
+<details open markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
+1. TOC
+{:toc}
+</details>
+---
 
 This SDK allows you to integrate the IDWise Digital Identity Verification technology in your web app with minimal
 effort.

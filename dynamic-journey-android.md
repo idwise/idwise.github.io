@@ -23,6 +23,8 @@ nav_order: 1
 This document explains how to set up and start using IDWise SDK in Dynamic Journey mode.
 Alternatively, if you want to use Simple Journey mode which would get you up and running quicker and with less code if you do not need advanced control over the journey please check [`Simple Journey Mode here`](https://idwi.se/android)
 
+{% include cta.md %}
+
 ### Dynamic Journey Mode
 
 

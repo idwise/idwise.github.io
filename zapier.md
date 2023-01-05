@@ -20,10 +20,8 @@ heading_anchors: true
 </details>
 
 ---
-<div style="margin: auto;width: 50%;padding: 10px;" markdown="1">
-<span class="fs-5" >[Get IDWise Free Trial Now](https://www.idwise.com/contact?utm_source=idwise-developer&utm_medium=us&utm_content=zapier-free-trial-cta){: .btn .btn-purple target="_blank" }
-  </span>
-</div>
+
+{% include cta.md %}
 
 [Zapier](https://zapier.com/apps/idwise/integrations) lets you connect IDWise to 5,000+ other web services. Automated connections called Zaps, set up in minutes with no coding, can automate your day-to-day tasks and build workflows between apps that otherwise wouldn't be possible.
 
