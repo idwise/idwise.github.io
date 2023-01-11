@@ -32,7 +32,9 @@ IDWise SDK always supports latest Xcode version only. The current latest release
 
 |  Xcode  | SDK    |  
 | ------- | ------ |
-| 14.1    | 3.10.0  |
+| 14.2    | 3.11.1 |
+| 14.1    | 3.11.0 |
+
 
 ## Integration Video
 
@@ -84,6 +86,27 @@ IDWise SDK is designed to start on top of a UIViewController in your application
 
 To start a new journey just provide the UIViewController from which you want the flow to start then call `IDWiseSDK.initialize` method first with your provided client key and then you can call `IDWise.startJourney` method. If initialization is failed for any reason, you will get an error object with a code and a message explaining the reason of the error. In the following example, we called initialize method and then called startJourney method.
 
+The `IDWiseSDK.initialize` method takes an optional parameter for specifying theme (dark,light) and If you don't pass this the default theme will be same as of hosting application. If you want SDK to be in same theme mode as hosting application is then you do not need to pass this parameter. You can pass this parameter If hosting application is in dark mode and want SDK to be in light mode and vice versa.
+
+Possible values of theme parameter are:
+
+```swift
+
+        IDWise.initialize(clientKey: "<YOUR_CLIENT_KEY>",theme: .light) { err in
+                // Deal with error here
+            if let error = err {
+              // handle error, show some alert or any other logic
+            }
+        }
+        
+IDWiseSDKTheme.light // to specify light theme mode for SDK
+IDWiseSDKTheme.dark // to specify dark theme mode for SDK
+IDWiseSDKTheme.systemDefault // to specify same theme as of hosting application
+
+```
+
+   
+
 ```swift
         IDWise.initialize(clientKey: "<YOUR_CLIENT_KEY>") { err in
                 // Deal with error here
@@ -98,7 +121,7 @@ To start a new journey just provide the UIViewController from which you want the
 
 This will make IDWise SDK show a UI with a wizard to guide the user through completing the onboarding journey
 
-This method takes two parameters:
+`IDWise.startJourney` method takes two parameters:
 
 - `journeyDefinitionId`: Specifies the journey definition (aka template) to base this new journey on. Journey definitions are created based on your requirements and specify what documents and biometrics to collect from the user and in what order. JourneyDefinitionId is shared with you by IDWise team as part of your use-case and requirements discussions.
 - `referenceNo` : A custom identifier to associate with this journey to enable you to link it back easily or associate it with a user on your system.
