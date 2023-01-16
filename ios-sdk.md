@@ -86,9 +86,10 @@ IDWise SDK is designed to start on top of a UIViewController in your application
 
 To start a new journey just provide the UIViewController from which you want the flow to start then call `IDWiseSDK.initialize` method first with your provided client key and then you can call `IDWise.startJourney` method. If initialization is failed for any reason, you will get an error object with a code and a message explaining the reason of the error. In the following example, we called initialize method and then called startJourney method.
 
-The `IDWiseSDK.initialize` method takes an optional parameter for specifying theme (dark,light) and If you don't pass this the default theme will be same as of hosting application. If you want SDK to be in same theme mode as hosting application is then you do not need to pass this parameter. You can pass this parameter If hosting application is in dark mode and want SDK to be in light mode and vice versa.
+The IDWiseSDK.initialize method accepts an optional parameter for specifying the theme (dark or light). If this parameter is not passed, the default theme will be the same as that of the operating system settings. If you want the SDK to be in the same theme mode as the OS, you do not need to pass this parameter. However, if the OS is in dark mode and you want the SDK to be in light mode (or vice versa), you can pass the appropriate value for the theme parameter.
 
-Possible values of theme parameter are:
+Possible values for the theme parameter include "dark" or "light".
+
 
 ```swift
 
@@ -101,7 +102,7 @@ Possible values of theme parameter are:
         
 IDWiseSDKTheme.light // to specify light theme mode for SDK
 IDWiseSDKTheme.dark // to specify dark theme mode for SDK
-IDWiseSDKTheme.systemDefault // to specify same theme as of hosting application
+IDWiseSDKTheme.systemDefault // to specify the same theme as of operating system
 
 ```
 
