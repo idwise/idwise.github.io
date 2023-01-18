@@ -28,7 +28,7 @@ Here is how you can setup and start using IDWise SDK.
 {% include cta.md %}
 
 ## Latest Stable Version
-**3.10.0**
+**3.10.4**
 
 ## Integration Video
 Get integrated quickly by watching a 5 minutes video:
@@ -79,11 +79,11 @@ You can find an example of how to start an ID verification process in the file [
 **Initialize the SDK**
 From inside your Activity or Fragment, You can initialize the like this
 
-	IDWise.initialize("<CLIENT_KEY>") { error: IDWiseSDKError? ->
+	IDWise.initialize("<CLIENT_KEY>",IDWiseSDKTheme.Light /*Optional*/) { error: IDWiseSDKError? ->
            error?.printStackTrace()
         }
 
-After successfully initializing the SDK with your `CLIENT_KEY` provided by IDWIse, Your app can start an ID verification process by making a call to the `startJourney` method which takes the following parameters:
+After successfully initializing the SDK with your `CLIENT_KEY` provided by IDWIse and an optional `theme` parameter, Your app can start an ID verification process by making a call to the `startJourney` method which takes the following parameters:
 
 * **journeyTemplateId** (also called Journey Definition ID): This is a unique identifier that identifies your journey definition. IDWise shares this with you when you register for using IDWise system.
 * **referenceNo**: (Optional) A parameter that you can use to associate an arbitrary identifier (reference number) with the user making the current journey. This is helpful to link the journey back to the user and/or application that started the journey, you will recieve this in the webhook request.
