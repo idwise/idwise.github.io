@@ -25,12 +25,7 @@ documents and/or biometrics depending on how you have configured your journey fl
 of this process your app will receive a callback with information about the completed journey which your backend code
 can use to securely get the results of this journey. It's that simple!
 
-## Not Already a Customer?
-
-<div style="margin: auto;width: 50%;padding: 10px;" markdown="1">
-<span class="fs-5" >[Get IDWise Free Trial Now](https://www.idwise.com/contact?utm_source=idwise-developer&utm_medium=us&utm_content=aml-api-cta){: .btn .btn-purple target="_blank" }
-  </span>
-</div>
+{% include cta.md %}
 
 ## Integration Steps
 
@@ -60,26 +55,24 @@ Please follow these steps to integrate with the document capturing SDK:
    parameters
    which identify your business and are shared with you during your registration process with IDWise.
 
-   Example code for the inialization:
+   Example code for the initialization:
+    
+    ```
+    <script>
+        let idwise;
+        try {
+            idwise = await IDWise.initialize({
+              businessId: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx',
+              locale: 'en',
+              clientKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx='
+            });
+        } catch (error) {
+            ...
+        }
+    </script>
+    ```
 
-```
-<script>
-    let idwise;
-    try {
-        idwise = await IDWise.initialize({
-          businessId: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx',
-          locale: 'en',
-          clientKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx='
-        });
-    } catch (error) {
-        ...
-    }
-</script>
-```
-
-This call returns a promise to a session instance. The session instance will be used to access the functionality
-of
-IDWise system in next steps
+    This call returns a promise to a session instance. The session instance will be used to access the functionality of IDWise system in next steps.
 
 5. Use the IDWise session instance to start a new journey. To do so you can call `startJourney` function. The function
    takes three parameters:
@@ -131,7 +124,7 @@ completes and after triggering the `onFinished` event.
 And that’s it! This is all you need to get core integration up and running and have IDWise Web SDK to enable streamlined
 user onboarding journeys.
 
-## Use Cases
+## Additional Use Cases
 
 IDWise Web SDK can be used in a variety of use cases. Here are some examples:
 
