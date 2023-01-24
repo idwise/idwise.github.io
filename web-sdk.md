@@ -44,35 +44,34 @@ Please follow these steps to integrate with the document capturing SDK:
     <script src="https://releases.idwise.com/websdk/latest/idwise.min.js"></script>
     ```
 
-3. Decide the element that will host the IDWise UI. This can be any block element and can be as simple as this
-   example:
+   3. Decide the element that will host the IDWise UI. This can be any block element and can be as simple as this
+      example:
 
-    ```
-    <div id="idwise-mount"></div>
-    ```
+       ```
+       <div id="idwise-mount"></div>
+       ```
 
-4. Start the initialization of IDWise SDK library using `initialize` function. This function takes three
-   parameters
-   which identify your business and are shared with you during your registration process with IDWise.
+      4. Start the initialization of IDWise SDK library using `initialize` function. This function takes three
+         parameters
+         which identify your business and are shared with you during your registration process with IDWise.
 
-   Example code for the initialization:
+         Example code for the initialization:
     
-    ```
-    <script>
-        let idwise;
-        try {
-            idwise = await IDWise.initialize({
-              businessId: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx',
-              locale: 'en',
-              clientKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx='
-            });
-        } catch (error) {
-            ...
-        }
-    </script>
-    ```
+          ```
+          <script>
+              let idwise;
+              try {
+                  idwise = await IDWise.initialize({
+                    clientKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx=',
+                    locale: 'en',
+                  });
+              } catch (error) {
+                  ...
+              }
+          </script>
+          ```
 
-    This call returns a promise to a session instance. The session instance will be used to access the functionality of IDWise system in next steps.
+          This call returns a promise to a session instance. The session instance will be used to access the functionality of IDWise system in next steps.
 
 5. Use the IDWise session instance to start a new journey. To do so you can call `startJourney` function. The function
    takes three parameters:
@@ -94,15 +93,14 @@ The following example code shows an overall script covering steps 5 and 6 above:
  <script>
    let idwise;   
    IDWise.initialize({
-        businessId: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx',
+        clientKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx=',
         locale: 'en',
-        clientKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx='
       })
       .then((result) => {
         idwise = result;
         idwise.startJourney({
           mount: '#idwise-mount',
-          journeyTemplateId: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', // journey definition id
+          journeyDefinitionId: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', // journey definition id
           userId: "842098029309823", // An identifier that uniquely idenfies the user carrying out this journey
           eventHandlers: {
             onFinished: function(details) {
@@ -139,9 +137,8 @@ removed.
     var idwise;
     try {
         idwise = await IDWise.initialize({
-          businessId: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx',
-          locale: 'en',
-          clientKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx='
+          clientKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx=',
+          locale: 'en'
         });
     } catch (error) {
         ...
@@ -171,9 +168,8 @@ You can trigger IDWise SDK again by calling `startJourney` function on the IDWis
     var idwise;
     try {
         idwise = await IDWise.initialize({
-          businessId: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx',
-          locale: 'en',
-          clientKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx='
+          clientKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx=',
+          locale: 'en'
         });
     } catch (error) {
         ...
@@ -197,11 +193,15 @@ You can trigger IDWise SDK again by calling `startJourney` function on the IDWis
 </script>
 ```
 
-### Resuming an incompleted journey
+[//]: # (### Resuming an incompleted journey)
 
-You can resume an incompleted journey by calling `resumeJourney` function on the IDWise session instance.
+[//]: # ()
+[//]: # (You can resume an incompleted journey by calling `resumeJourney` function on the IDWise session instance.)
 
-```javascript
-coming soon
-```
+[//]: # ()
+[//]: # (```javascript)
+
+[//]: # (coming soon)
+
+[//]: # (```)
 
