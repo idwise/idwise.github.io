@@ -171,6 +171,42 @@ Following is the sample implementation of `journeyCallback` and `stepCallback`
 
 From `stepResult` variable in `onStepResult(...)` callback, you can receive the extracted fields. And if the validation is failed, you can get the failure code as `stepResult.failureReasonCode`
 
+`StepResult` contains following information 
+
+```
+data class StepResult(
+    // error code for specific errors
+    val errorUserFeedbackCode: String? = "",
+    
+    //Detailed error description
+    val errorUserFeedbackDetails: String? = "",
+    
+    //Short message for error
+    val errorUserFeedbackTitle: String? = "",
+    
+    //The image has passed all rules
+    val hasPassedRules: Boolean? = false,
+    
+    //processig has been completed or not
+    val isConcluded: Boolean? = false,
+    
+    //Processing status one of (In Progress, Submitted, Not Submitted)
+    val status: String? = "",
+    
+    //Map of extracted fields from the document
+    var extractedFields: HashMap<String, FieldValue?>?,
+)
+```
+
+Where `FieldValue` holds the value of the extracted field. 
+
+```
+data class FieldValue(
+    @SerializedName("value")
+    val value: String?
+)
+``` 
+
 ## Step 3: Starting the Steps
 
 When `onJourneyStarted(...)` or `onJourneyResumed(...)` are triggered successfuly, you can call the `IDWise.startStep(...)` to start the specific verfication Step. `IDWise.startStep` takes the following parameters:
