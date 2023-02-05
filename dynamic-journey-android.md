@@ -173,7 +173,8 @@ From `stepResult` variable in `onStepResult(...)` callback, you can receive the 
 
 `StepResult` contains following information 
 
-`data class StepResult(
+```
+data class StepResult(
     // error code for specific errors
     val errorUserFeedbackCode: String? = "",
     
@@ -195,15 +196,16 @@ From `stepResult` variable in `onStepResult(...)` callback, you can receive the 
     //Map of extracted fields from the document
     var extractedFields: HashMap<String, FieldValue?>?,
 )
+```
 
-`
+Where `FieldValue` holds the value of the extracted field. 
 
-`FieldValue` holds the value of the extracted field. 
-
-`data class FieldValue(
+```
+data class FieldValue(
     @SerializedName("value")
     val value: String?
-)` 
+)
+``` 
 
 ## Step 3: Starting the Steps
 
