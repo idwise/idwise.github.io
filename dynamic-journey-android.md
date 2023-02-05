@@ -194,7 +194,16 @@ From `stepResult` variable in `onStepResult(...)` callback, you can receive the 
     
     //Map of extracted fields from the document
     var extractedFields: HashMap<String, FieldValue?>?,
-)`
+)
+
+`
+
+`FieldValue` holds the value of the extracted field. 
+
+`data class FieldValue(
+    @SerializedName("value")
+    val value: String?
+)` 
 
 ## Step 3: Starting the Steps
 
