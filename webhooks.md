@@ -95,3 +95,6 @@ It can be one of the following:
 
 -   **Approved**: The journey has been approved by a manual reviewer.
 -   **Rejected**: The journey has been rejected by a manual reviewer.
+
+## Webhooks Sequence Diagram:
+![download (3)](https://raw.githubusercontent.com/idwise/idwise.github.io/main/assets/webhook-flow-sequence-diagram.svg)
