@@ -39,7 +39,7 @@ IDWise SDK always supports latest Xcode version only. The current latest release
 In dynamic journey mode, IDWise provides full control to the hosting application to show its own UI and handle journey and step events more flexibly. This makes IDWise journey more configurable for the hosting application to not only show its own UI, control when to start each step and in what order and subscribe to events for progress of each step.
 Here is how you can setup and start using IDWise SDK.
 
-## Example Sequence Diagram:
+## Example Sequence Diagram
 
 ![download (3)](https://raw.githubusercontent.com/idwise/idwise.github.io/main/assets/dynamic-journey-sequence-diagram.svg)
 
