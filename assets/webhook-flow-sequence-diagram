@@ -1,0 +1,36 @@
+title IDWise Webhook Flow
+
+participant Customer App (Android/iOS/Web)
+participant IDWise SDK
+participant Customer Backend
+participant IDWise Backend
+participant IDWise Studio (Dashboard) - Backoffice
+
+
+
+==**Using Webhooks (You need to create an endpoint on your backend,\n please send IDWise the URL to be configured on your IDWise account)**==
+
+
+IDWise Backend->Customer Backend:**Webhook** (journeyId, referenceNo)\nOn Journey Finish\nEvent: **"Finished Journey"**
+Customer Backend -> IDWise Backend: **Get Journey API** {{journeyId}}
+IDWise Backend --> Customer Backend:Journey Final Details (Fields, Face Match, Validation,...) 
+
+note over Customer Backend: Save journey details to a local database\nand use the data to update customer record\n(use referenceNo that was passed to\n`**Start Journey**` to link customer record to journey)
+note over Customer Backend: Change end user profile status internally to\napproved or rejected depending on the result\nAnd send push notification to your user informing\nor asking to redo the journey if needed.
+
+
+Customer App (Android/iOS/Web)<-Customer Backend:Inform customer of profile status change
+==**Manual Review Workflow**==
+IDWise Backend<-IDWise Studio (Dashboard) - Backoffice:Manual Review\n(Accept / Reject)
+Customer Backend<-IDWise Backend:**Webhook** (journeyId, referenceNo)\nOn Manual Review\nEvent: **"Manually Reviewed"**
+
+note over Customer Backend: Change end user profile status internally to\napproved or rejected depending on the result\nAnd send push notification to your user informing\nor asking to redo the journey if needed.
+Customer App (Android/iOS/Web)<-Customer Backend:Inform customer of profile status change
+
+
+==**AML Ongoing Monitoring Update Webhook (if enabled)**==
+Customer Backend<-IDWise Backend:**Webhook** (journeyId, referenceNo)\nOn AML Status Change\ne.g. Added to sanctions list, or not PEP anymore\nEvent: **"AML Monitor Update"**
+Customer Backend -> IDWise Backend: **Get Journey API** {{journeyId}}
+IDWise Backend --> Customer Backend: Journey Details (Fields, Face Match, Validation,...) 
+
+note over Customer Backend: Action depends on business process\ne.g. send a notifciation email to compliance\nofficer to review and deal with this accordingly
