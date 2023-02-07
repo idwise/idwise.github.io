@@ -144,7 +144,7 @@ Following is the sample implementation of `journeyCallback` and `stepCallback`
               }
 	      
 	      
-              override fun onJourneyResumed(journeyInfo: JourneyInfo,isSucceeded: Boolean) {
+              override fun onJourneyResumed(journeyInfo: JourneyInfo) {
                 Log.d("IDWiseSDKCallback", "onJourneyResumed")
               }
 
@@ -159,11 +159,11 @@ Following is the sample implementation of `journeyCallback` and `stepCallback`
         
         
         val stepCallback = object : IDWiseSDKStepCallback {
-            override fun onStepCaptured(stepId: Int, bitmap: Bitmap?, croppedBitmap: Bitmap?) {
+            override fun onStepCaptured(stepId: String, bitmap: Bitmap?, croppedBitmap: Bitmap?) {
                 //This event triggers when User has captured the image from the camera
             }
 
-            override fun onStepResult(stepId: Int, stepResult: StepResult?) {
+            override fun onStepResult(stepId: String, stepResult: StepResult?) {
                 //This event is triggered when Image processing is completed at the backend.
                 //stepResult contains the details of the processing output
             }
