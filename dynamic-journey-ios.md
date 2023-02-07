@@ -62,6 +62,17 @@ Next add this line also to your Podfile but this time underneath your `target` n
 pod 'IDWise'
 ```
 
+Also, add this configuration underneath your `target` node for your project:
+
+```ruby
+  post_install do |installer|
+    installer.pods_project.build_configurations.each do |config|
+      config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
+    end
+  end
+```
+
+
 You can have a look at the example `Podfile` provided in the root of this repository to see an example `Podfile` with both the changes above completed
 
 After adding our dependency in your Podfile run:
