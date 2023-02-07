@@ -249,26 +249,27 @@ From `stepResult` variable in `onStepResult(...)` callback, you can receive the 
 
 ```swift
 public struct StepResult {
+
     // error code for specific errors
-        public let errorUserFeedbackCode: String? 
+    public let errorUserFeedbackCode: String? 
     
     //Detailed error description
-        public let errorUserFeedbackDetails: String? 
+    public let errorUserFeedbackDetails: String? 
     
     //Short message for error
-        public let errorUserFeedbackTitle: String? 
+    public let errorUserFeedbackTitle: String? 
     
     //The image has passed all rules
-        public let hasPassedRules: Bool?
+    public let hasPassedRules: Bool?
     
     //processig has been completed or not
-        public let isConcluded: Bool?
+    public let isConcluded: Bool?
     
     //Processing status one of (In Progress, Submitted, Not Submitted)
-        public let status: String?
+    public let status: String?
     
     //Map of extracted fields from the document
-        public var extractedFields = [String:FieldValue]()
+    public var extractedFields = [String:FieldValue]()
 }
 ```
 
