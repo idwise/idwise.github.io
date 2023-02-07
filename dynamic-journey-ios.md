@@ -250,7 +250,7 @@ From `stepResult` variable in `onStepResult(...)` callback, you can receive the 
 ```swift
 public struct StepResult {
     // error code for specific errors
-    public let errorUserFeedbackCode: String? 
+        public let errorUserFeedbackCode: String? 
     
     //Detailed error description
         public let errorUserFeedbackDetails: String? 
