@@ -54,6 +54,7 @@ android {
 - Add the following repositories:
 ```
 repositories {
+	jcenter()
 	maven { 
 		url 'http://mobile-sdk.idwise.ai/releases/' 
             	allowInsecureProtocol = true
@@ -79,7 +80,7 @@ You can find an example of how to start an ID verification process in the file [
 **Initialize the SDK**
 From inside your Activity or Fragment, You can initialize the like this
 
-	IDWise.initialize("<CLIENT_KEY>",IDWiseSDKTheme.Light /*Optional*/) { error: IDWiseSDKError? ->
+	IDWise.initialize("<CLIENT_KEY>",IDWiseSDKTheme.LIGHT /*Optional*/) { error: IDWiseSDKError? ->
            error?.printStackTrace()
         }
 
