@@ -242,6 +242,45 @@ extension ViewController:IDWiseSDKStepDelegate {
 
 - `onStepConfirmed` : This handler will be called when step has been confirmed successfully you will get back stepID of the step that has been confirmed now
 
+From `stepResult` variable in `onStepResult(...)` callback, you can receive the extracted fields. And if the validation is failed, you can get the failure code as `stepResult.failureReasonCode`
+
+`StepResult` contains following information 
+
+
+```swift
+public struct StepResult {
+    // error code for specific errors
+    public let errorUserFeedbackCode: String? 
+    
+    //Detailed error description
+        public let errorUserFeedbackDetails: String? 
+    
+    //Short message for error
+        public let errorUserFeedbackTitle: String? 
+    
+    //The image has passed all rules
+        public let hasPassedRules: Bool?
+    
+    //processig has been completed or not
+        public let isConcluded: Bool?
+    
+    //Processing status one of (In Progress, Submitted, Not Submitted)
+        public let status: String?
+    
+    //Map of extracted fields from the document
+        public var extractedFields = [String:FieldValue]()
+}
+```
+
+Where `FieldValue` holds the value of the extracted field. 
+
+```swift
+public struct FieldValue {
+    public let value: String?
+}
+``` 
+
+
 ### Getting the Journey Summary
 
 You can call this `IDWise.getJourneySummary(journeyId: String, callback: @escaping ((JourneySummary?,IDWiseSDKError?)->()))` method anytime to get status of your journey passing the `journeyId` to this method. You will receive a callback with  `JourneySummary` or an `IDWiseSDKError` in case anything fails at server side or in authentication.
