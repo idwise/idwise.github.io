@@ -55,6 +55,7 @@ android {
 - Add the following repositories:
 ```
 repositories {
+	jcenter()
 	maven { 
 		url 'http://mobile-sdk.idwise.ai/releases/' 
             	allowInsecureProtocol = true
