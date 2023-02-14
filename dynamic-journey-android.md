@@ -25,11 +25,16 @@ Alternatively, if you want to use Simple Journey mode which would get you up and
 
 {% include cta.md %}
 
-### Dynamic Journey Mode
-
+## Dynamic Journey Mode
 
 In dynamic journey mode, IDWise provides full control to the hosting application to show its own UI and handle journey and step events more flexibly. This makes IDWise journey more configurable for the hosting application to not only show its own UI, control when to start each step and in what order and subscribe to events for progress of each step.
 Here is how you can setup and start using IDWise SDK.
+
+## Example Sequence Diagram
+
+![download (3)](https://raw.githubusercontent.com/idwise/idwise.github.io/main/assets/dynamic-journey-sequence-diagram.svg)
+
+dynamic-journey-sequence-diagram.svg
 
 ## Step 1: Integrating with your build scripts
 - In your `build.gradle` file, add `multiDexEnabled true` and `dataBinding true` in these sections:
@@ -50,6 +55,7 @@ android {
 - Add the following repositories:
 ```
 repositories {
+	jcenter()
 	maven { 
 		url 'http://mobile-sdk.idwise.ai/releases/' 
             	allowInsecureProtocol = true
@@ -139,7 +145,7 @@ Following is the sample implementation of `journeyCallback` and `stepCallback`
               }
 	      
 	      
-              override fun onJourneyResumed(journeyInfo: JourneyInfo,isSucceeded: Boolean) {
+              override fun onJourneyResumed(journeyInfo: JourneyInfo) {
                 Log.d("IDWiseSDKCallback", "onJourneyResumed")
               }
 
@@ -154,11 +160,11 @@ Following is the sample implementation of `journeyCallback` and `stepCallback`
         
         
         val stepCallback = object : IDWiseSDKStepCallback {
-            override fun onStepCaptured(stepId: Int, bitmap: Bitmap?, croppedBitmap: Bitmap?) {
+            override fun onStepCaptured(stepId: String, bitmap: Bitmap?, croppedBitmap: Bitmap?) {
                 //This event triggers when User has captured the image from the camera
             }
 
-            override fun onStepResult(stepId: Int, stepResult: StepResult?) {
+            override fun onStepResult(stepId: String, stepResult: StepResult?) {
                 //This event is triggered when Image processing is completed at the backend.
                 //stepResult contains the details of the processing output
             }
@@ -170,6 +176,42 @@ Following is the sample implementation of `journeyCallback` and `stepCallback`
          }
 
 From `stepResult` variable in `onStepResult(...)` callback, you can receive the extracted fields. And if the validation is failed, you can get the failure code as `stepResult.failureReasonCode`
+
+`StepResult` contains following information 
+
+```
+data class StepResult(
+    // error code for specific errors
+    val errorUserFeedbackCode: String? = "",
+    
+    //Detailed error description
+    val errorUserFeedbackDetails: String? = "",
+    
+    //Short message for error
+    val errorUserFeedbackTitle: String? = "",
+    
+    //The image has passed all rules
+    val hasPassedRules: Boolean? = false,
+    
+    //processig has been completed or not
+    val isConcluded: Boolean? = false,
+    
+    //Processing status one of (In Progress, Submitted, Not Submitted)
+    val status: String? = "",
+    
+    //Map of extracted fields from the document
+    var extractedFields: HashMap<String, FieldValue?>?,
+)
+```
+
+Where `FieldValue` holds the value of the extracted field. 
+
+```
+data class FieldValue(
+    @SerializedName("value")
+    val value: String?
+)
+``` 
 
 ## Step 3: Starting the Steps
 

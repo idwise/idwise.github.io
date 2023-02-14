@@ -30,8 +30,7 @@ IDWise SDK always supports latest Xcode version only. The current latest release
 
 |  Xcode  | SDK    |  
 | ------- | ------ |
-| 14.1    | 3.9.2  |
-| 14.0    | 3.9.1  |
+| 14.2    | 3.11.5 |
 
 ## Requirements
 
@@ -69,6 +68,17 @@ Next add this line also to your Podfile but this time underneath your `target` n
 ```ruby
 pod 'IDWise'
 ```
+
+Also, add this configuration underneath your `target` node for your project:
+
+```ruby
+  post_install do |installer|
+    installer.pods_project.build_configurations.each do |config|
+      config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
+    end
+  end
+```
+
 
 After adding our dependency in your Podfile run:
 

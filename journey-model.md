@@ -33,14 +33,14 @@ First, here are the top-level elements of the graph (with explanation for each e
 
 ```json
 {
-	"journey_id": "",
-	"customer_id": "",
-	"reference_number": "",
-	"start_time": "",
-	"end_time": "",
-	"system_decision": "",
-	"final_decision":"",
-	"model_version": "",
+	"journey_id": "12d62f80e15c1d50ff23db54",
+	"customer_id": "123628d8-e456-4375-8ff6-6e84f54f8743",
+	"reference_number": "abc-123-FE13",
+	"start_time": "2023-01-26T08:12:00.962462",
+	"end_time": "2023-01-26T08:13:00.454774",
+	"system_decision": "Refer",
+	"final_decision":null,
+	"model_version": "3.0",
 	"documents": {},
 	"selfie": {},
 	"rule_results": {},
@@ -49,24 +49,24 @@ First, here are the top-level elements of the graph (with explanation for each e
 }
 ```
 
--   `journey_id`: The unique identifier of the journey. This identifier is used across IDWise systems to refer to the journey and is auto-generated at the first moment the user starts the journey.
--   `customer_id`: The identifier of your account within the system. All journeys within your account share this identifier.
--   `reference_number`: This is a custom identifier you could attach to the journey when you start it and it will be available as part of the result graph. This is useful for example to link an identifier of the user in your system to the journey or journeys made by this user thus making it easier locate the user in your system after they finish the journey (this used to be called user_id).
--   `start_time`: The date time stamp when this journey was initiated. This is formatted as a standard ISO 8601 Date Time string commonly used in JSON ( For example: `2010-07-23T18:25:43.511Z` ).
--   `end_time`: The date time stamp when this journey was finished. This field can be `null` if the journey is not finished yet. The format of this field is also ISO 8601 Date Time string like in `start_time` field.
--   `system_decision`: An enum value (encoded as a string) representing the outcome of the journey as evaluated by IDWise system. This decision accounts for the result of steps and the business rules configured on the journey to reach a conclusion on whether the journey passes automatically or needs referral to manual review. Available values are:
+-   `journey_id` - `string`, `not nullable`: The unique identifier of the journey. This identifier is used across IDWise systems to refer to the journey and is auto-generated at the first moment the user starts the journey.
+-   `customer_id` - `string`, `not nullable`: The identifier of your account within the system. All journeys within your account share this identifier.
+-   `reference_number` - `string`, `nullable`: This is a custom identifier you could attach to the journey when you start it and it will be available as part of the result graph. This is useful for example to link an identifier of the user in your system to the journey or journeys made by this user thus making it easier locate the user in your system after they finish the journey (this used to be called user_id).
+-   `start_time` - `datetime`, `not nullable`: The date time stamp when this journey was initiated. This is formatted as a standard ISO 8601 Date Time string commonly used in JSON.
+-   `end_time` - `datetime`, `nullable`: The date time stamp when this journey was finished. This field can be `null` if the journey is not finished yet. The format of this field is also ISO 8601 Date Time string like in `start_time` field.
+-   `system_decision` - `string (enum)`, `not nullable`: An enum value (encoded as a string) representing the outcome of the journey as evaluated by IDWise system. This decision accounts for the result of steps and the business rules configured on the journey to reach a conclusion on whether the journey passes automatically or needs referral to manual review. Available values are:
     -   `Incomplete`: The journey is not completed yet so a decision cannot be drawn yet.
     -   `Complete`: The journey was completed and passed all the configured checks and rules.
     -   `Refer`: The journey was completed but has failed one or more of the configured checks or rules.
--   `final_decision`: is the manual review final decision. the default value will be `null` if there is no manual review done. otherwise will be:
+-   `final_decision` - `string (enum)`, `nullable`: is the manual review final decision. the default value will be `null` if there is no manual review done. otherwise will be:
     -   `Approved` : if the journey approved by the reviewer.
     -   `Rejected` : if the journey rejected by the reviewer.
--   `model_version`: Represents which version of the result graph this journey follows. Different versions of the graph might have different elements.
--   [`documents`](#document-element): The processing results of documents submitted as part of the journey. This is a dictionary (JSON object) where the *key* represents the `step_id` associated with a given document and the *value* represents the `document` object itself. See the following sections for details on the format of `document` elements.
--   [`selfie`](#selfie-element): Represents the processing results of the live selfie taken during the journey. If the journey is configured with no `Selfie` step then this element will be `null`. See the following sections for details on the format of the `selfie` element.
--   [`rule_results`](#rule-result-element): The business rules that were applied on this journey and their outcomes. These rules can configure the acceptance criteria for a journey to pass. Examples include: Acceptable types of documents to be provided, ensure the documents are non-expired.
--   [`applicant`](#applicant-element): Common data representing the applicant (user) who made the journey.
--   [`aml`](#aml-element): Holds the results of carrying out AML (Anti-Money Laundering) and background checks. If the journey is not configured with AML checks enabled then this element will be `null`. See the following sections for details on the format of the `aml` elements.
+-   `model_version` - `string`, `nullable`: Represents which version of the result graph this journey follows. Different versions of the graph might have different elements.
+-   [`documents`](#document-element) - `object`, `nullable`: The processing results of documents submitted as part of the journey. This is a dictionary (JSON object) where the *key* represents the `step_id` associated with a given document and the *value* represents the `document` object itself. See the following sections for details on the format of `document` elements.
+-   [`selfie`](#selfie-element) - `object`, `nullable`: Represents the processing results of the live selfie taken during the journey. If the journey is configured with no `Selfie` step then this element will be `null`. See the following sections for details on the format of the `selfie` element.
+-   [`rule_results`](#rule-result-element) - `object`, `nullable`: The business rules that were applied on this journey and their outcomes. These rules can configure the acceptance criteria for a journey to pass. Examples include: Acceptable types of documents to be provided, ensure the documents are non-expired.
+-   [`applicant`](#applicant-element) - `object`, `nullable`: Common data representing the applicant (user) who made the journey.
+-   [`aml`](#aml-element) - `object`, `nullable`: Holds the results of carrying out AML (Anti-Money Laundering) and background checks. If the journey is not configured with AML checks enabled then this element will be `null`. See the following sections for details on the format of the `aml` elements.
 
 ## Document Element
 
@@ -139,29 +139,33 @@ This is an example for documents element (with detailed explanation below):
 
 Here are the elements that constitute a `document` element:
 
--   `step_title`: UI specific name of the step for this document it is helpful to distinguish if you have multiple documents (e.g UAE Driving Licence and International Passport).
--   `progress`: Reflects the step progress, its value could be `Completed`, `Started` and `NotStarted`.
--   `has_passed_rules`: Reflects the document validation, and rules. Its value could be either `true` or `false`.
--   `document_type`: The type of this document. The main possible values are: `Passport`, `Driving Licence`, `Visa` and `Identity Card`, there are some other special documents supported as well.
--   `issuing_country`: The name of the country which issued this document.
--   `issuing_country_code`: The 3-letter ISO country code of the country which issued this document.
--   `extracted_fields`: A dictionary (aka object) containing the data fields that were read from the document. Each element of this dictionary has the following:
+-   `step_title` - `string`, `nullable`: UI specific name of the step for this document it is helpful to distinguish if you have multiple documents (e.g UAE Driving Licence and International Passport).
+-   `progress` - `string (enum)`, `not nullable`: Reflects the step progress, its value could be `Completed`, `Started` and `NotStarted`.
+-   `has_passed_rules` - `boolean`, `not nullable`: Reflects the document validation, and rules. Its value could be either `true` or `false`.
+-   `document_type` - `string`, `nullable`: The type of this document. The main possible values are: `Passport`, `Driving Licence`, `Visa` and `Identity Card`, there are some other special documents supported as well.
+-   `issuing_country` - `string`, `nullable`: The name of the country which issued this document.
+-   `issuing_country_code` - `string`, `nullable`: The 3-letter ISO country code of the country which issued this document.
+-   `extracted_fields` - `array [object]`, `nullable`: A dictionary (aka object) containing the data fields that were read from the document. Each element of this dictionary has the following:
     -   key: is the name of the field (e.g `First Name`, `Last Name`, `Birth Date` ..etc). For a list of all supported fields, please check [this page](https://idwi.se/fields).
-    -   value: is an object that has the following attributes:
+    -   value - `string`, `nullable`: is an object that has the following attributes:
         -   `value`: The field value encoded as a string. For all date fields, the value will be encoded in ISO 8601 date format. if the field is of type `Photo` (e.g `Signature`), `value` will be `null`.
-        -   `read_accuracy`: It represents the expected accuracy of the reading value, and it can either `High` or `Low`.
-        -   `type`: An enum representing the type of the value (i.e `string`, `image`).
--   `validation_result`: A dictionary (aka object) containing the list of the checks that were run to check the authenticity of the document. This element contains:
-    -   `validation_outcome`: The conclusive results of all document authenticity checks (doesn't include the business rules in `rule_results`). its value can be either `Passed` or `Failed`.
-    -   `validation_checks`: A list of the detailed checks.
--   `face_match_result`: An object that represents the face match result between the portrait photo on the document with the submitted selfie image. this object contains:
-    -   `is_matched`: The conclusive face matching decision, it can be either `true` or `false`.
-    -   `images` is an array of the images that are used in face matching.
--   `images`: A list of image identifiers for both input and output images:
-    -   `front_image_path`: The path of the front image was submitted by the user.
-    -   `back_image_path`: The path of the back image was submitted by the user. if the back image wasn't submitted the value will be `null`
-    -   `front_cropped_image_path`: The path of the front cropped image.
-    -   `back_cropped_image_path`: The path of the back cropped image. if the back image wasn't submitted the value will be `null`
+        -   `read_accuracy` - `string (enum)`, `nullable`: It represents the expected accuracy of the reading value, and it can either `High` or `Low`.
+        -   `type` - `string`, `nullable`: An enum representing the type of the value (i.e `string`, `image`).
+-   `validation_result` - `object`, `nullable`: A dictionary (aka object) containing the list of the checks that were run to check the authenticity of the document. This element contains:
+    -   `validation_outcome` - `string (enum)`, `nullable`: The conclusive results of all document authenticity checks (doesn't include the business rules in `rule_results`). its value can be either `Passed` or `Failed`.
+    -   `validation_checks` - `array [object]`, `nullable`: A list of the detailed checks.
+		- `name` - `string` - `not nullable`: The name of the validation check.
+		- `description` - `string` - `nullable`: A user-friendly explanation.
+		- `result` - `string (enum)` - `not nullable`: The result of this individual validation check; it can be either `Passed`, `Failed` or `Undetermined` (which means the check couldn't be carried out, for example if the prerequisites of the check were not present).
+		- `result_description`: `string` - `nullable`: A user-friendly explanation of the result (e.g. why the check failed or passed, or not carried away).
+-   `face_match_result` - `string`, `nullable`: An object that represents the face match result between the portrait photo on the document with the submitted selfie image. this object contains:
+    -   `is_matched` - `boolean`, `not nullable`: The conclusive face matching decision, it can be either `true` or `false`.
+    -   `images` - `array of string`, `nullable`: is an array of the images that are used in face matching.
+-   `images` - `object`, `nullable`: A list of image identifiers for both input and output images:
+    -   `front_image_path` - `string`, `nullable`: The path of the front image was submitted by the user.
+    -   `back_image_path` - `string`, `nullable`: The path of the back image was submitted by the user. if the back image wasn't submitted the value will be `null`
+    -   `front_cropped_image_path` - `string`, `nullable`: The path of the front cropped image.
+    -   `back_cropped_image_path` - `string`, `nullable`: The path of the back cropped image. if the back image wasn't submitted the value will be `null`
 
 ### Selfie Element
 
@@ -178,9 +182,9 @@ This an example for the selfie result object:
 
 This object represents the face liveness status, it has the following attributes:
 
--   `status`: The conclusive status of the selfie step value could be `Complete`, `Refer`, and `Not Started`. This element is the main element to be used to confirm whether the selfie passed or not.
--   `is_live`: A boolean indicates whether the submitted selfie image is live or not. The liveness is already reflected on `status` element.
--   `image_path`: The image identifier for the submitted selfie image which can be used to retrieve the image through Image Retrieval API.
+-   `status` - `string (enum)`, `not nullable`: The conclusive status of the selfie step value could be `Complete`, `Refer`, and `Not Started`. This element is the main element to be used to confirm whether the selfie passed or not.
+-   `is_live` - `boolean`, `nullable`: A boolean indicates whether the submitted selfie image is live or not. The liveness is already reflected on `status` element.
+-   `image_path` - `string`, `nullable`: The image identifier for the submitted selfie image which can be used to retrieve the image through Image Retrieval API.
 
 ### Rule Result Element
 
@@ -223,16 +227,16 @@ This is an example for the rule result object
 
 Each item in this object represents one rule, Here are the elements that constitute a `rule` element:
 
--   `name`: The rule name.
--   `result`: An enum value (encoded as a string) summarises the result of applied rules on each document, It can be either `Passed` or `Failed`.
--   `description`: The description of the applied rule.
--   `information`: The information on the applied rule.
--   `tips`: An advice for the user on how to handle the result of this rule.
--   `details`: Provides a list of the checks that were run on different provided documents and data, each element has the following attribute:
-    -   `title`: the title of the check that presents the name of the document and the side to which the rule was applied against.
-    -   `result`: the result of the check it can be either `Passed` or `Failed`.
-    -   `result_description`: A tailored description massage for each result status.
-    -   `reference_object`: Shows the related object for the check.
+-   `name` - `string`, `not nullable`: The rule name.
+-   `result` - `string (enum)`, `not nullable`: An enum value (encoded as a string) summarises the result of applied rules on each document, It can be either `Passed` or `Failed`.
+-   `description` - `string`, `nullable`: The description of the applied rule.
+-   `information` - `string`, `nullable`: The information on the applied rule.
+-   `tips` - `string`, `nullable`: An advice for the user on how to handle the result of this rule.
+-   `details` - `object`, `nullable`: Provides a list of the checks that were run on different provided documents and data, each element has the following attribute:
+    -   `title` - `string`, `not nullable`: the title of the check that presents the name of the document and the side to which the rule was applied against.
+    -   `result` - `string (enum)`, `not nullable`: the result of the check it can be either `Passed` or `Failed`.
+    -   `result_description` - `string`, `nullable`: A tailored description massage for each result status.
+    -   `reference_object` - `object`, `nullable`: Shows the related object for the check.
 
 here is the full list of [Rules](#supported-rules-checks)
 
@@ -242,14 +246,18 @@ Contains general information for the applicant.
 
 ```json
 "applicant": {
-		"applicant_id":"",
+		"applicant_id":"4fd535d0b1234f5a3b547612",
 		"profile_image_path":"95652fb54cfa6c15d477a44781f171b8",		
 		"full_name": "Adam Sami",		
 		"personal_number": "123456789",
 		"birth_date": "1960-05-12",
 	}
-
 ```
+- `applicant_id` - `string` - `not nullable`: This represents the identifier of the applicant (not the journey), this can be the same for different journeys.
+- `profile_image_path` - `string` - `nullable`: The path of the profile image.
+- `full_name` - `string` - `nullable`: The full name of the applicant.
+- `personal_number` - `string` - `nullable`: The personal number of the applicant.
+- `birth_date` - `string - ISO Format (e.g. 1980-01-01)` - `nullable`: The birth date of the applicant.
 
 ### AML Element
 
@@ -304,23 +312,23 @@ Contains general information for the applicant.
 
 Shows the applicant's records over Anti Money Laundering (AML) databases if exist. Here are the attributes that constitute an `aml` element:
 
--   `applicability`: Shows the applicability of this check for the journey and it can be
+-   `applicability` - `string (enum)` - `not nullable`: Shows the applicability of this check for the journey and it can be
 
     -   `Not Ready Yet`: When the journey is not completed.
     -   `Skipped`: When the personal information is not extracted properly.
     -   `Disabled`: When this check is not enabled.
     -   `Applicable`: When all prerequisites for this check are satisfied and the check was performed. if there are matches will be reflected in `matches` element.
--   `matches`: Presents the list of matched records in the datasets for the applicant, each record of matches has the following sub-elements
+-   `matches` - `array [object]` - `nullable`: Presents the list of matched records in the datasets for the applicant, each record of matches has the following sub-elements
 
-    -   `score`: The matching score of the profile. The score in the range of [0-100] the higher the value the closer the match.
-    -   `name`: The name of the profile found in the associated database entry.
-    -   `countries`: The list of countries from the addresses and nationalities of this profile. It has the format of 2-letter ISO country code.
-    -   `datesOfBirth`: Date in either YYYY-MM-DD or YYYY-MM or YYYY ISO format.
-    -   `notes`: Notes.
-    -   `datasets`: The name of databases in which this match was found.
-    -   `aliases`: Other names of profile.
-    -   `addresses`: The list of addresses.
-    -   `sex`: The gender of the person.
+    -   `score` - `int`, `not nullable`: The matching score of the profile. The score in the range of [0-100] the higher the value the closer the match.
+    -   `name` - `string`, `not nullable`: The name of the profile found in the associated database entry.
+    -   `countries` - `array [string]`, `nullable`: The list of countries from the addresses and nationalities of this profile. It has the format of 2-letter ISO country code.
+    -   `datesOfBirth` - `string`, `nullable`: Date in either YYYY-MM-DD or YYYY-MM or YYYY ISO format.
+    -   `notes` - `string`, `nullable`: Notes.
+    -   `datasets` - `array [string]`, `nullable`: The name of databases in which this match was found, this could be one of the following values: `Politically Exposed Person`, `Sanctions`, `Adverse Media`, `Regulatory Enforcement List`, `People of Interest`, `Disqualified Director`, `Insolvency`, `Fitness Probity`.
+    -   `aliases` - `array [object]`, `nullable`: Other names of profile.
+    -   `addresses` - `array [object]`, `nullable`: The list of addresses.
+    -   `sex` - `string`, `nullable`: The gender of the person.
 
 ## Appendix
 

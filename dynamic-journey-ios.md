@@ -32,13 +32,17 @@ IDWise SDK always supports latest Xcode version only. The current latest release
 
 |  Xcode  | SDK    |  
 | ------- | ------ |
-| 14.1    | 3.10.0 |
-| 14.0    | 3.9.1  |
+| 14.2    | 3.11.5 |
 
-### Dynamic Journey Mode
+## Dynamic Journey Mode
 
 In dynamic journey mode, IDWise provides full control to the hosting application to show its own UI and handle journey and step events more flexibly. This makes IDWise journey more configurable for the hosting application to not only show its own UI, control when to start each step and in what order and subscribe to events for progress of each step.
 Here is how you can setup and start using IDWise SDK.
+
+## Example Sequence Diagram
+
+![download (3)](https://raw.githubusercontent.com/idwise/idwise.github.io/main/assets/dynamic-journey-sequence-diagram.svg)
+
 
 ## Requirements
 
@@ -62,6 +66,17 @@ Next add this line also to your Podfile but this time underneath your `target` n
 ```ruby
 pod 'IDWise'
 ```
+
+Also, add this configuration underneath your `target` node for your project:
+
+```ruby
+  post_install do |installer|
+    installer.pods_project.build_configurations.each do |config|
+      config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
+    end
+  end
+```
+
 
 You can have a look at the example `Podfile` provided in the root of this repository to see an example `Podfile` with both the changes above completed
 
@@ -226,6 +241,46 @@ extension ViewController:IDWiseSDKStepDelegate {
 - `onStepResult` : This handler will be triggered when step has finished processing. stepResult will contain information about the corresponding step. Your application can show any UI or can perform any business logic in this method
 
 - `onStepConfirmed` : This handler will be called when step has been confirmed successfully you will get back stepID of the step that has been confirmed now
+
+From `stepResult` variable in `onStepResult(...)` callback, you can receive the extracted fields. And if the validation is failed, you can get the failure code as `stepResult.failureReasonCode`
+
+`StepResult` contains following information 
+
+
+```swift
+public struct StepResult {
+
+    // error code for specific errors
+    public let errorUserFeedbackCode: String? 
+    
+    //Detailed error description
+    public let errorUserFeedbackDetails: String? 
+    
+    //Short message for error
+    public let errorUserFeedbackTitle: String? 
+    
+    //The image has passed all rules
+    public let hasPassedRules: Bool?
+    
+    //processig has been completed or not
+    public let isConcluded: Bool?
+    
+    //Processing status one of (In Progress, Submitted, Not Submitted)
+    public let status: String?
+    
+    //Map of extracted fields from the document
+    public var extractedFields = [String:FieldValue]()
+}
+```
+
+Where `FieldValue` holds the value of the extracted field. 
+
+```swift
+public struct FieldValue {
+    public let value: String?
+}
+``` 
+
 
 ### Getting the Journey Summary
 

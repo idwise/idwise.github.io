@@ -28,7 +28,7 @@ Here is how you can setup and start using IDWise SDK.
 {% include cta.md %}
 
 ## Latest Stable Version
-**3.10.5**
+**3.11.0**
 
 ## Integration Video
 Get integrated quickly by watching a 5 minutes video:
@@ -54,6 +54,7 @@ android {
 - Add the following repositories:
 ```
 repositories {
+	jcenter()
 	maven { 
 		url 'http://mobile-sdk.idwise.ai/releases/' 
             	allowInsecureProtocol = true
@@ -79,7 +80,7 @@ You can find an example of how to start an ID verification process in the file [
 **Initialize the SDK**
 From inside your Activity or Fragment, You can initialize the like this
 
-	IDWise.initialize("<CLIENT_KEY>",IDWiseSDKTheme.Light /*Optional*/) { error: IDWiseSDKError? ->
+	IDWise.initialize("<CLIENT_KEY>",IDWiseSDKTheme.LIGHT /*Optional*/) { error: IDWiseSDKError? ->
            error?.printStackTrace()
         }
 
