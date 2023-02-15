@@ -78,7 +78,7 @@ Please follow these steps to integrate with the document capturing SDK:
 
 * `journeyDefinitionId` (Mandatory) Identifies the steps of the journey to be started. This is provided to you by
   IDWise team based on your requirements and what documents or biometrics you want to ask your users for
-* `userId` (Optional but recommended) An identifier that uniquely idenfies the user carrying out this journey in
+* `referenceNo` (Optional but recommended) An identifier that uniquely identifies the user carrying out this journey in
   your system. This identifier will be attached to this journey and will be provided when fetching the journey data
   and can be used to link the journey back in your system
 * `mount` (Mandatory) The HTML DOM element where IDWise UI elements should be added. This was specified in Step 4
@@ -101,7 +101,7 @@ The following example code shows an overall script covering steps 5 and 6 above:
         idwise.startJourney({
           mount: '#idwise-mount',
           journeyDefinitionId: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', // journey definition id
-          userId: "842098029309823", // An identifier that uniquely idenfies the user carrying out this journey
+          referenceNo: "842098029309823", // An identifier that uniquely idenfies the user carrying out this journey
           eventHandlers: {
             onFinished: function(details) {
               alert('Thanks for completing the registration')
