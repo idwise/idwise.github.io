@@ -67,14 +67,14 @@ Please follow these steps to migrate to the latest version of the SDK:
    })
     ```
 
-2. `journeyDefId` & `userId` parameters are deprecated and will be removed in a future release. Please rename `journeyDefId` -> `journeyDefinitionId` & `userId` -> `referenceNo` instead in the
+2. `journeyTemplateId` & `userId` parameters are deprecated and will be removed in a future release. Please rename `journeyTemplateId` -> `journeyDefinitionId` & `userId` -> `referenceNo` instead in the
    `startJourney` function.
 
    **Replace**
     ```
     startJourney({
           mount: '#idwise-mount',
-          journeyDefId: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', // Depricated
+          journeyTemplateId: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', // Depricated
           userId: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", // Depricated
           eventHandlers: {
             onFinished: function(details) {
