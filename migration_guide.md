@@ -6,7 +6,7 @@ title: V2.0 Migration Guide
 nav_order: 1
 ---
 
-# Migration Guide
+# Migration Guide (version 1 to version 2)
 
 This guide will help you to migrate from version 1 to version 2 of the IDWise SDK.
 
@@ -43,4 +43,57 @@ Please follow these steps to migrate to the latest version of the SDK:
    **With**
     ```
     <script href="https://releases.idwise.com/websdk/latest/idwise.min.js"></script>
+    ```
+
+## Deprecation Note
+
+1. `businessId` parameter is deprecated and will be removed in a future release. Please use `clientKey` instead in
+   the `initialize` function.
+
+   **Replace**
+    ```
+    initialize({
+      businessId, // Depricated
+      clientKey,
+      locale
+   })
+    ```
+
+   **With**
+    ```
+    initialize({
+      clientKey,
+      locale
+   })
+    ```
+
+2. `journeyDefId` & `userId` parameters are deprecated and will be removed in a future release. Please rename `journeyDefId` -> `journeyDefinitionId` & `userId` -> `referenceNo` instead in the
+   `startJourney` function.
+
+   **Replace**
+    ```
+    startJourney({
+          mount: '#idwise-mount',
+          journeyDefId: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', // Depricated
+          userId: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", // Depricated
+          eventHandlers: {
+            onFinished: function(details) {
+              alert('Thanks for completing the registration')
+            }
+          }
+        })
+    ```
+
+   **With**
+    ```
+    startJourney({
+          mount: '#idwise-mount',
+          journeyDefinitionId: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', // Same value as journeyDefId
+          referenceNo: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", // Same value as userId
+          eventHandlers: {
+            onFinished: function(details) {
+              alert('Thanks for completing the registration')
+            }
+          }
+        })
     ```
