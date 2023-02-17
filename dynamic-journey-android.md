@@ -182,8 +182,8 @@ From `stepResult` variable in `onStepResult(...)` callback, you can receive the 
 ```
 data class StepResult(
 
-    // results from NFC Scanning
-    var nfcResults: NFCResult?,
+    // result from NFC Scanning
+    var nfcResult: NFCResult?,
     
     // error code for specific errors
     val errorUserFeedbackCode: String? = "",
