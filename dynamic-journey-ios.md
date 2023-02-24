@@ -43,7 +43,6 @@ Here is how you can setup and start using IDWise SDK.
 
 ![download (3)](https://raw.githubusercontent.com/idwise/idwise.github.io/main/assets/dynamic-journey-sequence-diagram.svg)
 
-
 ## Requirements
 
 The minimum deployment target for IDWiseSDK is iOS 12.0. In order to use the SDK your application minimum deployment target should be iOS 12.0 or higher.
@@ -76,7 +75,6 @@ Also, add this configuration underneath your `target` node for your project:
     end
   end
 ```
-
 
 You can have a look at the example `Podfile` provided in the root of this repository to see an example `Podfile` with both the changes above completed
 
@@ -244,11 +242,13 @@ extension ViewController:IDWiseSDKStepDelegate {
 
 From `stepResult` variable in `onStepResult(...)` callback, you can receive the extracted fields. And if the validation is failed, you can get the failure code as `stepResult.failureReasonCode`
 
-`StepResult` contains following information 
-
+`StepResult` contains following information
 
 ```swift
 public struct StepResult {
+    
+    // result from NFC Scanning
+    public var nfcResult: NFCResult?
 
     // error code for specific errors
     public let errorUserFeedbackCode: String? 
@@ -273,14 +273,26 @@ public struct StepResult {
 }
 ```
 
-Where `FieldValue` holds the value of the extracted field. 
+The `NFCResult` object contains the following data extracted from the Document via reading the NFC chip
+
+```swift
+public struct NFCResult {
+    
+    // photo of the user which is extracted from NFC Chip
+    public let facePhoto: UIImage?
+    
+    // Map of the extracted data from the NFC chip during scanning
+    public var extractedFields: [String:FieldValue]? = nil
+}
+```
+
+Where `FieldValue` holds the value of the extracted field.
 
 ```swift
 public struct FieldValue {
     public let value: String?
 }
-``` 
-
+```
 
 ### Getting the Journey Summary
 
