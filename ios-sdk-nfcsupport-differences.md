@@ -7,7 +7,7 @@ nav_exclude: true
 ---
 # iOS IDWise NFC SDK
 
-Please use this SDK in conjunction of our [iOS Dynamic Journey integration](https://idwi.se/ios-advanced) (this SDK is just add-on to enable NFC reading if enabled in your journey flow).
+Please use this SDK in conjunction of our [iOS Dynamic Journey integration](https://idwi.se/ios-advanced) (IDWiseNFC SDK is just add-on to enable NFC reading if enabled in your journey flow).
 
 {% include cta.md %}
 
