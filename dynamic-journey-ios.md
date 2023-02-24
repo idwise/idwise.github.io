@@ -294,7 +294,7 @@ public struct FieldValue {
 }
 ```
 
-**Note: NFC ePassport and eID reading is an addon feature that needs to be enabled for your account to be usable. Please reach out to IDWise support to enable it for you.**
+**Note: NFC ePassport and eID reading is an addon feature that needs to be enabled for your account to be usable. Please reach out to IDWise support to enable it for you. You will also need to follow the following [instructions to include IDWiseNFC POD](https://idwi.se/ios-nfc)**
 
 ### Getting the Journey Summary
 
