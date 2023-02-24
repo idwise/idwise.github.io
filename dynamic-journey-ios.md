@@ -294,6 +294,8 @@ public struct FieldValue {
 }
 ```
 
+**Note: NFC ePassport and eID reading is an addon feature that needs to be enabled for your account to be usable. Please reach out to IDWise support to enable it for you.**
+
 ### Getting the Journey Summary
 
 You can call this `IDWise.getJourneySummary(journeyId: String, callback: @escaping ((JourneySummary?,IDWiseSDKError?)->()))` method anytime to get status of your journey passing the `journeyId` to this method. You will receive a callback with  `JourneySummary` or an `IDWiseSDKError` in case anything fails at server side or in authentication.
