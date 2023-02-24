@@ -17,9 +17,7 @@ IDWiseLight SDK always supports latest Xcode version only. The current latest re
 
 |  Xcode  | SDK    |  
 | ------- | ------ |
-| 14.1    | 3.10.0  |
-
-
+| 14.2    | 3.11.5  |
 
 ## Installation
 
