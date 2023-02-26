@@ -194,11 +194,6 @@ stepId: ID of the step you want to start. (Will be provided by IDWise for each s
 
 data: Data representation of an image file or a PDF file ( Data bytes must be less than or equal to 4Mb )
 
-### Confirming the Step
-
-You can confirm the step that sucessfully started and completed by calling method `IDWise.confirmStep(stepId: String)` and passing the stepID as a parameter. StepId passed should be the stepID of the step that has been completed.
-The `confirmStep(stepId)` method should be called after we complete the step. For that prupose, we are calling this method in `onStepResult()` method because we know the step is completed now and we can confirm it. If the `confirmStep(stepId)` is called before the completion of step, we will wait until the step completes but It is reccommended to call it after step completion.
-
 The methods in `IDWiseStepDelegate`  will be triggered as step is handled and processed
 
 We can implement the protocol `IDWiseSDKStepDelegate` as an extension on the ViewController same way as above to recieve the step events:
@@ -221,14 +216,9 @@ extension ViewController:IDWiseSDKStepDelegate {
         if let result = stepResult {
           print(result.document?.documentType)
         }
-        LoadingView.show()
-        IDWise.confirmStep(stepId: lastProcessedStepId)
+     
         // lastProcessedStepId means the stepID that you last started 
 
-    }
-
-     func onStepConfirmed(stepId: String) {
-        LoadingView.hide()
     }
 
 }
@@ -238,8 +228,6 @@ extension ViewController:IDWiseSDKStepDelegate {
 
 - `onStepResult` : This handler will be triggered when step has finished processing. stepResult will contain information about the corresponding step. Your application can show any UI or can perform any business logic in this method
 
-- `onStepConfirmed` : This handler will be called when step has been confirmed successfully you will get back stepID of the step that has been confirmed now
-
 From `stepResult` variable in `onStepResult(...)` callback, you can receive the extracted fields. And if the validation is failed, you can get the failure code as `stepResult.failureReasonCode`
 
 `StepResult` contains following information
@@ -247,9 +235,6 @@ From `stepResult` variable in `onStepResult(...)` callback, you can receive the 
 ```swift
 public struct StepResult {
     
-    // result from NFC Scanning
-    public var nfcResult: NFCResult?
-
     // error code for specific errors
     public let errorUserFeedbackCode: String? 
     
@@ -270,6 +255,10 @@ public struct StepResult {
     
     //Map of extracted fields from the document
     public var extractedFields = [String:FieldValue]()
+
+    // result from NFC Scanning
+    public var nfcResult: NFCResult?
+
 }
 ```
 
@@ -294,7 +283,7 @@ public struct FieldValue {
 }
 ```
 
-**Note: NFC ePassport and eID reading is an addon feature that needs to be enabled for your account to be usable. Please reach out to IDWise support to enable it for you. You will also need to follow the following [instructions to include IDWiseNFC POD](https://idwi.se/ios-nfc)**
+**Note: NFC ePassport and eID reading is an addon feature that needs to be enabled on your account to be usable. Please reach out to IDWise support to be enabled on your account. You will also need to follow the following [instructions to use IDWiseNFC Pod](https://idwi.se/ios-nfc)**
 
 ### Getting the Journey Summary
 
@@ -345,7 +334,6 @@ public struct JourneySummary: Decodable {
 | -101         |   An unexpected error occurred while processing the request.Make sure you have Internet connected                                              |
 | -102         |   Network seems to be not connected, Please try again with network connected.                                                                  |
 | 55           |   This method is not supported in this Journey Mode                                                                                            |
-| 78           |   Step is not started, please trigger startStep(...) and call confirmStep(...) after onStepResult(...)                                         |
 
 ## Code Example
 
