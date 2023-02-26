@@ -50,7 +50,13 @@ On your development machine you need to have XCode and CocoaPods installed. Both
 
 ## Installation
 
-IDWiseSDK is available to install via [CocoaPods package manager](https://cocoapods.org) from IDWise private Cocoapods repository.
+IDWise iOS SDK comes in three variants for different use cases to ensure you only use what you need and keep your app size manageable.
+
+You can have a look at the example `Podfile` provided in the example project's [podfile](https://github.com/idwise/idwise-ios-sdk-documentation/blob/main/Podfile) which shows how to use the standard variant.
+
+### Standard SDK
+
+Standard IDWise SDK is available to install via [CocoaPods package manager](https://cocoapods.org) from IDWise private Cocoapods repository.
 To add IDWise SDK to your project, first ensure you have these two lines at the top of your Podfile file:
 
 ```ruby
@@ -76,7 +82,39 @@ Also, add this configuration underneath your `target` node for your project:
   end
 ```
 
-You can have a look at the example `Podfile` provided in the root of this repository to see an example `Podfile` with both the changes above completed
+After adding our dependency in your Podfile run:
+
+```
+pod install
+```
+
+### Light-weight SDK
+
+Light-weight IDWise SDK is available to install via [CocoaPods package manager](https://cocoapods.org) from IDWiseLight private Cocoapods repository.
+To add IDWiseLight SDK to your project, first ensure you have these two lines at the top of your Podfile file:
+
+```ruby
+source 'https://cdn.cocoapods.org/'
+source 'https://github.com/idwise/ios-sdk-light'
+```
+
+This adds IDWiseLight private Cocoapods repository as a source to install packages from
+
+Next add this line also to your Podfile but this time underneath your `target` node for your project:
+
+```ruby
+pod 'IDWiseLight'
+```
+
+Also, add this configuration underneath your `target` node for your project:
+
+```ruby
+  post_install do |installer|
+    installer.pods_project.build_configurations.each do |config|
+      config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
+    end
+  end
+```
 
 After adding our dependency in your Podfile run:
 
@@ -84,15 +122,69 @@ After adding our dependency in your Podfile run:
 pod install
 ```
 
-## Usage
+### NFC SDK
 
-Invoking IDWise SDK is very simple. First import IDWise package in your code file:
+IDWise SDK with NFC support is available to install via [CocoaPods package manager](https://cocoapods.org) from IDWiseNFC private Cocoapods repository.
+To add IDWiseNFC SDK to your project, first ensure you have these two lines at the top of your Podfile file:
+
+```ruby
+source 'https://cdn.cocoapods.org/'
+source 'https://github.com/idwise/ios-sdk-nfc'
+```
+
+This adds IDWiseNFC private Cocoapods repository as a source to install packages from
+
+Next add this line also to your Podfile but this time underneath your `target` node for your project:
+
+```ruby
+pod 'IDWiseNFC'
+```
+
+Also, add this configuration underneath your `target` node for your project:
+
+```ruby
+  post_install do |installer|
+    installer.pods_project.build_configurations.each do |config|
+      config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
+    end
+  end
+```
+
+After adding our dependency in your Podfile run:
+
+```
+pod install
+```
+
+## Import IDWise SDK
+
+### Standard SDK
+
+If you are using standard IDWise SDK variant, import IDWise package in your code file:
 
 ```swift
 import IDWise
 ```
 
-### Dynamic Journey
+### Light-weight SDK
+
+If you are using Light-weight IDWise SDK variant, import IDWise package in your code file:
+
+```swift
+import IDWiseLight
+```
+
+### NFC SDK
+
+If you are using NFC IDWise SDK variant, import IDWise package in your code file:
+
+```swift
+import IDWiseNFC
+```
+
+**Note: NFC ePassport and eID reading is an addon feature that needs to be enabled on your account to be usable. Please reach out to IDWise support to be enabled on your account.**
+
+## Performing Verification Journeys
 
 The rest of this document explains how to set up and start using IDWise SDK in Dynamic Journey mode.
 Alternatively, if you want to use Simple Journey mode which would get you up and running quicker and with less code if you do not need advanced control over the journey please check Simple Journey Mode [`here`](https://github.com/idwise/idwise.github.io/blob/main/ios-sdk.md)
@@ -216,9 +308,6 @@ extension ViewController:IDWiseSDKStepDelegate {
         if let result = stepResult {
           print(result.document?.documentType)
         }
-     
-        // lastProcessedStepId means the stepID that you last started 
-
     }
 
 }
@@ -283,7 +372,7 @@ public struct FieldValue {
 }
 ```
 
-**Note: NFC ePassport and eID reading is an addon feature that needs to be enabled on your account to be usable. Please reach out to IDWise support to be enabled on your account. You will also need to follow the following [instructions to use IDWiseNFC Pod](https://idwi.se/ios-nfc)**
+**Note: NFC ePassport and eID reading is an addon feature that needs to be enabled on your account to be usable. Please reach out to IDWise support to be enabled on your account. You will also need to ensure that you use the IDWise NFC SDK variant instead of the standard SDK variant.**
 
 ### Getting the Journey Summary
 
@@ -334,7 +423,3 @@ public struct JourneySummary: Decodable {
 | -101         |   An unexpected error occurred while processing the request.Make sure you have Internet connected                                              |
 | -102         |   Network seems to be not connected, Please try again with network connected.                                                                  |
 | 55           |   This method is not supported in this Journey Mode                                                                                            |
-
-## Code Example
-
-Please find the [`following example`](https://github.com/idwise/idwise-ios-sdk-documentation/tree/main/IDWiseExample) for an XCode project that showcases the integration with IDWise iOS Framework.
