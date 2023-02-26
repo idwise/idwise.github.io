@@ -3,18 +3,23 @@ title Verification Workflow - Dynamic Journey - Frontend
 participant Customer App (Android/iOS/Web)
 participant IDWise SDK
 
+Customer App (Android/iOS/Web)->IDWise SDK:**initialize**(clientKey)
 Customer App (Android/iOS/Web)->IDWise SDK:**startDynamicJourney** (referenceNo,...)
 
 Customer App (Android/iOS/Web)->IDWise SDK:startStep(stepId) (for document front)
 note over Customer App (Android/iOS/Web), IDWise SDK:Document front captured
+
+Customer App (Android/iOS/Web)->IDWise SDK:confirmStep(stepId for front)
 Customer App (Android/iOS/Web)<-IDWise SDK:onStepResult Event (for front - ignore)
 
 Customer App (Android/iOS/Web)->IDWise SDK:startStep(stepId) (for document back)
 note over Customer App (Android/iOS/Web), IDWise SDK:Document back captured
+Customer App (Android/iOS/Web)->IDWise SDK:confirmStep(stepId for back)
 Customer App (Android/iOS/Web)<-IDWise SDK:onStepResult Event (returns initial result for extracted fields)
 note over Customer App (Android/iOS/Web): You can display your own screen for example\nallowing the user to confirm extracted details
 Customer App (Android/iOS/Web)->IDWise SDK:startStep(stepId) (for selfie)
 note over Customer App (Android/iOS/Web), IDWise SDK: Selfie captured
+Customer App (Android/iOS/Web)->IDWise SDK:confirmStep(stepId for selfie)
 Customer App (Android/iOS/Web)<-IDWise SDK:onStepResult Event - Selfie step result
 note over Customer App (Android/iOS/Web):Decide to allow either the user to proceed or retry the whole process\n(e.g. based on document type or biometrics result)
 
