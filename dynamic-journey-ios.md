@@ -193,7 +193,7 @@ Alternatively, if you want to use Simple Journey mode which would get you up and
 
 IDWise SDK is designed to start on top of a UIViewController in your application. Each user onboarding or verification transaction is named a user journey.
 
-To start a new dynamic journey just provide the UIViewController from which you want the flow to start then call `IDWiseSDK.initialize` method first with your provided client key and then you can call `IDWise.startDynamicJourney` method. If initialization is failed for any reason, you will get an error object with a code and a message explaining the reason of the error. In the following example, we called initialize method and then called startJourney method.
+To start a new dynamic journey just provide the UIViewController from which you want the flow to start then call `IDWise.initialize` method first with your provided client key and then you can call `IDWise.startDynamicJourney` method. If initialization is failed for any reason, you will get an error object with a code and a message explaining the reason of the error. In the following example, we called initialize method and then called startJourney method.
 
 ```swift
         IDWise.initialize(clientKey: "<YOUR_CLIENT_KEY>") { error in
