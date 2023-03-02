@@ -156,6 +156,36 @@ After adding our dependency in your Podfile run:
 pod install
 ```
 
+## Permissions for NFC SDK
+
+You need to do some configurations for NFC to be enabled correctly. Following are the steps to do these configurations:
+
+- Add Near Field Communication Tag Reading under the Capabilities tab for the project’s target:
+  
+  (<https://github.com/idwise/idwise.github.io/blob/main/assets/nfc-capability.png>)
+
+- Add the NFCReaderUsageDescription permission to your Info.plist file - it's needed to access the NFC hardware:
+
+   ```swift
+   <key>NFCReaderUsageDescription</key>
+   <string>NFC tag to read NDEF messages</string>
+   ```
+
+- Declare com.apple.developer.nfc.readersession.iso7816.select-identifiers a list of application identifiers that the app must be able to read according to ISO7816:
+
+    ```swift
+   <key>com.apple.developer.nfc.readersession.iso7816.select-identifiers</key>
+   <array>
+      <string>A0000002471001</string>
+      <string>E80704007F00070302</string>
+      <string>A000000167455349474E</string>
+      <string>A0000002480100</string>
+      <string>A0000002480200</string>
+      <string>A0000002480300</string>
+      <string>A00000045645444C2D3031</string>
+  </array>
+  ```
+  
 ## Import IDWise SDK
 
 ### Standard SDK
