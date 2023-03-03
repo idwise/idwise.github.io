@@ -378,6 +378,9 @@ public struct StepResult {
     // result from NFC Scanning
     public var nfcResult: NFCResult?
 
+    // Recognized Document Fields
+    public var recognition: DocumentRecognition?
+
 }
 ```
 
@@ -394,6 +397,22 @@ public struct NFCResult {
 }
 ```
 
+The `DocumentRecognition` object contains the following properties
+
+```swift
+public struct DocumentRecognition: Decodable {
+
+    // Document type
+    public let document_type:String?
+
+    // Document Issuing country code
+    public let issuing_country_code:String?
+
+    // Document Issuing country name
+    public let issuing_country_name:String?
+}
+```
+
 Where `FieldValue` holds the value of the extracted field.
 
 ```swift
@@ -403,6 +422,12 @@ public struct FieldValue {
 ```
 
 **Note: NFC ePassport and eID reading is an addon feature that needs to be enabled on your account to be usable. Please reach out to IDWise support to be enabled on your account. You will also need to ensure that you use the IDWise NFC SDK variant instead of the standard SDK variant.**
+
+### Finishing the Journey
+
+You need to call this `IDWise.finishDynamicJourney(journeyId: String)` method to mark the journey complete. This method takes one input parameter named journeyId. The method will throw error through `onError(error: IDWiseSDKError)` in case of anything goes wrong or invalid journeyId is provided.
+
+`journeyId`: journeyId of the journey that needs to be mark finished.
 
 ### Getting the Journey Summary
 
