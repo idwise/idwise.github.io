@@ -162,7 +162,7 @@ You need to do some configurations for NFC to be enabled correctly. Following ar
 
 - Add Near Field Communication Tag Reading under the Capabilities tab for the project’s target:
   
-  ![download (3)](https://github.com/idwise/idwise.github.io/blob/main/assets/nfc-capability.png)
+  ![download (3)](https://raw.githubusercontent.com/idwise/idwise.github.io/main/assets/nfc-capability.png)
 
 - Add the NFCReaderUsageDescription permission to your Info.plist file - it's needed to access the NFC hardware:
 
