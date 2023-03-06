@@ -121,6 +121,10 @@ The `JourneyInfo.journeyId`, received in `onJourneyStarted` & `onJourneyComplete
 				    override fun onJourneyCancelled(journeyInfo: JourneyInfo?) {
 					Log.d("IDWiseSDKCallback", "onJourneyCancelled")
 				    }
+				
+				    override fun onJourneyInterrupted(journeyInfo: JourneyInfo?) {
+					Log.d("IDWiseSDKCallback", "onJourneyInterrupted")
+				    }
 
 				    override fun onError(error: IDWiseSDKError) {
 
