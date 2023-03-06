@@ -28,7 +28,7 @@ Here is how you can setup and start using IDWise SDK.
 {% include cta.md %}
 
 ## Latest Stable Version
-**4.0.1**
+**4.0.2**
 
 ## Integration Video
 Get integrated quickly by watching a 5 minutes video:
