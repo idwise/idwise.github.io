@@ -45,17 +45,19 @@ Please follow these steps to integrate with the document capturing SDK:
     <script src="https://releases.idwise.com/websdk/latest/idwise.min.js"></script>
     ```
 
-   3. Decide the element that will host the IDWise UI. This can be any block element and can be as simple as this
-      example:
+3. Decide the element that will host the IDWise UI. This can be any block element and can be as simple as this
+   example:
 
-       ```
-       <div id="idwise-mount"></div>
-       ```
+    ```
+    <div id="idwise-mount"></div>
+    ```
 
-      4. Start the initialization of IDWise SDK library using `initialize` function. This function takes three
-         parameters
-         which identify your business and are shared with you during your registration process with IDWise.
+4. Start the initialization of IDWise SDK library using `initialize` function. This function takes one mandatory and two optional parameters which identify your business and are shared with you during your registration process with IDWise.
 
+* `clientKey` (Mandatory) This is a unique identifier for your business. It is provided to you by IDWise team.
+* `locale` (Optional) This is the language in which the UI elements should be displayed. The default is `en`
+* `theme` (Optional) This is the theme in which the UI elements should be displayed. The default is `system_default` and the other options are `dark` for dark theme and `light` for light theme.
+      
          Example code for the initialization:
     
           ```
@@ -65,6 +67,7 @@ Please follow these steps to integrate with the document capturing SDK:
                   idwise = await IDWise.initialize({
                     clientKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx=',
                     locale: 'en',
+                    theme: 'dark',
                   });
               } catch (error) {
                   ...
