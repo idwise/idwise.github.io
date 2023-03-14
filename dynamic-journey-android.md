@@ -152,6 +152,10 @@ Following is the sample implementation of `journeyCallback` and `stepCallback`
               override fun onJourneyCancelled(journeyInfo: JourneyInfo?) {
                 Log.d("IDWiseSDKCallback", "onJourneyCancelled")
               }
+	      
+	      override fun onJourneyInterrupted(journeyInfo: JourneyInfo?) {
+                Log.d("IDWiseSDKCallback", "onJourneyInterrupted")
+              }
 
               override fun onError(error: IDWiseSDKError) {
                 Log.d("IDWiseSDKCallback", "onError ${error.message}")
@@ -181,6 +185,13 @@ From `stepResult` variable in `onStepResult(...)` callback, you can receive the 
 
 ```
 data class StepResult(
+
+    // result from NFC Scanning
+    var nfcResult: NFCResult?,
+    
+    // document recognition information
+    var recognition: DocumentRecognition?,
+     
     // error code for specific errors
     val errorUserFeedbackCode: String? = "",
     
@@ -204,6 +215,36 @@ data class StepResult(
 )
 ```
 
+The `NFCResult` object contains the following data extracted from the Document via reading the NFC chip
+
+```
+data class NFCResult(
+    
+    // photo of the user which is extracted from NFC Chip
+    val facePhoto: Bitmap?,
+    
+    // Map of the extracted data from the NFC chip during scanning
+    val extractedFields: HashMap<String, FieldValue>?
+) 
+
+```
+
+The `DocumentRecognition` object contains the following information related to the scanned document.
+
+```
+data class DocumentRecognition(
+    // ISO code of the issuing country
+    val issuingCountryCode: String? = "",
+    
+    //Name of the issuing country name
+    val issuingCountryName: String? = "",
+    
+    //Type fo the Document, either a Passport or a driving license etc.
+    val documentType: String? = "",
+) 
+
+```
+
 Where `FieldValue` holds the value of the extracted field. 
 
 ```
@@ -212,6 +253,7 @@ data class FieldValue(
     val value: String?
 )
 ``` 
+**Note: NFC ePassport and eID reading is an addon feature that needs to be enabled for your account to be usable. Please reach out to IDWise support to enable it for you.**
 
 ## Step 3: Starting the Steps
 

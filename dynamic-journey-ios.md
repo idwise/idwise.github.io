@@ -43,7 +43,6 @@ Here is how you can setup and start using IDWise SDK.
 
 ![download (3)](https://raw.githubusercontent.com/idwise/idwise.github.io/main/assets/dynamic-journey-sequence-diagram.svg)
 
-
 ## Requirements
 
 The minimum deployment target for IDWiseSDK is iOS 12.0. In order to use the SDK your application minimum deployment target should be iOS 12.0 or higher.
@@ -51,7 +50,13 @@ On your development machine you need to have XCode and CocoaPods installed. Both
 
 ## Installation
 
-IDWiseSDK is available to install via [CocoaPods package manager](https://cocoapods.org) from IDWise private Cocoapods repository.
+IDWise iOS SDK comes in three variants for different use cases to ensure you only use what you need and keep your app size manageable.
+
+You can have a look at the example `Podfile` provided in the example project's [podfile](https://github.com/idwise/idwise-ios-sdk-documentation/blob/main/Podfile) which shows how to use the standard variant.
+
+### Standard SDK
+
+Standard IDWise SDK is available to install via [CocoaPods package manager](https://cocoapods.org) from IDWise private Cocoapods repository.
 To add IDWise SDK to your project, first ensure you have these two lines at the top of your Podfile file:
 
 ```ruby
@@ -77,8 +82,39 @@ Also, add this configuration underneath your `target` node for your project:
   end
 ```
 
+After adding our dependency in your Podfile run:
 
-You can have a look at the example `Podfile` provided in the root of this repository to see an example `Podfile` with both the changes above completed
+```
+pod install
+```
+
+### Light-weight SDK
+
+Light-weight IDWise SDK is available to install via [CocoaPods package manager](https://cocoapods.org) from IDWiseLight private Cocoapods repository.
+To add IDWiseLight SDK to your project, first ensure you have these two lines at the top of your Podfile file:
+
+```ruby
+source 'https://cdn.cocoapods.org/'
+source 'https://github.com/idwise/ios-sdk-light'
+```
+
+This adds IDWiseLight private Cocoapods repository as a source to install packages from
+
+Next add this line also to your Podfile but this time underneath your `target` node for your project:
+
+```ruby
+pod 'IDWiseLight'
+```
+
+Also, add this configuration underneath your `target` node for your project:
+
+```ruby
+  post_install do |installer|
+    installer.pods_project.build_configurations.each do |config|
+      config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
+    end
+  end
+```
 
 After adding our dependency in your Podfile run:
 
@@ -86,15 +122,99 @@ After adding our dependency in your Podfile run:
 pod install
 ```
 
-## Usage
+### NFC SDK
 
-Invoking IDWise SDK is very simple. First import IDWise package in your code file:
+IDWise SDK with NFC support is available to install via [CocoaPods package manager](https://cocoapods.org) from IDWiseNFC private Cocoapods repository.
+To add IDWiseNFC SDK to your project, first ensure you have these two lines at the top of your Podfile file:
+
+```ruby
+source 'https://cdn.cocoapods.org/'
+source 'https://github.com/idwise/ios-sdk-nfc'
+```
+
+This adds IDWiseNFC private Cocoapods repository as a source to install packages from
+
+Next add this line also to your Podfile but this time underneath your `target` node for your project:
+
+```ruby
+pod 'IDWiseNFC'
+```
+
+Also, add this configuration underneath your `target` node for your project:
+
+```ruby
+  post_install do |installer|
+    installer.pods_project.build_configurations.each do |config|
+      config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
+    end
+  end
+```
+
+After adding our dependency in your Podfile run:
+
+```
+pod install
+```
+
+## Permissions for NFC SDK
+
+You need to do some configurations for NFC to be enabled correctly. Following are the steps to do these configurations:
+
+- Add Near Field Communication Tag Reading under the Capabilities tab for the project’s target:
+  
+  ![download (3)](https://raw.githubusercontent.com/idwise/idwise.github.io/main/assets/nfc-capability.png)
+
+- Add the NFCReaderUsageDescription permission to your Info.plist file - it's needed to access the NFC hardware:
+
+   ```swift
+   <key>NFCReaderUsageDescription</key>
+   <string>NFC tag to read NDEF messages</string>
+   ```
+
+- Declare com.apple.developer.nfc.readersession.iso7816.select-identifiers a list of application identifiers that the app must be able to read according to ISO7816:
+
+    ```swift
+   <key>com.apple.developer.nfc.readersession.iso7816.select-identifiers</key>
+   <array>
+      <string>A0000002471001</string>
+      <string>E80704007F00070302</string>
+      <string>A000000167455349474E</string>
+      <string>A0000002480100</string>
+      <string>A0000002480200</string>
+      <string>A0000002480300</string>
+      <string>A00000045645444C2D3031</string>
+  </array>
+  ```
+  
+## Import IDWise SDK
+
+### Standard SDK
+
+If you are using standard IDWise SDK variant, import IDWise package in your code file:
 
 ```swift
 import IDWise
 ```
 
-### Dynamic Journey
+### Light-weight SDK
+
+If you are using Light-weight IDWise SDK variant, import IDWise package in your code file:
+
+```swift
+import IDWiseLight
+```
+
+### NFC SDK
+
+If you are using NFC IDWise SDK variant, import IDWise package in your code file:
+
+```swift
+import IDWiseNFC
+```
+
+**Note: NFC ePassport and eID reading is an addon feature that needs to be enabled on your account to be usable. Please reach out to IDWise support to be enabled on your account.**
+
+## Performing Verification Journeys
 
 The rest of this document explains how to set up and start using IDWise SDK in Dynamic Journey mode.
 Alternatively, if you want to use Simple Journey mode which would get you up and running quicker and with less code if you do not need advanced control over the journey please check Simple Journey Mode [`here`](https://github.com/idwise/idwise.github.io/blob/main/ios-sdk.md)
@@ -103,7 +223,7 @@ Alternatively, if you want to use Simple Journey mode which would get you up and
 
 IDWise SDK is designed to start on top of a UIViewController in your application. Each user onboarding or verification transaction is named a user journey.
 
-To start a new dynamic journey just provide the UIViewController from which you want the flow to start then call `IDWiseSDK.initialize` method first with your provided client key and then you can call `IDWise.startDynamicJourney` method. If initialization is failed for any reason, you will get an error object with a code and a message explaining the reason of the error. In the following example, we called initialize method and then called startJourney method.
+To start a new dynamic journey just provide the UIViewController from which you want the flow to start then call `IDWise.initialize` method first with your provided client key and then you can call `IDWise.startDynamicJourney` method. If initialization is failed for any reason, you will get an error object with a code and a message explaining the reason of the error. In the following example, we called initialize method and then called startJourney method.
 
 ```swift
         IDWise.initialize(clientKey: "<YOUR_CLIENT_KEY>") { error in
@@ -196,11 +316,6 @@ stepId: ID of the step you want to start. (Will be provided by IDWise for each s
 
 data: Data representation of an image file or a PDF file ( Data bytes must be less than or equal to 4Mb )
 
-### Confirming the Step
-
-You can confirm the step that sucessfully started and completed by calling method `IDWise.confirmStep(stepId: String)` and passing the stepID as a parameter. StepId passed should be the stepID of the step that has been completed.
-The `confirmStep(stepId)` method should be called after we complete the step. For that prupose, we are calling this method in `onStepResult()` method because we know the step is completed now and we can confirm it. If the `confirmStep(stepId)` is called before the completion of step, we will wait until the step completes but It is reccommended to call it after step completion.
-
 The methods in `IDWiseStepDelegate`  will be triggered as step is handled and processed
 
 We can implement the protocol `IDWiseSDKStepDelegate` as an extension on the ViewController same way as above to recieve the step events:
@@ -223,14 +338,6 @@ extension ViewController:IDWiseSDKStepDelegate {
         if let result = stepResult {
           print(result.document?.documentType)
         }
-        LoadingView.show()
-        IDWise.confirmStep(stepId: lastProcessedStepId)
-        // lastProcessedStepId means the stepID that you last started 
-
-    }
-
-     func onStepConfirmed(stepId: String) {
-        LoadingView.hide()
     }
 
 }
@@ -240,16 +347,13 @@ extension ViewController:IDWiseSDKStepDelegate {
 
 - `onStepResult` : This handler will be triggered when step has finished processing. stepResult will contain information about the corresponding step. Your application can show any UI or can perform any business logic in this method
 
-- `onStepConfirmed` : This handler will be called when step has been confirmed successfully you will get back stepID of the step that has been confirmed now
-
 From `stepResult` variable in `onStepResult(...)` callback, you can receive the extracted fields. And if the validation is failed, you can get the failure code as `stepResult.failureReasonCode`
 
-`StepResult` contains following information 
-
+`StepResult` contains following information
 
 ```swift
 public struct StepResult {
-
+    
     // error code for specific errors
     public let errorUserFeedbackCode: String? 
     
@@ -270,17 +374,60 @@ public struct StepResult {
     
     //Map of extracted fields from the document
     public var extractedFields = [String:FieldValue]()
+
+    // result from NFC Scanning
+    public var nfcResult: NFCResult?
+
+    // Recognized Document Fields
+    public var recognition: DocumentRecognition?
+
 }
 ```
 
-Where `FieldValue` holds the value of the extracted field. 
+The `NFCResult` object contains the following data extracted from the Document via reading the NFC chip
+
+```swift
+public struct NFCResult {
+    
+    // photo of the user which is extracted from NFC Chip
+    public let facePhoto: UIImage?
+    
+    // Map of the extracted data from the NFC chip during scanning
+    public var extractedFields: [String:FieldValue]? = nil
+}
+```
+
+The `DocumentRecognition` object contains the following properties
+
+```swift
+public struct DocumentRecognition: Decodable {
+
+    // Document type
+    public let document_type:String?
+
+    // Document Issuing country code
+    public let issuing_country_code:String?
+
+    // Document Issuing country name
+    public let issuing_country_name:String?
+}
+```
+
+Where `FieldValue` holds the value of the extracted field.
 
 ```swift
 public struct FieldValue {
     public let value: String?
 }
-``` 
+```
 
+**Note: NFC ePassport and eID reading is an addon feature that needs to be enabled on your account to be usable. Please reach out to IDWise support to be enabled on your account. You will also need to ensure that you use the IDWise NFC SDK variant instead of the standard SDK variant.**
+
+### Finishing the Journey
+
+You need to call this `IDWise.finishDynamicJourney(journeyId: String)` method to mark the journey complete. This method takes one input parameter named journeyId. The method will throw error through `onError(error: IDWiseSDKError)` in case of anything goes wrong or invalid journeyId is provided.
+
+`journeyId`: journeyId of the journey that needs to be mark finished.
 
 ### Getting the Journey Summary
 
@@ -331,8 +478,3 @@ public struct JourneySummary: Decodable {
 | -101         |   An unexpected error occurred while processing the request.Make sure you have Internet connected                                              |
 | -102         |   Network seems to be not connected, Please try again with network connected.                                                                  |
 | 55           |   This method is not supported in this Journey Mode                                                                                            |
-| 78           |   Step is not started, please trigger startStep(...) and call confirmStep(...) after onStepResult(...)                                         |
-
-## Code Example
-
-Please find the [`following example`](https://github.com/idwise/idwise-ios-sdk-documentation/tree/main/IDWiseExample) for an XCode project that showcases the integration with IDWise iOS Framework.
