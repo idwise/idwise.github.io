@@ -1,9 +1,11 @@
 ---
 layout: default
-parent: IDWise Developers
+parent: Deprecated
 title: AML Screening Service
 nav_order: 7
 ---
+
+# (Deprecated - Please use Zapier integration for this usecase) 
 
 # Standalone AML Screening Service: PEPs, Sanction & More
 {: .no_toc }
