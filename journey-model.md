@@ -58,7 +58,7 @@ First, here are the top-level elements of the graph (with explanation for each e
     -   `Incomplete`: The journey is not completed yet so a decision cannot be drawn yet.
     -   `Complete`: The journey was completed and passed all the configured checks and rules.
     -   `Refer`: The journey was completed but has failed one or more of the configured checks or rules.
--   `final_decision` - `string (enum)`: is the latest decision so far, if there is no manual review done, it will contain the system otherwise will be:
+-   `final_decision` - `string (enum)`: is the latest decision so far. It will contain the `system_decision` (`Complete` or `Refer`) if there has not been manual review done. Otherwise it will contain the manual review decision of these values:
     -   `Approved` : if the journey approved by the reviewer.
     -   `Rejected` : if the journey rejected by the reviewer.
 -   `model_version` - `string`, `nullable`: Represents which version of the result graph this journey follows. Different versions of the graph might have different elements.
