@@ -39,7 +39,8 @@ First, here are the top-level elements of the graph (with explanation for each e
 	"start_time": "2023-01-26T08:12:00.962462",
 	"end_time": "2023-01-26T08:13:00.454774",
 	"system_decision": "Refer",
-	"final_decision":null,
+	"manual_decision": null,
+	"final_decision":"Refer",
 	"model_version": "3.0",
 	"documents": {},
 	"selfie": {},
@@ -58,9 +59,11 @@ First, here are the top-level elements of the graph (with explanation for each e
     -   `Incomplete`: The journey is not completed yet so a decision cannot be drawn yet.
     -   `Complete`: The journey was completed and passed all the configured checks and rules.
     -   `Refer`: The journey was completed but has failed one or more of the configured checks or rules.
--   `final_decision` - `string (enum)`: is the latest decision so far. It will contain the `system_decision` (`Complete` or `Refer`) if there has not been manual review done. Otherwise it will contain the manual review decision of these values:
+-   `manual_decision` - `string (enum)`, `nullable`: An enum value (encoded as a string) representing the manual review decision. Available values are:
     -   `Approved` : if the journey approved by the reviewer.
     -   `Rejected` : if the journey rejected by the reviewer.
+
+-   `final_decision` - `string (enum)`, `not nullable`: is the latest decision so far. It will contain the `system_decision` (`Complete` or `Refer`) if there has not been manual review done. Otherwise it will contain the manual review decision.
 -   `model_version` - `string`, `nullable`: Represents which version of the result graph this journey follows. Different versions of the graph might have different elements.
 -   [`documents`](#document-element) - `object`, `nullable`: The processing results of documents submitted as part of the journey. This is a dictionary (JSON object) where the *key* represents the `step_id` associated with a given document and the *value* represents the `document` object itself. See the following sections for details on the format of `document` elements.
 -   [`selfie`](#selfie-element) - `object`, `nullable`: Represents the processing results of the live selfie taken during the journey. If the journey is configured with no `Selfie` step then this element will be `null`. See the following sections for details on the format of the `selfie` element.
