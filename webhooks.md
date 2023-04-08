@@ -95,6 +95,7 @@ It can be one of the following:
 ### MANUAL_DECISION:
 It can be one of the following:
 
+-   **null**: The journey has not been reviewed yet by a manual reviewer.
 -   **Approved**: The journey has been approved by a manual reviewer.
 -   **Rejected**: The journey has been rejected by a manual reviewer.
 
