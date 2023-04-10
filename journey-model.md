@@ -337,13 +337,13 @@ Shows the applicant's records over Anti Money Laundering (AML) databases if exis
 ### Liveness Error Codes
 | Code | Description |
 | --- | ---|
-| FACE_TOO_CLOSE | Face is too close to camera.
-| FACE_CLOSE_TO_BORDER | Face is too close to the border of the image. 
-| FACE_CROPPED | Face is cropped, and can be reduce the accuracy of the liveness detection because the face is not complete.
-| FACE_IS_OCCLUDED | Part of the face is covered by mask or another objects, and it can reduce accuracy of the liveness detection.
-| FACE_NOT_FOUND | Failed to detec a face.
-| TOO_MANY_FACES | Too many faces detected. 
-| FACE_TOO_SMALL | The face area is not big enough to do the face liveness analysis. 
+| FACE_TOO_CLOSE | Face is too close to camera.|
+| FACE_CLOSE_TO_BORDER | Face is too close to the border of the image.|
+| FACE_CROPPED | Face is cropped, and can be reduce the accuracy of the liveness detection because the face is not complete.|
+| FACE_IS_OCCLUDED | Part of the face is covered by mask or another objects, and it can reduce accuracy of the liveness detection.|
+| FACE_NOT_FOUND | Failed to detec a face.|
+| TOO_MANY_FACES | Too many faces detected.|
+| FACE_TOO_SMALL | The face area is not big enough to do the face liveness analysis.|
 
 ### Supported Rules (Checks):
 
