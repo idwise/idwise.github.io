@@ -185,7 +185,7 @@ This object represents the face liveness status, it has the following attributes
 
 -   `status` - `string (enum)`, `not nullable`: The conclusive status of the selfie step value could be `Complete`, `Refer`, and `Not Started`. This element is the main element to be used to confirm whether the selfie passed or not.
 -   `is_live` - `boolean`, `nullable`: A boolean indicates whether the submitted selfie image is live or not. The liveness is already reflected on `status` element.
--   `liveness_status_code` - `string (enum)`, `nullable`: The error code that indicates the cause of the liveness check failure. Please refer to the [list](#liveness-error-codes) of all possible error codes available for your reference. 
+-   `liveness_status_code` - `string (enum)`, `nullable`: The error code that indicates the cause of the liveness check failure. Please refer to the [list](#liveness-status-codes) of all possible error codes available for your reference. 
 -   `image_path` - `string`, `nullable`: The image identifier for the submitted selfie image which can be used to retrieve the image through Image Retrieval API.
 
 ### Rule Result Element
@@ -334,7 +334,7 @@ Shows the applicant's records over Anti Money Laundering (AML) databases if exis
 
 ## Appendix
 
-### Liveness Error Codes
+### Liveness Status Codes
 
 | Code | Description |
 | --- | ---|
