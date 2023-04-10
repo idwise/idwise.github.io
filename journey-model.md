@@ -175,6 +175,7 @@ This an example for the selfie result object:
 "selfie": {
 	"status": "Complete",
 	"is_live": true,
+	"liveness_status_code":null
 	"image_path": "95652fb54cfa6c15d477a44781f171b8"
 }
 
@@ -184,6 +185,7 @@ This object represents the face liveness status, it has the following attributes
 
 -   `status` - `string (enum)`, `not nullable`: The conclusive status of the selfie step value could be `Complete`, `Refer`, and `Not Started`. This element is the main element to be used to confirm whether the selfie passed or not.
 -   `is_live` - `boolean`, `nullable`: A boolean indicates whether the submitted selfie image is live or not. The liveness is already reflected on `status` element.
+-   `liveness_status_code` - `string (enum)`, `nullable`: The error code that indicates the cause of the liveness check failure. Please refer to the [list](#liveness-error-codes) of all possible error codes available for your reference. 
 -   `image_path` - `string`, `nullable`: The image identifier for the submitted selfie image which can be used to retrieve the image through Image Retrieval API.
 
 ### Rule Result Element
@@ -331,6 +333,17 @@ Shows the applicant's records over Anti Money Laundering (AML) databases if exis
     -   `sex` - `string`, `nullable`: The gender of the person.
 
 ## Appendix
+
+### Liveness Error Codes
+| Code | Description |
+| --- | ---|
+| FACE_TOO_CLOSE | Face is too close to camera.
+| FACE_CLOSE_TO_BORDER | Face is too close to the border of the image. 
+| FACE_CROPPED | Face is cropped, and can be reduce the accuracy of the liveness detection because the face is not complete.
+| FACE_IS_OCCLUDED | Part of the face is covered by mask or another objects, and it can reduce accuracy of the liveness detection.
+| FACE_NOT_FOUND | Failed to detec a face.
+| TOO_MANY_FACES | Too many faces detected. 
+| FACE_TOO_SMALL | The face area is not big enough to do the face liveness analysis. 
 
 ### Supported Rules (Checks):
 
