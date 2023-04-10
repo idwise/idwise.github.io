@@ -335,6 +335,7 @@ Shows the applicant's records over Anti Money Laundering (AML) databases if exis
 ## Appendix
 
 ### Liveness Error Codes
+
 | Code | Description |
 | --- | ---|
 | FACE_TOO_CLOSE | Face is too close to camera.|
