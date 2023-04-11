@@ -63,7 +63,7 @@ First, here are the top-level elements of the graph (with explanation for each e
     -   `Approved` : if the journey approved by the reviewer.
     -   `Rejected` : if the journey rejected by the reviewer.
 
--   `final_decision` - `string (enum)`, `not nullable`: is the latest decision so far. It will contain the `system_decision` (`Complete` or `Refer`) if there has not been manual review done. Otherwise it will contain the manual review decision.
+-   `final_decision` - `string (enum)`: is the latest decision so far. It will contain the `system_decision` (`Complete` or `Refer`) if there has not been manual review done. Otherwise it will contain the manual review decision (Approved, Rejected).
 -   `model_version` - `string`, `nullable`: Represents which version of the result graph this journey follows. Different versions of the graph might have different elements.
 -   [`documents`](#document-element) - `object`, `nullable`: The processing results of documents submitted as part of the journey. This is a dictionary (JSON object) where the *key* represents the `step_id` associated with a given document and the *value* represents the `document` object itself. See the following sections for details on the format of `document` elements.
 -   [`selfie`](#selfie-element) - `object`, `nullable`: Represents the processing results of the live selfie taken during the journey. If the journey is configured with no `Selfie` step then this element will be `null`. See the following sections for details on the format of the `selfie` element.
