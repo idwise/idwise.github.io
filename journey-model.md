@@ -39,7 +39,8 @@ First, here are the top-level elements of the graph (with explanation for each e
 	"start_time": "2023-01-26T08:12:00.962462",
 	"end_time": "2023-01-26T08:13:00.454774",
 	"system_decision": "Refer",
-	"final_decision":null,
+	"manual_decision": null,
+	"final_decision":"Refer",
 	"model_version": "3.0",
 	"documents": {},
 	"selfie": {},
@@ -58,9 +59,11 @@ First, here are the top-level elements of the graph (with explanation for each e
     -   `Incomplete`: The journey is not completed yet so a decision cannot be drawn yet.
     -   `Complete`: The journey was completed and passed all the configured checks and rules.
     -   `Refer`: The journey was completed but has failed one or more of the configured checks or rules.
--   `final_decision` - `string (enum)`, `nullable`: is the manual review final decision. the default value will be `null` if there is no manual review done. otherwise will be:
+-   `manual_decision` - `string (enum)`, `nullable`: An enum value (encoded as a string) representing the manual review decision. Available values are:
     -   `Approved` : if the journey approved by the reviewer.
     -   `Rejected` : if the journey rejected by the reviewer.
+
+-   `final_decision` - `string (enum)`: is the latest decision so far. It will contain the `system_decision` (`Complete` or `Refer`) if there has not been manual review done. Otherwise it will contain the manual review decision (`Approved`, `Rejected`).
 -   `model_version` - `string`, `nullable`: Represents which version of the result graph this journey follows. Different versions of the graph might have different elements.
 -   [`documents`](#document-element) - `object`, `nullable`: The processing results of documents submitted as part of the journey. This is a dictionary (JSON object) where the *key* represents the `step_id` associated with a given document and the *value* represents the `document` object itself. See the following sections for details on the format of `document` elements.
 -   [`selfie`](#selfie-element) - `object`, `nullable`: Represents the processing results of the live selfie taken during the journey. If the journey is configured with no `Selfie` step then this element will be `null`. See the following sections for details on the format of the `selfie` element.
@@ -175,6 +178,7 @@ This an example for the selfie result object:
 "selfie": {
 	"status": "Complete",
 	"is_live": true,
+	"liveness_status_code":null
 	"image_path": "95652fb54cfa6c15d477a44781f171b8"
 }
 
@@ -184,6 +188,7 @@ This object represents the face liveness status, it has the following attributes
 
 -   `status` - `string (enum)`, `not nullable`: The conclusive status of the selfie step value could be `Complete`, `Refer`, and `Not Started`. This element is the main element to be used to confirm whether the selfie passed or not.
 -   `is_live` - `boolean`, `nullable`: A boolean indicates whether the submitted selfie image is live or not. The liveness is already reflected on `status` element.
+-   `liveness_status_code` - `string (enum)`, `nullable`: The error code that indicates the cause of the liveness check failure. Please refer to the [list](#liveness-status-codes) of all possible error codes available for your reference. 
 -   `image_path` - `string`, `nullable`: The image identifier for the submitted selfie image which can be used to retrieve the image through Image Retrieval API.
 
 ### Rule Result Element
@@ -331,6 +336,18 @@ Shows the applicant's records over Anti Money Laundering (AML) databases if exis
     -   `sex` - `string`, `nullable`: The gender of the person.
 
 ## Appendix
+
+### Liveness Status Codes
+
+| Code | Description |
+| --- | ---|
+| FACE_TOO_CLOSE | Face is too close to camera.|
+| FACE_CLOSE_TO_BORDER | Face is too close to the border of the image.|
+| FACE_CROPPED | Face is cropped, and can be reduce the accuracy of the liveness detection because the face is not complete.|
+| FACE_IS_OCCLUDED | Part of the face is covered by mask or another objects and it can reduce accuracy of the liveness detection.|
+| FACE_NOT_FOUND | Failed to detec a face.|
+| TOO_MANY_FACES | Too many faces detected.|
+| FACE_TOO_SMALL | The face area is not big enough to do the face liveness analysis.|
 
 ### Supported Rules (Checks):
 

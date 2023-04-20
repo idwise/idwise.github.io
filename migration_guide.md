@@ -37,12 +37,12 @@ Please follow these steps to migrate to the latest version of the SDK:
 
    **Replace**
     ```
-    <script href="https://app.idwise.ai/idwise.min.js"></script>
+    <script src="https://app.idwise.ai/idwise.min.js"></script>
     ```
 
    **With**
     ```
-    <script href="https://releases.idwise.com/websdk/latest/idwise.min.js"></script>
+    <script src="https://releases.idwise.com/websdk/latest/idwise.min.js"></script>
     ```
 
 ## Deprecation Note

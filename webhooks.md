@@ -70,6 +70,7 @@ The IDWise server will send a JSON HTTP POST request to the URL configured, with
     "journeyId": "62e6...........5d0c",
     "referenceNo": "840...........23",
     "systemDecision": "**SYSTEM_DECISION**",
+    "manualDecision": "**MANUAL_DECISION**",
     "finalDecision": "**FINAL_DECISION**"
   }
 }
@@ -91,10 +92,21 @@ It can be one of the following:
 -   **Incomplete**: The journey has not been completed yet (the user didn't finish all steps).
 -   **Refer**: At least one of the steps has failed, and the journey needs to be referred for a manual review.
 
+### MANUAL_DECISION:
+It can be one of the following:
+
+-   **null**: The journey has not been reviewed yet by a manual reviewer.
+-   **Approved**: The journey has been approved by a manual reviewer.
+-   **Rejected**: The journey has been rejected by a manual reviewer.
+
 ### FINAL_DECISION:
+It can be one of the following:
 
 -   **Approved**: The journey has been approved by a manual reviewer.
 -   **Rejected**: The journey has been rejected by a manual reviewer.
+-   **Complete**: The journey has been successfully completed (it shows on the UI as passed).
+-   **Incomplete**: The journey has not been completed yet (the user didn't finish all steps).
+-   **Refer**: At least one of the steps has failed, and the journey needs to be referred for a manual review.
 
 ## Webhooks Sequence Diagram:
 ![download (3)](https://raw.githubusercontent.com/idwise/idwise.github.io/main/assets/webhook-flow-sequence-diagram.svg)

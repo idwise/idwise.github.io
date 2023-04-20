@@ -152,6 +152,10 @@ Following is the sample implementation of `journeyCallback` and `stepCallback`
               override fun onJourneyCancelled(journeyInfo: JourneyInfo?) {
                 Log.d("IDWiseSDKCallback", "onJourneyCancelled")
               }
+	      
+	      override fun onJourneyInterrupted(journeyInfo: JourneyInfo?) {
+                Log.d("IDWiseSDKCallback", "onJourneyInterrupted")
+              }
 
               override fun onError(error: IDWiseSDKError) {
                 Log.d("IDWiseSDKCallback", "onError ${error.message}")
@@ -185,6 +189,9 @@ data class StepResult(
     // result from NFC Scanning
     var nfcResult: NFCResult?,
     
+    // document recognition information
+    var recognition: DocumentRecognition?,
+     
     // error code for specific errors
     val errorUserFeedbackCode: String? = "",
     
@@ -218,6 +225,22 @@ data class NFCResult(
     
     // Map of the extracted data from the NFC chip during scanning
     val extractedFields: HashMap<String, FieldValue>?
+) 
+
+```
+
+The `DocumentRecognition` object contains the following information related to the scanned document.
+
+```
+data class DocumentRecognition(
+    // ISO code of the issuing country
+    val issuingCountryCode: String? = "",
+    
+    //Name of the issuing country name
+    val issuingCountryName: String? = "",
+    
+    //Type fo the Document, either a Passport or a driving license etc.
+    val documentType: String? = "",
 ) 
 
 ```
