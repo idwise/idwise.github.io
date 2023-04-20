@@ -25,15 +25,13 @@ This git repository contains the official IDWise SDK meant to be used in iOS app
 
 {% include cta.md %}
 
-
 ## Xcode Supported Version
 
 IDWise SDK always supports latest Xcode version only. The current latest release of IDWise SDK supports below Xcode versions.
 
 |  Xcode  | SDK    |  
 | ------- | ------ |
-| 14.2    | 3.11.5 |
-
+| 14.3    | 4.1.0  |
 
 ## Integration Video
 
@@ -62,6 +60,7 @@ Next add this line also to your Podfile but this time underneath your `target` n
 ```ruby
 pod 'IDWise'
 ```
+
 Also, add this configuration underneath your `target` node for your project:
 
 ```ruby
@@ -71,7 +70,6 @@ Also, add this configuration underneath your `target` node for your project:
     end
   end
 ```
-
 
 You can have a look at the example `Podfile` provided in the root of this repository to see an example `Podfile` with both the changes above completed
 
@@ -99,7 +97,6 @@ The IDWiseSDK.initialize method accepts an optional parameter for specifying the
 
 Possible values for the theme parameter include "dark" or "light".
 
-
 ```swift
 
         IDWise.initialize(clientKey: "<YOUR_CLIENT_KEY>",theme: .light) { err in
@@ -114,8 +111,6 @@ IDWiseSDKTheme.dark // to specify dark theme mode for SDK
 IDWiseSDKTheme.systemDefault // to specify the same theme as of operating system
 
 ```
-
-   
 
 ```swift
         IDWise.initialize(clientKey: "<YOUR_CLIENT_KEY>") { err in
