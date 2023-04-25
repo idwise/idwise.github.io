@@ -28,7 +28,7 @@ Here is how you can setup and start using IDWise SDK.
 {% include cta.md %}
 
 ## Latest Stable Version
-**4.0.5**
+**4.1.0**
 
 ## Integration Video
 Get integrated quickly by watching a 5 minutes video:
@@ -120,10 +120,6 @@ The `JourneyInfo.journeyId`, received in `onJourneyStarted` & `onJourneyComplete
 
 				    override fun onJourneyCancelled(journeyInfo: JourneyInfo?) {
 					Log.d("IDWiseSDKCallback", "onJourneyCancelled")
-				    }
-				
-				    override fun onJourneyInterrupted(journeyInfo: JourneyInfo?) {
-					Log.d("IDWiseSDKCallback", "onJourneyInterrupted")
 				    }
 
 				    override fun onError(error: IDWiseSDKError) {
