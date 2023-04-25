@@ -239,9 +239,9 @@ After successfully initializing the SDK with your `CLIENT_KEY` provided by IDWIs
 * **referenceNo**: (Optional) A parameter that you can use to associate an arbitrary identifier (reference number) with the user making the current journey. This is helpful to link the journey back to the user and/or application that started the journey, you will recieve this in the webhook request.
 
 * **locale**: (Optional), iso code of locale (language) for the UI elements (please contact IDWise support for the list of supported locales, we are happy to support more upon reqiest).
-* **IDWiseSDKCallback**: An interface implementation with multiple callback events. That are `onJourneyStarted`, `onJourneyCompleted`, `onJourneyCancelled` and `onError`.
+* **IDWiseSDKCallback**: An interface implementation with multiple callback events. That are `onJourneyStarted`, `onJourneyResumed`, `onJourneyCompleted`, `onJourneyCancelled` and `onError`.
 
-The `JourneyInfo.journeyId`, received in `onJourneyStarted` & `onJourneyCompleted`, can then be used by your backend code to securely get the result of the ID verification.
+The `JourneyInfo.journeyId`, received in `onJourneyStarted`, `onJourneyResumed` & `onJourneyCompleted`, can then be used by your backend code to securely get the result of the ID verification.
 
 
 ```
@@ -266,6 +266,10 @@ MethodChannel(
                         callback = object : IDWiseSDKCallback {
                             override fun onJourneyStarted(journeyInfo: JourneyInfo) {
                                 Log.d("IDWiseSDKCallback", "onJourneyStarted")
+                            }
+
+                            override fun onJourneyResumed(journeyInfo: JourneyInfo) {
+                                Log.d("IDWiseSDKCallback", "onJourneyResumed")
                             }
 
                             override fun onJourneyCompleted(
