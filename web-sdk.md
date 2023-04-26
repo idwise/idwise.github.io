@@ -194,6 +194,51 @@ You can trigger IDWise SDK again by calling `startJourney` function on the IDWis
 </script>
 ```
 
+### Code Example
+if you want to test our code all you have to do is copy this simple html file and add you owne data then you can test.
+
+```javascript
+<html>
+  <head>
+    <meta name="viewport" content="user-scalable=0;" />
+    <!-- fix the issue where elements are too small on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <script src="https://releases.idwise.com/websdk/latest/idwise.min.js"></script>
+  </head>
+  <body>
+    <div id="idwise-mount"></div>
+    <script>
+      try {
+        IDWise.initialize({
+          clientKey: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx=",
+          locale: "en",
+        })
+          .then(idwise => {
+            idwise.startJourney({
+              mount: "#idwise-mount",
+              journeyDefinitionId: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", // journey definition id
+              referenceNo: "xxxxxxx", // An identifier that uniquely idenfies the user carrying out this journey
+              eventHandlers: {
+                onFinished: function (details) {
+                  alert("Thanks for completing the registration");
+                },
+                onInterrupted: function (details) {
+                  alert("Thanks, but You still have some steps not finished in your journey please continue later");
+                },
+              },
+            });
+          })
+          .catch(error => {
+            alert(error);
+          });
+      } catch (error) {
+        alert(error);
+      }
+    </script>
+  </body>
+</html>
+```
+
 [//]: # (### Resuming an incompleted journey)
 
 [//]: # ()
