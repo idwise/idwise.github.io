@@ -148,6 +148,29 @@ Now, we will use methodChannel object to invoke our native platform code. Callin
 
       platformChannel.invokeMethod('startJourney');
 
+      platformChannel.setMethodCallHandler((handler) async {
+        switch (handler.method) {
+          case 'onJourneyStarted':
+            print("Method: onJourneyStarted, ${handler.arguments.toString()}");
+            break;
+          case 'onJourneyFinished':
+            print("Method: onJourneyFinished");
+            break;
+          case 'onJourneyCancelled':
+            print("Method: onJourneyCancelled");
+            break;
+          case 'onJourneyResumed':
+            print("Method: onJourneyResumed, ${handler.arguments.toString()}");
+            break;
+          case 'onError':
+            print("Method: onError, ${handler.arguments.toString()}");
+            break;
+          default :
+            print('Unknown method from MethodChannel: ${handler.method}');
+            break;
+        }
+      });
+
     } on PlatformException catch (e) {
       print("Failed : '${e.message}'.");
     }
@@ -233,7 +256,7 @@ Inside your `Activity` which is extended from `FlutterActivity`, you need to `ov
 You can initialize the SDK by calling `IDWise.initialize(...)`. It takes "CLIENT_KEY", provided by IDWise and an `errorCallback`.
 
 **startJourney**
-After successfully initializing the SDK with your `CLIENT_KEY` provided by IDWIse, Your app can start an ID verification process by making a call to the `startJourney` method which takes the following parameters:
+After successfully initializing the SDK with your `CLIENT_KEY` provided by IDWise and an optional theme parameter. Your app can start an ID verification process by making a call to the `startJourney` method which takes the following parameters:
 
 * **journeyTemplateId** (also called Journey Definition ID): This is a unique identifier that identifies your journey definition. IDWise shares this with you when you register for using IDWise system.
 * **referenceNo**: (Optional) A parameter that you can use to associate an arbitrary identifier (reference number) with the user making the current journey. This is helpful to link the journey back to the user and/or application that started the journey, you will recieve this in the webhook request.
@@ -245,58 +268,67 @@ The `JourneyInfo.journeyId`, received in `onJourneyStarted`, `onJourneyResumed` 
 
 
 ```
-MethodChannel(
+private var methodChannel: MethodChannel? = null
+
+methodChannel = MethodChannel(
             flutterEngine.dartExecutor.binaryMessenger,
             "YOUR_CHANNEL_NAME" //Example: "com.idwise.fluttersampleproject/idwise"
-        ).setMethodCallHandler { call, result ->
+)
 
-            when (call.method) {
-                "initialize" -> {
-                    IDWise.initialize("<YOUR_CLIENT_KEY>") { error ->
-                        result.error("ERROR", error!!.message, null)
-                    }
-                }
-
-                "startJourney" -> {
-                    IDWise.startJourney(
-                        this,
-                        "<YOUR_JOURNEY_DEFINITION_ID>", //Provided by IDWise
-                        "<REFERENCE_NUMBER>", //OPTIONAL
-                        "en", //Locale
-                        callback = object : IDWiseSDKCallback {
-                            override fun onJourneyStarted(journeyInfo: JourneyInfo) {
-                                Log.d("IDWiseSDKCallback", "onJourneyStarted")
-                            }
-
-                            override fun onJourneyResumed(journeyInfo: JourneyInfo) {
-                                Log.d("IDWiseSDKCallback", "onJourneyResumed")
-                            }
-
-                            override fun onJourneyCompleted(
-                                journeyInfo: JourneyInfo,
-                                isSucceeded: Boolean
-                            ) {
-                                Log.d("IDWiseSDKCallback", "onJourneyCompleted")
-                            }
-
-                            override fun onJourneyCancelled(journeyInfo: JourneyInfo?) {
-                                Log.d("IDWiseSDKCallback", "onJourneyCancelled")
-                            }
-
-                            override fun onError(error: IDWiseSDKError) {
-                                Log.d(
-                                    "IDWiseSDKCallback",
-                                    "onError ${error.message}"
-                                )
-                            }
-                        }
-                    )
-
-                }
-
-                else -> result.error("NO_SUCH_METHOD", "NO SUCH METHOD", null)
+methodChannel?.setMethodCallHandler { call, result ->
+      when (call.method) {
+        "initialize" -> {
+            IDWise.initialize("<YOUR_CLIENT_KEY>", IDWiseSDKTheme.LIGHT /*Optional*/) { error ->
+                result.error("ERROR", error!!.message, null)
             }
         }
+
+        "startJourney" -> {
+            IDWise.startJourney(
+                this,
+                "<YOUR_JOURNEY_DEFINITION_ID>", //Provided by IDWise
+                "<REFERENCE_NUMBER>", //OPTIONAL
+                "en", //Locale
+                callback = object : IDWiseSDKCallback {
+                    override fun onJourneyStarted(journeyInfo: JourneyInfo) {
+                        Log.d("IDWiseSDKCallback", "onJourneyStarted")
+                        methodChannel?.invokeMethod("onJourneyStarted", journeyInfo.journeyId)
+                    }
+
+                    override fun onJourneyResumed(journeyInfo: JourneyInfo) {
+                        Log.d("IDWiseSDKCallback", "onJourneyResumed")
+                        methodChannel?.invokeMethod("onJourneyResumed", journeyInfo.journeyId)
+                    }
+
+                    override fun onJourneyCompleted(
+                        journeyInfo: JourneyInfo,
+                        isSucceeded: Boolean
+                    ) {
+                        Log.d("IDWiseSDKCallback", "onJourneyCompleted")
+                        methodChannel?.invokeMethod("onJourneyFinished", null)
+                    }
+
+                    override fun onJourneyCancelled(journeyInfo: JourneyInfo?) {
+                        Log.d("IDWiseSDKCallback", "onJourneyCancelled")
+                        methodChannel?.invokeMethod("onJourneyCancelled", null)
+                    }
+
+                    override fun onError(error: IDWiseSDKError) {
+                        Log.d(
+                            "IDWiseSDKCallback",
+                            "onError ${error.message}"
+                        )
+                        //Strigify error using GSON or with any other approach.
+                        methodChannel?.invokeMethod("onError", Gson().toJson(error))
+                    }
+                }
+            )
+
+        }
+
+        else -> result.error("NO_SUCH_METHOD", "NO SUCH METHOD", null)
+    }
+}
 
 ```
 ## Android Code Example
