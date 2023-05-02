@@ -33,6 +33,14 @@ On your development machine you need to have XCode and CocoaPods installed. Both
 If you are building iOS project on VSCode and using an M1 machine then It's recommended to use Xcode for iOS builds because VSCode does not support Roestta mode and we need Rosetta option on both terminal and Xcode to run our project without any Issues of linking architecture.
 Flutter also has disabled support for builds through VSCode starting from iOS 14, so we need Xcode for iOS builds anyway.
 
+## Xcode Supported Version
+
+IDWise SDK always supports latest Xcode version only. The current latest release of IDWise SDK supports below Xcode versions.
+
+|  Xcode  | SDK    |  
+| ------- | ------ |
+| 14.3    | 4.1.0  |
+
 ### Android ###
 
 The `minSdkVersion` is 16 and `targetSdkVersion` is set to 31 in IDWise Android SDK. It is recommended to install the Latest Android Studio on your development machine.
@@ -226,25 +234,36 @@ This method takes 4 parameters:
 For example we can implement the protocol as an extension on the ViewController like so:
 
 ```swift
-func onJourneyResumed(journeyID: String) {
-  
-}
-
-func onError(error : IDWiseSDKError) {
-
-}
-
-func JourneyStarted(journeyID: String) {
- 
-}
-
-func JourneyFinished() {
-  
-}
-
-func JourneyCancelled() {
- 
-}
+ func onJourneyResumed(journeyID: String) {
+        channel?.invokeMethod(
+                    "onJourneyResumed",
+                    arguments: journeyID)
+  }
+    
+    
+  func onError(error : IDWiseSDKError) {
+        channel?.invokeMethod(
+                    "onError",
+                    arguments: ["errorCode": error.code,"message": error.message] as [String : Any])
+  }
+    
+  func JourneyStarted(journeyID: String) {
+        channel?.invokeMethod(
+                    "onJourneyStarted",
+                    arguments: journeyID)
+  }
+    
+  func JourneyFinished() {
+        channel?.invokeMethod(
+                    "onJourneyFinished",
+                    arguments: nil)
+  }
+    
+  func JourneyCancelled() {
+        channel?.invokeMethod(
+                    "onJourneyCancelled",
+                    arguments: nil)
+  }
 ```
 
 When the journey is started it is assigned a unique id called Journey ID in IDWise system and this is provided as a parameter, `journeyID` with the triggering of `JourneyStarted` event.
