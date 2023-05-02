@@ -87,11 +87,11 @@ Add following repositories in you project-level `build.gradle` file located at `
 
 ```
 repositories {
- maven { 
-  url 'http://mobile-sdk.idwise.ai/releases/' 
-             allowInsecureProtocol = true
- }
- maven { url 'https://jitpack.io' }
+  maven { 
+   url 'http://mobile-sdk.idwise.ai/releases/' 
+              allowInsecureProtocol = true
+  }
+  maven { url 'https://jitpack.io' }
 }
 ```
 
