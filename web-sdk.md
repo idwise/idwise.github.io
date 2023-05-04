@@ -195,13 +195,12 @@ You can trigger IDWise SDK again by calling `startJourney` function on the IDWis
 ```
 
 ### Code Example
-if you want to test our code all you have to do is copy this simple html file and add you owne data then you can test.
+if you want to test our code all you have to do is copy this simple html file and add your own data then you can test.
 
 ```javascript
 <html>
   <head>
     <meta name="viewport" content="user-scalable=0;" />
-    <!-- fix the issue where elements are too small on mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <script src="https://releases.idwise.com/websdk/latest/idwise.min.js"></script>
   </head>
