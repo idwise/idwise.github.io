@@ -57,25 +57,25 @@ Please follow these steps to integrate with the document capturing SDK:
 * `clientKey` (Mandatory) This is a unique identifier for your business. It is provided to you by IDWise team.
 * `locale` (Optional) This is the language in which the UI elements should be displayed. The default is `en`
 * `theme` (Optional) This is the theme in which the UI elements should be displayed. The default is `system_default` and the other options are `dark` for dark theme and `light` for light theme.
-      
-         Example code for the initialization:
-    
-          ```
-          <script>
-              let idwise;
-              try {
-                  idwise = await IDWise.initialize({
-                    clientKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx=',
-                    locale: 'en',
-                    theme: 'system_default',
-                  });
-              } catch (error) {
-                  ...
-              }
-          </script>
-          ```
 
-          This call returns a promise to a session instance. The session instance will be used to access the functionality of IDWise system in next steps.
+    Example code for the initialization:
+    
+    ```javascript
+    <script>
+      let idwise;
+      try {
+          idwise = await IDWise.initialize({
+            clientKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx=',
+            locale: 'en',
+            theme: 'dark', // Optional parameter, defaults to 'system_default'
+          });
+      } catch (error) {
+          ...
+      }
+    </script>
+    ```
+
+  This call returns a promise to a session instance. The session instance will be used to access the functionality of IDWise system in next steps.
 
 5. Use the IDWise session instance to start a new journey. To do so you can call `startJourney` function. The function
    takes three parameters:
