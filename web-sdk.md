@@ -67,7 +67,7 @@ Please follow these steps to integrate with the document capturing SDK:
                   idwise = await IDWise.initialize({
                     clientKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx=',
                     locale: 'en',
-                    theme: 'dark',
+                    theme: 'system_default',
                   });
               } catch (error) {
                   ...
