@@ -149,7 +149,11 @@ Now, we will use methodChannel object to invoke our native platform code. Callin
        * and AppDelegate.swift for iOS
        */
 
-      platformChannel.invokeMethod('initialize');
+      const initializeArgs = {
+        "clientKey": "<YOUR_CLIENT_KEY>", // Replace from client key here
+        "theme": "SYSTEM_DEFAULT", // Values [LIGHT, DARK, SYSTEM_DEFAULT] 
+      };
+      platformChannel.invokeMethod('initialize', initializeArgs);
 
       /**
        * You can call the startJourney when you wan to start the verification
@@ -157,7 +161,12 @@ Now, we will use methodChannel object to invoke our native platform code. Callin
        * and AppDelegate.swift for iOS
        */
 
-      platformChannel.invokeMethod('startJourney');
+      const startJourneyArgs = {
+        "journeyDefinitionId": "<YOUR_JOURNEY_DEFINITION_ID>", // Replace from journey definition id
+        "referenceNo": null, //Put your reference number here
+        "locale" : "en"
+      };
+      platformChannel.invokeMethod('startJourney', startJourneyArgs);
 
       platformChannel.setMethodCallHandler((handler) async {
         switch (handler.method) {
