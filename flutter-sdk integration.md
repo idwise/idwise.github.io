@@ -130,6 +130,16 @@ static const platformChannel = MethodChannel("<METHOD_CHANNEL_NAME>");
 
 Now, we will use methodChannel object to invoke our native platform code. Calling the native code is an asynchronous operation so we need to create a method which returns a Future and is an async method like below. This is all the code that we need to do on flutter side and everything else will be handeled in native platform classes.
 
+Initializing the SDK with your CLIENT_KEY provided by IDWise and an optional theme parameter, Your app can start an ID verification process by making a call to the startJourney method which takes the following parameters:
+
+* **journeyTemplateId** (also called Journey Definition ID): This is a unique identifier that identifies your journey definition. IDWise shares this with you when you register for using IDWise system.
+* **referenceNo**: (Optional) A parameter that you can use to associate an arbitrary identifier (reference number) with the user making the current journey. This is helpful to link the journey back to the user and/or application that started the journey, you will recieve this in the webhook request.
+* **locale**: (Optional), iso code of locale (language) for the UI elements (please contact IDWise support for the list of supported locales, we are happy to support more upon request).
+
+**MethodChannel.MethodCallHandler**: Add an implementation for method call handler to receive the callback events from the native code. That are `onJourneyStarted`, `onJourneyResumed`, `onJourneyFinished`, `onJourneyCancelled` and `onError`.
+
+The `journeyId`, received in `onJourneyResumed` & `onJourneyStarted`, can then be used by your backend code to securely get the result of the ID verification.
+
 ```
   Future<void> _startSDK() async {
     try {
@@ -160,6 +170,7 @@ Now, we will use methodChannel object to invoke our native platform code. Callin
       };
       platformChannel.invokeMethod('startJourney', startJourneyArgs);
 
+      //MethodCallHandler : Callback events from the native code
       platformChannel.setMethodCallHandler((handler) async {
         switch (handler.method) {
           case 'onJourneyStarted':
@@ -317,20 +328,6 @@ The steps that compose part of the journey and the prompts that user see are all
 
 Inside your `Activity` which is extended from `FlutterActivity`, you need to `override` the `configureFlutterEngine(flutterEngine: FlutterEngine)` method. Add the following code inside this method to handle the `initialize` and `startJourney` requests from your flutter code e.g `main.dart`.
 
-**initialize**
-You can initialize the SDK by calling `IDWise.initialize(...)`. It takes "CLIENT_KEY", provided by IDWise and an `errorCallback`.
-
-**startJourney**
-After successfully initializing the SDK with your `CLIENT_KEY` provided by IDWise and an optional theme parameter. Your app can start an ID verification process by making a call to the `startJourney` method which takes the following parameters:
-
-- **journeyTemplateId** (also called Journey Definition ID): This is a unique identifier that identifies your journey definition. IDWise shares this with you when you register for using IDWise system.
-- **referenceNo**: (Optional) A parameter that you can use to associate an arbitrary identifier (reference number) with the user making the current journey. This is helpful to link the journey back to the user and/or application that started the journey, you will recieve this in the webhook request.
-
-- **locale**: (Optional), iso code of locale (language) for the UI elements (please contact IDWise support for the list of supported locales, we are happy to support more upon reqiest).
-- **IDWiseSDKCallback**: An interface implementation with multiple callback events. That are `onJourneyStarted`, `onJourneyResumed`, `onJourneyCompleted`, `onJourneyCancelled` and `onError`.
-
-The `JourneyInfo.journeyId`, received in `onJourneyStarted`, `onJourneyResumed` & `onJourneyCompleted`, can then be used by your backend code to securely get the result of the ID verification.
-
 ```
 private var methodChannel: MethodChannel? = null
 
@@ -342,17 +339,30 @@ methodChannel = MethodChannel(
 methodChannel?.setMethodCallHandler { call, result ->
       when (call.method) {
         "initialize" -> {
-            IDWise.initialize("<YOUR_CLIENT_KEY>", IDWiseSDKTheme.LIGHT /*Optional*/) { error ->
+            val clientKey = call.argument<String>("clientKey")
+            val theme = when (call.argument<String>("theme")) {
+                "LIGHT" -> IDWiseSDKTheme.LIGHT
+                "DARK" -> IDWiseSDKTheme.DARK
+                else -> IDWiseSDKTheme.SYSTEM_DEFAULT
+            }
+
+            IDWise.initialize(clientKey!!, theme /*Optional*/) { error ->
+                Log.d("IDWiseSDKCallback", "onError ${error?.message}")
                 result.error("ERROR", error!!.message, null)
+                methodChannel?.invokeMethod("onError", Gson().toJson(error))
             }
         }
 
         "startJourney" -> {
+            val journeyDefinitionId = call.argument<String>("journeyDefinitionId")
+            val referenceNo = call.argument<String>("referenceNo")
+            val locale = call.argument<String>("locale")
+            
             IDWise.startJourney(
                 this,
-                "<YOUR_JOURNEY_DEFINITION_ID>", //Provided by IDWise
-                "<REFERENCE_NUMBER>", //OPTIONAL
-                "en", //Locale
+                journeyDefinitionId!!,
+                referenceNo,
+                locale,
                 callback = object : IDWiseSDKCallback {
                     override fun onJourneyStarted(journeyInfo: JourneyInfo) {
                         Log.d("IDWiseSDKCallback", "onJourneyStarted")
