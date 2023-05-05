@@ -277,41 +277,32 @@ This will make IDWise SDK show a UI with a wizard to guide the user through comp
 
 #### Step 3
 
-Outside of our AppDelegate class, we will paste this code which is an extension to AppDelegate file. This code is used to conform to `IDWiseSDKJourneyDelegate` protocol and then to invoke classbacks back to Dart.
+Outside of our AppDelegate class, we will paste this code which is an extension to AppDelegate file. This code is used to conform to `IDWiseSDKJourneyDelegate` protocol and then to invoke callbacks back to Dart.
 
 For example we can implement the protocol as an extension on the AppDelegate class like so:
 
 ```swift
  extension AppDelegate:IDWiseSDKJourneyDelegate {
     func onJourneyResumed(journeyID: String) {
-        channel?.invokeMethod(
-                    "onJourneyResumed",
-                    arguments: journeyID)
+        channel?.invokeMethod("onJourneyResumed", arguments: journeyID)
     }
     
     
     func onError(error : IDWiseSDKError) {
-        channel?.invokeMethod(
-                    "onError",
+        channel?.invokeMethod("onError",
                     arguments: ["errorCode": error.code,"message": error.message] as [String : Any])
     }
     
     func JourneyStarted(journeyID: String) {
-        channel?.invokeMethod(
-                    "onJourneyStarted",
-                    arguments: journeyID)
+        channel?.invokeMethod( "onJourneyStarted", arguments: journeyID)
     }
     
     func JourneyFinished() {
-        channel?.invokeMethod(
-                    "onJourneyFinished",
-                    arguments: nil)
+        channel?.invokeMethod( "onJourneyFinished", arguments: nil)
     }
     
     func JourneyCancelled() {
-        channel?.invokeMethod(
-                    "onJourneyCancelled",
-                    arguments: nil)
+        channel?.invokeMethod("onJourneyCancelled", arguments: nil)
     }
    
 }
