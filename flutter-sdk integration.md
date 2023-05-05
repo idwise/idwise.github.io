@@ -142,8 +142,9 @@ Initializing the SDK with your CLIENT_KEY provided by IDWise and an optional the
 
 * **journeyTemplateId** (also called Journey Definition ID): This is a unique identifier that identifies your journey definition. IDWise shares this with you when you register for using IDWise system.
 * **referenceNo**: (Optional) A parameter that you can use to associate an arbitrary identifier (reference number) with the user making the current journey. This is helpful to link the journey back to the user and/or application that started the journey, you will recieve this in the webhook request.
-* **locale**: (Optional), iso code of locale (language) for the UI elements (please contact IDWise support for the list of supported locales, we are happy to support more upon reqiest).
-* **IDWiseSDKCallback**: An interface implementation with multiple callback events. That are `onJourneyStarted`, `onJourneyResumed`, `onJourneyFinished`, `onJourneyCancelled` and `onError`.
+* **locale**: (Optional), iso code of locale (language) for the UI elements (please contact IDWise support for the list of supported locales, we are happy to support more upon request).
+
+**MethodChannel.MethodCallHandler**: Add an implementation for method call handler to receive the callback events from the native code. That are `onJourneyStarted`, `onJourneyResumed`, `onJourneyFinished`, `onJourneyCancelled` and `onError`.
 
 The `journeyId`, received in `onJourneyResumed` & `onJourneyStarted`, can then be used by your backend code to securely get the result of the ID verification.
 
@@ -177,6 +178,7 @@ The `journeyId`, received in `onJourneyResumed` & `onJourneyStarted`, can then b
       };
       platformChannel.invokeMethod('startJourney', startJourneyArgs);
 
+      //MethodCallHandler : Callback events from the native code
       platformChannel.setMethodCallHandler((handler) async {
         switch (handler.method) {
           case 'onJourneyStarted':
