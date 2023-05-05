@@ -309,17 +309,30 @@ methodChannel = MethodChannel(
 methodChannel?.setMethodCallHandler { call, result ->
       when (call.method) {
         "initialize" -> {
-            IDWise.initialize("<YOUR_CLIENT_KEY>", IDWiseSDKTheme.LIGHT /*Optional*/) { error ->
+            val clientKey = call.argument<String>("clientKey")
+            val theme = when (call.argument<String>("theme")) {
+                "LIGHT" -> IDWiseSDKTheme.LIGHT
+                "DARK" -> IDWiseSDKTheme.DARK
+                else -> IDWiseSDKTheme.SYSTEM_DEFAULT
+            }
+
+            IDWise.initialize(clientKey!!, theme /*Optional*/) { error ->
+                Log.d("IDWiseSDKCallback", "onError ${error?.message}")
                 result.error("ERROR", error!!.message, null)
+                methodChannel?.invokeMethod("onError", Gson().toJson(error))
             }
         }
 
         "startJourney" -> {
+            val journeyDefinitionId = call.argument<String>("journeyDefinitionId")
+            val referenceNo = call.argument<String>("referenceNo")
+            val locale = call.argument<String>("locale")
+            
             IDWise.startJourney(
                 this,
-                "<YOUR_JOURNEY_DEFINITION_ID>", //Provided by IDWise
-                "<REFERENCE_NUMBER>", //OPTIONAL
-                "en", //Locale
+                journeyDefinitionId!!,
+                referenceNo,
+                locale,
                 callback = object : IDWiseSDKCallback {
                     override fun onJourneyStarted(journeyInfo: JourneyInfo) {
                         Log.d("IDWiseSDKCallback", "onJourneyStarted")
