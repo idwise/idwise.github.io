@@ -33,14 +33,6 @@ On your development machine you need to have XCode and CocoaPods installed. Both
 If you are building iOS project on VSCode and using an M1 machine then It's recommended to use Xcode for iOS builds because VSCode does not support Roestta mode and we need Rosetta option on both terminal and Xcode to run our project without any Issues of linking architecture.
 Flutter also has disabled support for builds through VSCode starting from iOS 14, so we need Xcode for iOS builds anyway.
 
-## Xcode Supported Version
-
-IDWise SDK always supports latest Xcode version only. The current latest release of IDWise SDK supports below Xcode versions.
-
-|  Xcode  | SDK    |  
-| ------- | ------ |
-| 14.3    | 4.1.0  |
-
 ### Android ###
 
 The `minSdkVersion` is 16 and `targetSdkVersion` is set to 31 in IDWise Android SDK. It is recommended to install the Latest Android Studio on your development machine.
@@ -199,80 +191,121 @@ Now, we will use methodChannel object to invoke our native platform code. Callin
 
 ### Native Code to start Journey (iOS)
 
-IDWise SDK is designed to start on top of a UIViewController in your application. Each user onboarding or verification transaction is named a user journey. In flutter project, we will navigate to projectfolder/ios/Runner and will work in AppDelegate.swift class. In this file, we will write our code in **didFinishLaunchingWithOptions** method. Just before returning from this method, we will add our code.
+#### Step 1
 
-To start a new journey just provide the UIViewController from which you want the flow to start then call `IDWiseSDK.initialize` method first with your provided client key and then you can call `IDWise.startJourney` method. If initialization is failed for any reason, you will get an error object with a code and a message explaining the reason of the error. In the following example, we called initialize method and then called startJourney method.
+In Flutter project, we will navigate to projectfolder/ios/Runner and will work in AppDelegate.swift class. In this file, we will declare a FlutterMethodChannel variable to user later in code.
+
+```swift
+ var channel: FlutterMethodChannel? = nil
+```
+
+#### Step 2
+
+We will work in AppDelegate.swift class as we did above in step 1. In this file, we will write our code in **didFinishLaunchingWithOptions** method. Just before returning from this method, we will add our code.
+
+To start a new journey just provide the UIViewController from which you want the flow to start then call `IDWiseSDK.initialize` method first with client key passed from Dart code and then you can call `IDWise.startJourney` method. If initialization is failed for any reason, you will get an error object with a code and a message explaining the reason of the error. In the following example, we called initialize method and then called startJourney method.
 
 As in flutter, we don't have a UIViewController so we will create controller object using FlutterViewController class as done in code below. Then we will create a FluterMethodChannel object with same channel name as we assigned on dart side while creating the channel.
 Finally, we will implement channel's handler method and depending on method name called from flutter class end, we will take action and invoke our native methods. As we invoked two methods from flutter class so we are handling for two methods in our AppDelegate.swift file.
 
 ```swift
-      // Native code bridging Swift -> Dart , calling iOS SDK here
+    // Native code bridging Swift -> Dart , calling iOS SDK here
       let controller : FlutterViewController = window?.rootViewController as! FlutterViewController
-      let channel = FlutterMethodChannel(name: methodChannelName,
+      let channel = FlutterMethodChannel(name: "com.idwise.fluttersampleproject/idwise",
                                                 binaryMessenger: controller.binaryMessenger)
+      self.channel = channel
       channel.setMethodCallHandler({ [self]
           (call: FlutterMethodCall, result: @escaping FlutterResult) -> Void in
           
           switch call.method {
           case "initialize":
-              IDWise.initialize(clientKey: "<YOUR_CLIENT_KEY>") { error in
-               result("got some error")
+              // receiving arguments from Dart side and consuming here
+              
+              var clientKey: String = "" 
+              var sdkTheme: IDWiseSDKTheme = IDWiseSDKTheme.systemDefault // optional parameter
+              if let parameteres = call.arguments as? [String:Any] {
+                  if let clientkey = parameteres["clientKey"] as? String {
+                      clientKey = clientkey
+                  }
+                  if let theme = parameteres["theme"] as? String {
+                      if theme == "LIGHT" {
+                          sdkTheme = IDWiseSDKTheme.light
+                      } else if theme == "DARK" {
+                          sdkTheme = IDWiseSDKTheme.dark
+                      } else  {
+                          sdkTheme = IDWiseSDKTheme.systemDefault
+                      }
+                  }
+                
+              }
+              IDWise.initialize(clientKey: clientKey,  /* optional parameter */ theme: sdkTheme) { error in
+                  result("got some error")
+                  if let err = error {
+                      channel.invokeMethod(
+                        "onError",
+                        arguments: ["errorCode": err.code,"message": err.message] as [String : Any])
+                  }
               }
 
           case "startJourney":
-              IDWise.startJourney(journeyDefinitionId: "<YOUR_JOURNEY_DEFINITION_ID>",locale: "en", delegate: self)
+              // receiving arguments from Dart side and consuming here
+
+              var referenceNo: String = "" // optional parameter
+              var locale: String = "en"
+              var journeyDefinitionId = ""
+              if let parameteres = call.arguments as? [String:Any] {
+                  if let refNo = parameteres["referenceNo"] as? String {
+                      referenceNo = refNo
+                  }
+                  if let loc = parameteres["locale"] as? String {
+                      locale = loc
+                  }
+                  if let journeyDefId = parameteres["journeyDefinitionId"] as? String {
+                      journeyDefinitionId = journeyDefId
+                  }
+              }
+              IDWise.startJourney(journeyDefinitionId: journeyDefinitionId,referenceNumber: referenceNo,locale: locale, journeyDelegate: self)
               result("successfully started journey")
           default:
               result(FlutterMethodNotImplemented)
           }
           
       })
-        
 ```
 
 This will make IDWise SDK show a UI with a wizard to guide the user through completing the onboarding journey
 
-This method takes 4 parameters:
+#### Step 3
 
-- `journeyDefinitionId`: Specifies the journey definition (aka template) to base this new journey on. Journey definitions are created based on your requirements and specify what documents and biometrics to collect from the user and in what order. JourneyDefinitionId is shared with you by IDWise team as part of your use-case and requirements discussions.
-- `referenceNo` : A custom identifier to associate with this journey to enable you to link it back easily or associate it with a user on your system.
-- `locale` : Language code of the language to be used to display the journey user interface. This is either an ISO 639-1 (2-letter for example en) or IETF BCP 47 (2-letter plus extended language specified for example zh-HK or zh-CN)
-- `delegate`: This parameter is used to provide a set of event handlers to handle the different events that are triggered from IDWise SDK. These events indicate the lifetime of a journey and provide oppurtunity for your application to react to certain events.
+Outside of our AppDelegate class, we will paste this code which is an extension to AppDelegate file. This code is used to conform to `IDWiseSDKJourneyDelegate` protocol and then to invoke callbacks back to Dart.
 
-For example we can implement the protocol as an extension on the ViewController like so:
+For example we can implement the protocol as an extension on the AppDelegate class like so:
 
 ```swift
- func onJourneyResumed(journeyID: String) {
-        channel?.invokeMethod(
-                    "onJourneyResumed",
-                    arguments: journeyID)
-  }
+ extension AppDelegate:IDWiseSDKJourneyDelegate {
+    func onJourneyResumed(journeyID: String) {
+        channel?.invokeMethod("onJourneyResumed", arguments: journeyID)
+    }
     
     
-  func onError(error : IDWiseSDKError) {
-        channel?.invokeMethod(
-                    "onError",
+    func onError(error : IDWiseSDKError) {
+        channel?.invokeMethod("onError",
                     arguments: ["errorCode": error.code,"message": error.message] as [String : Any])
-  }
+    }
     
-  func JourneyStarted(journeyID: String) {
-        channel?.invokeMethod(
-                    "onJourneyStarted",
-                    arguments: journeyID)
-  }
+    func JourneyStarted(journeyID: String) {
+        channel?.invokeMethod( "onJourneyStarted", arguments: journeyID)
+    }
     
-  func JourneyFinished() {
-        channel?.invokeMethod(
-                    "onJourneyFinished",
-                    arguments: nil)
-  }
+    func JourneyFinished() {
+        channel?.invokeMethod( "onJourneyFinished", arguments: nil)
+    }
     
-  func JourneyCancelled() {
-        channel?.invokeMethod(
-                    "onJourneyCancelled",
-                    arguments: nil)
-  }
+    func JourneyCancelled() {
+        channel?.invokeMethod("onJourneyCancelled", arguments: nil)
+    }
+   
+}
 ```
 
 When the journey is started it is assigned a unique id called Journey ID in IDWise system and this is provided as a parameter, `journeyID` with the triggering of `JourneyStarted` event.
@@ -365,8 +398,8 @@ methodChannel?.setMethodCallHandler { call, result ->
 
 ## Android Code Example
 
-You can find the [`MainActivity.kt`](https://github.com/idwise/idwise-flutter-example/tree/main/android/app/src/main/kotlin/com/example/sample_project/MainActivity.kt) for sample code for Android Integration.
+You can find the sample [`MainActivity.kt`](https://github.com/idwise/idwise-flutter-example/tree/main/android/app/src/main/kotlin/com/example/sample_project/MainActivity.kt) that showcases the integration with IDWise Android Native Framework.
 
 ## iOS Code Example
 
-Please find the [`following example`](https://github.com/idwise/idwise-flutter-example/tree/main/ios) for a Flutter project that showcases the integration with IDWise iOS Framework.
+You can find the sample [`AppDelegate.swift`](https://github.com/idwise/idwise-flutter-example/blob/main/ios/Runner/AppDelegate.swift) that showcases the integration with IDWise iOS Framework.
