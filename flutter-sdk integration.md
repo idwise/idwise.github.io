@@ -398,8 +398,8 @@ methodChannel?.setMethodCallHandler { call, result ->
 
 ## Android Code Example
 
-You can find the [`MainActivity.kt`](https://github.com/idwise/idwise-flutter-example/tree/main/android/app/src/main/kotlin/com/example/sample_project/MainActivity.kt) for sample code for Android Integration.
+You can find the sample [`MainActivity.kt`](https://github.com/idwise/idwise-flutter-example/tree/main/android/app/src/main/kotlin/com/example/sample_project/MainActivity.kt) that showcases the integration with IDWise Android Native Framework.
 
 ## iOS Code Example
 
-Please find the [`following example`](https://github.com/idwise/idwise-flutter-example/blob/main/ios/Runner/AppDelegate.swift) for a Flutter project that showcases the integration with IDWise iOS Framework.
+You can find the sample [`AppDelegate.swift`](https://github.com/idwise/idwise-flutter-example/blob/main/ios/Runner/AppDelegate.swift) that showcases the integration with IDWise iOS Framework.
