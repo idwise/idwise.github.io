@@ -46,7 +46,8 @@ First, here are the top-level elements of the graph (with explanation for each e
 	"selfie": {},
 	"rule_results": {},
 	"applicant": {},
-	"aml":{}
+	"aml":{}, 
+	"screening_checks":{}
 }
 ```
 
@@ -69,8 +70,8 @@ First, here are the top-level elements of the graph (with explanation for each e
 -   [`selfie`](#selfie-element) - `object`, `nullable`: Represents the processing results of the live selfie taken during the journey. If the journey is configured with no `Selfie` step then this element will be `null`. See the following sections for details on the format of the `selfie` element.
 -   [`rule_results`](#rule-result-element) - `object`, `nullable`: The business rules that were applied on this journey and their outcomes. These rules can configure the acceptance criteria for a journey to pass. Examples include: Acceptable types of documents to be provided, ensure the documents are non-expired.
 -   [`applicant`](#applicant-element) - `object`, `nullable`: Common data representing the applicant (user) who made the journey.
--   [`aml`](#aml-element) - `object`, `nullable`: Holds the results of carrying out AML (Anti-Money Laundering) and background checks. If the journey is not configured with AML checks enabled then this element will be `null`. See the following sections for details on the format of the `aml` elements.
-
+-   [`aml`](#aml-element) - `object`: Holds the results of carrying out AML (Anti-Money Laundering) and background checks. If the journey is not configured with AML checks enabled then this element will be `null`. See the following sections for details on the format of the `aml` elements.
+-   [`screening_checks`](#screening-checks-element) - `object`: object contains multiple checks performed on provided documents or selfie images against government databases. Each element within screening_checks represents a specific type of check. See the following sections for details on the format of the `screening_checks` elements.
 ## Document Element
 
 This object represents the set of documents in this journey. Each child element inside `documents` contains the results of processing a document that was submitted as part of the journey.
