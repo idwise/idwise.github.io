@@ -30,15 +30,19 @@ There are two types of webhooks supported by IDWise:
 
 ### Journey Completed Webhook:
 
-This webhook triggers when the journey has been completed and processing is finalised on the IDWise backend.
+This webhook is triggered when the journey has been completed and processing is finalised on the IDWise backend.
 
 ### Manual Review Webhook:
 
-This webhook triggers once a manual review has been completed on the IDWise dashboard (where the system decision was either confirmed or overridden by a dashboard user).
+This webhook is triggered once a manual review has been completed on the IDWise dashboard (where the system decision was either confirmed or overridden by a dashboard user).
 
 ### AML Monitor Update Webhook:
 
-This webhook triggers when there is an update on a monitored AML record (for example, the person was added to a sanctions list or is no longer deemed to be politically exposed).
+The webhook is triggered whenever there is an update to a monitored AML record. For instance, if a person has been added to a sanctions list or is no longer considered politically exposed, the webhook will be activated.
+
+### Finished User Steps Webhook:
+
+This webhook is triggered when a user completes all the required steps and submits them to IDWise backend. this webhook notifies the customer backend that the user steps have been completed, If any custom steps are necessary, the customer backend can initiate them at this point, such as submitting the face from the government database to compare it with the user's selfie face.
 
 * * * * *
 
@@ -84,6 +88,7 @@ It represents the event concerned, as mentioned above, we support:
 -   Finished Journey
 -   Manually Reviewed
 -   AML Monitor Update
+-   Finished User Steps
 
 ### SYSTEM_DECISION
 It can be one of the following:
