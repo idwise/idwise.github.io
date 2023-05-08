@@ -335,6 +335,49 @@ Shows the applicant's records over Anti Money Laundering (AML) databases if exis
     -   `addresses` - `array [object]`, `nullable`: The list of addresses.
     -   `sex` - `string`, `nullable`: The gender of the person.
 
+### Screening Checks Element
+The screening checks represent the outcome of checks conducted on provided documents or selfie images against government databases. Such checks include verifying the identity of an individual by comparing their facial features to those stored in the government database.
+
+This is an example for the screening check object.
+
+```json
+"screening_checks": {
+	"additional_face_db": {
+		"image_path": "95652fb54cfa6c15d477a4f1b9f0",		
+		"face_match_results": [
+			{
+				"is_matched": true,
+				"score": 99,
+				"images": [
+					{
+						"image_path": "95602fb54cfa6c15d477a44781f171b8",
+						"image_source": "Selfie"
+					}, 
+					{
+						"image_path": "05602fb54cfa6c15d477a44781f171b0",
+						"image_source": "AdditionalFace"
+					}
+				]				
+			}
+		]
+	}
+}
+
+```
+
+The `screening_checks` object contains all the checks performed on provided documents or selfie images against government databases. Each element within `screening_checks` represents a specific type of check. 
+
+In the example provided, the `additional_face_db` element represents a check where a submitted selfie image is compared to facial features stored in the government database. The `additional_face_db` element contains the following nested elements:
+
+- `image_path`: This element is a string value that serves as the image identifier for the submitted image from government database. It can be used to retrieve the image through the Image Retrieval API.
+- `face_match_results`: This element is an array of objects that contains the results of the facial recognition check. In the example provided, there is only one object in the array. This object contains the following elements:
+	- `is_matched`: This element is a boolean value that indicates whether the submitted selfie image matches the facial features stored in the government database.
+	- `score`: This element is an integer value that indicates the confidence level of the facial recognition check. The higher the value, the higher the confidence level.
+	- `images`: This element is an array of objects that contains information on the images that used in the face matching. each object contains the following elements:
+		- `image_path`: This element is a string value that serves as the image identifier. It can be used to retrieve the image through the Image Retrieval API.
+		- `image_source`: This element is a string value that indicates the source of the submitted image. In the example provided, the source is "Selfie" or AdditionalFaces. 
+
+
 ## Appendix
 
 ### Liveness Status Codes
