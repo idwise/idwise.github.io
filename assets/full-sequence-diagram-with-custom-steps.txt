@@ -1,0 +1,53 @@
+title Verification Workflow
+
+participant Customer App (Android/iOS/Web)
+participant IDWise SDK
+participant Customer Backend
+participant IDWise Backend
+participant IDWise Studio (Dashboard)
+
+
+Customer App (Android/iOS/Web)->IDWise SDK: **Start Journey** (referenceNo,...)
+
+note over Customer App (Android/iOS/Web), IDWise SDK: Journey staps are completed by the user
+
+IDWise SDK->Customer App (Android/iOS/Web): **On Journey Complete** Call Back/event (journeyId)
+
+note over Customer App (Android/iOS/Web):Set end user profile status as pending verification
+
+note over Customer App (Android/iOS/Web):Depending on the usecase, you could allow the user\na limited access to the app (e.g. not allow certain\nfunctions pending KYC process until you get webhook)
+
+
+
+==**Using Webhooks (You need to create an endpoint on your backend,\n please send IDWise the URL to be configured on your IDWise account)**==
+
+==**Finished User Steps Webhook**==
+IDWise Backend->Customer Backend:**Webhook** (journeyId, referenceNo)\nOn User Steps Finished\nEvent: "Finished User Steps"
+Customer Backend -> IDWise Backend: **Process Journey Step(stepId, stepType, image)**\n to process the custom stepslike compare \n the selfie image with govenment face.
+
+
+
+==**Finished Journey Webhook**==
+IDWise Backend->Customer Backend:**Webhook** (journeyId, referenceNo)\nOn Journey Finish\nEvent: "Finished Journey"
+Customer Backend -> IDWise Backend: **Get Journey API** {{journeyId}}
+IDWise Backend --> Customer Backend: Journey Details (Fields, Face Match, Validation,...) 
+
+note over Customer Backend: Save journey details to a local database\nand use the data to update customer record\n(use referenceNo that was passed to\n`**Start Journey**` to link customer record to journey)
+note over Customer Backend: Change end user profile status internally to\napproved or rejected depending on the result\nAnd send push notification to your user informing\nor asking to redo the journey if needed.
+
+
+Customer App (Android/iOS/Web)<-Customer Backend:Inform customer of profile status change
+==**Manual Review Workflow**==
+IDWise Backend<-IDWise Studio (Dashboard):Manual Review\n(Accept / Reject)
+Customer Backend<-IDWise Backend:**Webhook** (journeyId, referenceNo)\nOn Manual Review\nEvent: "Manually Reviewed"
+
+note over Customer Backend: Change end user profile status internally to\napproved or rejected depending on the result\nAnd send push notification to your user informing\nor asking to redo the journey if needed.
+Customer App (Android/iOS/Web)<-Customer Backend:Inform customer of profile status change
+
+
+==**AML Ongoing Monitoring Update Webhook**==
+Customer Backend<-IDWise Backend:**Webhook** (journeyId, referenceNo)\nOn AML Status Change\ne.g. Added to sanctions list, or not PEP anymore\nEvent: "AML Monitor Update"
+Customer Backend -> IDWise Backend: **Get Journey API** {{journeyId}}
+IDWise Backend --> Customer Backend: Journey Details (Fields, Face Match, Validation,...) 
+
+note over Customer Backend: Action depends on business process\ne.g. send a notification email to compliance\nofficer to review and deal with this accordingly
