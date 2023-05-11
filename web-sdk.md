@@ -52,43 +52,50 @@ Please follow these steps to integrate with the document capturing SDK:
     <div id="idwise-mount"></div>
     ```
 
-4. Start the initialization of IDWise SDK library using `initialize` function. This function takes one mandatory and two optional parameters which identify your business and are shared with you during your registration process with IDWise.
+4. Start the initialization of IDWise SDK library using `initialize` function. This function takes the following parameters:
 
-* `clientKey` (Mandatory) This is a unique identifier for your business. It is provided to you by IDWise team.
-* `locale` (Optional) This is the language in which the UI elements should be displayed. The default is `en`
-* `theme` (Optional) This is the theme in which the UI elements should be displayed. The default is `system_default` and the other options are `dark` for dark theme and `light` for light theme.
-      
-         Example code for the initialization:
-    
-          ```
-          <script>
-              let idwise;
-              try {
-                  idwise = await IDWise.initialize({
-                    clientKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx=',
-                    locale: 'en',
-                    theme: 'system_default',
-                  });
-              } catch (error) {
-                  ...
-              }
-          </script>
-          ```
+* `clientKey` (Mandatory) is string that identify your business and used for authentication. It is provided to you by IDWise team.
+* `locale` (Optional) is string of two letter ISO language identifier to determine the language of the UI, the default is `en`. For supporting different languages please contact IDWise team to enable it on your profile. 
+* `theme` (Optional) is the theme of UI elements it can be either light, or dark. the values of this parmater can one of the following: 
+  * `light`: for light theme.
+  * `dark`: for dark theme.
+  * `system_default`: for the system defualt theme, which is considered as default behaviour. 
 
-          This call returns a promise to a session instance. The session instance will be used to access the functionality of IDWise system in next steps.
+  This call returns a promise to a session instance. The session instance will be used to access the functionality of IDWise system in next steps.
 
-5. Use the IDWise session instance to start a new journey. To do so you can call `startJourney` function. The function
-   takes three parameters:
+   Example code for the initialization:
 
-* `journeyDefinitionId` (Mandatory) Identifies the steps of the journey to be started. This is provided to you by
-  IDWise team based on your requirements and what documents or biometrics you want to ask your users for
-* `referenceNo` (Optional but recommended) An identifier that uniquely identifies the user carrying out this journey in
+    ```
+    <script>
+        let idwise;
+        try {
+            idwise = await IDWise.initialize({
+              clientKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx=',
+              locale: 'en',
+              theme: 'system_default',
+            });
+        } catch (error) {
+            ...
+        }
+    </script>
+    ```
+
+  
+
+5. Use the IDWise session instance return from the `initialize` function from the previous step to start a new journey. To do so you can call `startJourney` function. The function takes the following parameters:
+
+* `journeyDefinitionId` (Mandatory) is string that identifies the journey flow to be started. This is provided to you by
+  IDWise team based on your requirements.
+* `mount` (Mandatory) is a string with CSS selector to a single element. This specifies the HTML DOM element where IDWise UI elements should be added. 
+* `referenceNo` (Optional but recommended) is a string that used to uniquely identify the user doing the journey in
   your system. This identifier will be attached to this journey and will be provided when fetching the journey data
-  and can be used to link the journey back in your system
-* `mount` (Mandatory) The HTML DOM element where IDWise UI elements should be added. This was specified in Step 4
-  above
+  and can be used to link the journey back in your system.
 * `eventHandlers` (Optional but recommended) An object with list of callbacks to invoke to handle the
-  different events fired by IDWise SDK. There are currently two events supported: onStarted and onFinished. Which
+  different events fired by IDWise SDK. The following callbacks are supported:
+    * `onJourneyStarted`: will be triggered once the user started the journey. it supplies an object that contains `journeyId`.
+    * `onJourneyFinished`: will be triggered once the user has gone though the journey and submitted all the steps. it supplies an object that contains `journeyId`. 
+    * `onJourneyCancelled`: will be triggered once a user cancels the journey. It supplies an object that contains `journeyId`.
+    
   indicate the start and completion of the journey
 
 The following example code shows an overall script covering steps 5 and 6 above:
@@ -103,27 +110,32 @@ The following example code shows an overall script covering steps 5 and 6 above:
       .then((result) => {
         idwise = result;
         idwise.startJourney({
+          journeyDefinitionId: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', 
           mount: '#idwise-mount',
-          journeyDefinitionId: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', // journey definition id
-          referenceNo: "842098029309823", // An identifier that uniquely idenfies the user carrying out this journey
+          referenceNo: "842098029309823", 
           eventHandlers: {
-            onFinished: function(details) {
-              alert('Thanks for completing the registration')
-            }
+            onJourneyStarted: function(details) {
+              alert('Journey started, journey id =' + details.journeyId)
+            },
+            onJourneyFinished: function(details) {
+              alert('Journey finished, journey id =' + details.journeyId)
+            },
+            onJourneyCancelled: function(details) {
+              alert('Journey cancelled, journey id =' + details.journeyId)
+            },
           }
         })
       })
  </script>
 ```
 
-You can access the identifier of the journey that was completed by accessing the parameter provided on the `onFinished`
-event callback. This identifier can be used to retrieve the data associated with this journey from IDWise Data Fetch API
-once you get the [webhook call](https://idwi.se/webhooks) to your backend.
+The `journeyId` identifier can be used to retrieve the data associated with this journey from IDWise Data Fetch API
+once you get [Journey Finished](https://developers.idwise.com/webhooks.html#journey-completed-webhook) webhook to your backend.
 
-Note that IDWise SDK will automatically remove the UI elements it created and clean up the used resources when a journey
-completes and after triggering the `onFinished` event.
+Note that IDWise SDK will automatically remove the IDWise UI and clean up the used resources when a journey
+completes.
 
-And that’s it! This is all you need to get core integration up and running and have IDWise Web SDK to enable streamlined
+That’s it! This is all you need to get core integration up and running and have IDWise Web SDK to enable streamlined
 user onboarding journeys.
 
 ## Additional Use Cases
@@ -148,18 +160,12 @@ removed.
         ...
     }
     
-    // Cancels the Journey
-    async function cancelJourney(){
-        if (idwise) {
-            idwise.cleanup();
-        }
-        else {
-            alert("No active journey");
-        }
-    }
-    
     // Starts the journey
     await idwise.startJourney({ ... });
+    // you code here
+    // ...
+    // Cancel IDWise joruney (for example if the user presses back/cancel button on your UI)' 
+    idwise.cleanup();
 </script>
 ```
 
@@ -179,21 +185,19 @@ You can trigger IDWise SDK again by calling `startJourney` function on the IDWis
         ...
     }
     
-    // Cancels the Journey
-    async function cancelJourney(){
+    // Triggers IDWise SDK Again
+    async function restartJourney() {
         if (idwise) {
             await idwise.cleanup();
         }
-    }
-    
-    // Triggers IDWise SDK Again
-    async function resetJourney() {
-        cancelJourney();
         await idwise.startJourney({ ... });
     }
     
     // Starts the journey
     await idwise.startJourney({ ... });
+    
+    // Restart a new joruney.
+    restartJourney()
 </script>
 ```
 
