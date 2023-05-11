@@ -30,31 +30,33 @@ This git repository contains the official IDWiseSDK meant to be used in React-Na
 The `minSdkVersion` is 16 and `targetSdkVersion` is set to 31 in IDWise Android SDK. It is recommended to install the Latest Android Studio on your development machine. 
 
 
-## Installation
+## Step 1: Integrating with your build scripts
+
 Add the following in your app level `build.gradle` file located at `projectRoot/android/app/build.gradle`
 
 ```
-  android {
+android {
+  ...
+  defaultConfig {
     ...
-    defaultConfig {
-      ...
-      multiDexEnabled true
-    }
-    buildFeatures {
-      ...
-      dataBinding true
-    }
+    multiDexEnabled true
   }
+  buildFeatures {
+    ...
+    dataBinding true
+  }
+}
 ```
 
 Add following repositories in you project-level `build.gradle` file located at `projectRoot/android/build.gradle`
+
 ```
 repositories {
-	maven { 
-		url 'http://mobile-sdk.idwise.ai/releases/' 
-            	allowInsecureProtocol = true
-	}
-	maven { url 'https://jitpack.io' }
+  maven {
+    url 'http://mobile-sdk.idwise.ai/releases/'
+    allowInsecureProtocol = true
+  }
+  maven { url 'https://jitpack.io' }
 }
 ```
 
@@ -63,32 +65,31 @@ Replace the `x.y.z` with the latest IDWise SDK version
 
 ```
 dependencies {
-	...
-	implementation 'com.idwise:android-sdk:x.y.z'
+  ...
+  implementation 'com.idwise:android-sdk:x.y.z'
 }
 ```
-### Linking ###
+## Step 2: Linking
 
-In order to Link the React Code with android, we need to create a Module, let's call it `IDWiseModule`. You can find the sample [`IDWiseModule.java`](https://github.com/idwise/idwise-react-native-example/blob/main/android/app/src/main/java/com/idwisereactnativesample/IDWiseModule.java) for sample code.
+In order to Link the React Code with android, we need to create a Module, let's call it `IDWiseModule`. You can find the sample [`IDWiseModule.java`](https://github.com/idwise/idwise-react-native-sdk-samples/blob/main/IDWiseSimpleJourney/android/app/src/main/java/com/idwisereactnativesample/IDWiseModule.java) for sample code.
 
-In order to use `IDWiseModule` we need to create a React Package, let's call it `IDWisePackage`. You can find the sample [`IDWisePackage.java`](https://github.com/idwise/idwise-react-native-example/blob/main/android/app/src/main/java/com/idwisereactnativesample/IDWisePackage.java) for sample code.
+In order to use `IDWiseModule` we need to create a React Package, let's call it `IDWisePackage`. You can find the sample [`IDWisePackage.java`](https://github.com/idwise/idwise-react-native-sdk-samples/blob/main/IDWiseSimpleJourney/android/app/src/main/java/com/idwisereactnativesample/IDWisePackage.java) for sample code.
 
-Now we can add our newly created `IDWisePackage` to our packages, to do this, we need to edit the `MainApplication.java`, located at `projectRoot/android/your/package/name/../MainApplication.java`. In `getPackages()` method, we need to add our Package like below. You can find the sample [`MainApplication.java`](https://github.com/idwise/idwise-react-native-example/blob/main/android/app/src/main/java/com/idwisereactnativesample/MainApplication.java) for sample code.
+Add both classes to your android application module. Now we can add `IDWisePackage` to our packages, to do this, we need to edit the `MainApplication.java`, located at `projectRoot/android/your/package/name/../MainApplication.java`. In `getPackages()` method, we need to add our Package like below. You can find the sample [`MainApplication.java`](https://github.com/idwise/idwise-react-native-sdk-samples/blob/main/IDWiseSimpleJourney/android/app/src/main/java/com/idwisereactnativesample/MainApplication.java) for sample code.
 
 ```java
-	@Override
-        protected List<ReactPackage> getPackages() {
-          List<ReactPackage> packages = new PackageList(this).getPackages();
-	  
-	  //add IDWisePackage here
-           packages.add(new IDWisePackage());
-	   
-          return packages;
-        }
+@Override
+protected List<ReactPackage> getPackages() {
+  List<ReactPackage> packages = new PackageList(this).getPackages();
+
+  //add IDWisePackage here
+  packages.add(new IDWisePackage());
+
+  return packages;
+}
 ```
 
-
-## React-Native Usage
+## Step 3: React-Native Usage
 
 Invoking IDWise SDK is very simple. First reterieve `IDWiseModule` from `NativeModules` in your .js file from where you want to invoke IDWise SDK:
 
@@ -98,14 +99,21 @@ const { IDWiseModule } = NativeModules;
 
 ### Initializing the SDK
 
-In order to use the SDK, we need to initialize it first with the `<CLIENT_KEY>` provided by IDWise. You can pre-load this on `componentDidMount()` if you want to. Here is how we can initialize the SDK.
+In order to use the SDK, we need to initialize it first with the `<CLIENT_KEY>` provided by IDWise and a theme parameter. You can pre-load this on `componentDidMount()` if you want to. Here is how we can initialize the SDK.
 
 ```javascript
-IDWiseModule.initializeSDK("<CLIENT_KEY>");
+const theme = 'SYSTEM_DEFAULT'; //[ LIGHT, DARK, SYSTEM_DEFAULT ]
+IDWiseModule.initialize("<CLIENT_KEY>", theme);
 ```
 
 ### Starting the Journey
-Now we can start the verfication journey by calling `startJourney(..)` of the SDK like below. This will start the verification process and that's it.
+Now we can start the verfication journey by calling `startJourney(..)` of the SDK which takes the following parameters. 
+
+- `journeyDefinitionId`: (also called Journey Definition ID): This is a unique identifier that identifies your journey definition. IDWise shares this with you when you register for using IDWise system.
+- `referenceNo`: (Optional) A parameter that you can use to associate an arbitrary identifier (reference number) with the user making the current journey. This is helpful to link the journey back to the user and/or application that started the journey, you will recieve this in the webhook request.
+- `locale`: (Optional), iso code of locale (language) for the UI elements (please contact IDWise support for the list of supported locales, we are happy to support more upon reqiest).
+
+This will start the verification process and that's it.
 
 ```javascript
 IDWiseModule.startJourney("<JOURNEY_DEFINITION_ID>","<REFERENCE_NO>","en");
@@ -114,30 +122,37 @@ IDWiseModule.startJourney("<JOURNEY_DEFINITION_ID>","<REFERENCE_NO>","en");
 ### Events (Callbacks)
 Throughout the journey, IDWise SDK sends back some events to the Hosting app. Here we can listen to those events:
 
+These are the supported events:
+
+* **onJourneyStarted:**  Triggered when the journey is started and the Journey ID is assigned.
+* **onJourneyFinished:**  Triggered when the journey is completed by the user.
+* **onJourneyCancelled:**  Triggered when the user cancels the journey and doesn't finish it.
+* **onError:**  Triggered when an error occurs for example a network connectivity error and lack of permission to access the camera.
+
+<br />
+
 ```javascript
 useEffect(() => {
+  const eventEmitter = new NativeEventEmitter(NativeModules.IDWiseModule);
 
-    const eventEmitter = new NativeEventEmitter(NativeModules.IDWiseModule);
+  eventEmitter.addListener('onError', (event) => {
+    console.log(`An Error has occured  ${event.errorCode} : ${event.errorMessage}`); 
+  });
 
-    eventEmitter.addListener('onError', (event) => {
-      console.log(`An Error has occured  ${event.errorCode} : ${event.errorMessage}`); 
-    });
+  eventEmitter.addListener('onJourneyStarted', (event) => {
+      console.log(`Journey Started with id ${event.journeyId}`); 
+  });
 
-    eventEmitter.addListener('journeyStarted', (event) => {
-        console.log(`Journey Started with id ${event.journeyId}`); 
-    });
+  eventEmitter.addListener('onJourneyFinished', (event) => {
+    console.log(`Journey Completed with id ${event.journeyId}`);
+  });
 
-    eventEmitter.addListener('journeyCompleted', (event) => {
-      console.log(`Journey Completed with id ${event.journeyId}`);
-    });
-
-    eventEmitter.addListener('journeyCancelled', (event) => {
-      console.log(`Journey Cancelled with id ${event.journeyId}`); 
-    });
-
-
-  })
+  eventEmitter.addListener('onJourneyCancelled', (event) => {
+    console.log(`Journey Cancelled with id ${event.journeyId}`); 
+  });
+}, []);
 ```
 
 ## Sample Project
-You can find the [`Sample Project`](https://github.com/idwise/idwise-react-native-example) for sample code for React-Native Integration.
+You can find the [`Simple Journey Sample Project`](https://github.com/idwise/idwise-react-native-sdk-samples) for sample code for React-Native Integration.
+
