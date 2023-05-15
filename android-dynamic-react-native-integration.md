@@ -7,7 +7,7 @@ nav_order: 1
 heading_anchors: true
 ---
 
-# IDWise Smart Onboarding Android SDK for React-Native - Advanced Dynamic Journey Mode
+# IDWise SDK for React-Native - Advanced Dynamic Journey Mode
 
 {: .no_toc }
 

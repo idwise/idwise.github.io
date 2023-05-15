@@ -6,7 +6,7 @@ title: Android Simple Journey
 nav_order: 1
 heading_anchors: true
 ---
-# IDWise Smart Onboarding Android SDK for React-Native
+# IDWise Simple SDK for React-Native
 {: .no_toc }
 <details open markdown="block">
   <summary>
