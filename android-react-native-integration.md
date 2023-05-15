@@ -154,5 +154,5 @@ useEffect(() => {
 ```
 
 ## Sample Project
-You can find the [`Simple Journey Sample Project`](https://github.com/idwise/idwise-react-native-sdk-samples) for sample code for React-Native Integration.
+You can find the [`Simple Journey Sample Project`](https://github.com/idwise/idwise-react-native-sdk-samples/tree/main/IDWiseSimpleJourney) for sample code for React-Native Integration.
 

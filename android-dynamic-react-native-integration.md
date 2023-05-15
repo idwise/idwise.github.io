@@ -233,4 +233,4 @@ Please reach out to the support team to help with this customisation!
 
 ## Sample Project
 
-You can find the [`Dynamic Journey Sample Project`](https://github.com/idwise/idwise-react-native-sdk-samples) for sample code for React-Native Integration.
+You can find the [`Dynamic Journey Sample Project`](https://github.com/idwise/idwise-react-native-sdk-samples/tree/main/IDWiseDynamicJourney) for sample code for React-Native Integration.
