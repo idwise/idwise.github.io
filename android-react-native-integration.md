@@ -2,7 +2,7 @@
 layout: default
 parent: React Native Integration
 grand_parent: IDWise Developers
-title: Android Simple SDK
+title: Android Simple Journey
 nav_order: 1
 heading_anchors: true
 ---

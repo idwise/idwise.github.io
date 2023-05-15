@@ -8,8 +8,8 @@ has_children: true
 
 # React Native Integration Examples
 
-- [Android](https://developers.idwise.com/android-react-native-integration.html)
-- [Android Dynamic](https://developers.idwise.com/android-dynamic-react-native-integration.html)
+- [Android Simple Journey](https://developers.idwise.com/android-react-native-integration.html)
+- [Android Dynamic Journey](https://developers.idwise.com/android-dynamic-react-native-integration.html)
 - [iOS](https://developers.idwise.com/ios-react-native-integration.html)
 
 {% include cta.md %}
