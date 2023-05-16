@@ -116,7 +116,8 @@ The `journeyId` identifier can be used to retrieve the data associated with the 
 
 Note that the IDWise SDK automatically removes the IDWise UI and cleans up the used resources when a journey completes.
 
-That's it! You have successfully completed the core integration and enabled streamlined user onboarding journeys using the IDWise Web SDK.
+That's it! You have successfully completed the core integration and enabled streamlined user onboarding journeys using the IDWise Web SDK. You can find [here](https://github.com/idwise/idwise-web-sdk-samples/blob/main/web-sdk-v4-sample-app.html) a sample HTML file that demonstrates the integration steps described above.
+
 
 
 ## Additional Use Cases
@@ -177,6 +178,7 @@ To trigger the IDWise SDK again, call the `startJourney` function on the IDWise 
   restartJourney();
 </script>
 ```
+
 
 [//]: # (### Resuming an incompleted journey)
 
