@@ -6,9 +6,9 @@ title: V2.0 Migration Guide
 nav_order: 1
 ---
 
-# Migration Guide (version 1 to version 2)
+# Migration Guide (version 1 to version 4)
 
-This guide will help you to migrate from version 1 to version 2 of the IDWise SDK.
+This guide will help you to migrate from version 1 to version 4 of the IDWise SDK.
 
 ## Recommendation
 
@@ -67,33 +67,39 @@ Please follow these steps to migrate to the latest version of the SDK:
    })
     ```
 
-2. `journeyTemplateId` & `userId` parameters are deprecated and will be removed in a future release. Please rename `journeyTemplateId` -> `journeyDefinitionId` & `userId` -> `referenceNo` instead in the
-   `startJourney` function.
+2. `journeyTemplateId` & `userId` parameters are deprecated and will be removed in a future release. Please rename `journeyTemplateId` -> `journeyDefinitionId` & `userId` -> `referenceNo` instead in the `startJourney` function.
+please rename event handlers `onFinished` => `onJourneyFinished`, and we have two more `onJourneyStarted` and `onJourneyCancelled`.
 
    **Replace**
     ```
     startJourney({
-          mount: '#idwise-mount',
-          journeyTemplateId: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', // Depricated
-          userId: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", // Depricated
-          eventHandlers: {
-            onFinished: function(details) {
-              alert('Thanks for completing the registration')
-            }
-          }
-        })
+      mount: '#idwise-mount',
+      journeyTemplateId: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', // Depricated
+      userId: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", // Depricated
+      eventHandlers: {
+        onFinished: function(details) { // Depricated
+          alert('Thanks for completing the registration')
+        }
+      }
+    })
     ```
 
    **With**
     ```
     startJourney({
-          mount: '#idwise-mount',
-          journeyDefinitionId: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', // Same value as journeyDefId
-          referenceNo: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", // Same value as userId
-          eventHandlers: {
-            onFinished: function(details) {
-              alert('Thanks for completing the registration')
-            }
-          }
-        })
+      mount: '#idwise-mount',
+      journeyDefinitionId: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', // Same value as journeyDefId
+      referenceNo: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", // Same value as userId
+      eventHandlers: {
+        onJourneyStarted: function(details) {
+          alert('Journey started, journey id =' + details.journeyId);
+        },
+        onJourneyFinished: function(details) {
+          alert('Journey finished, journey id =' + details.journeyId);
+        },
+        onJourneyCancelled: function(details) {
+          alert('Journey cancelled, journey id =' + details.journeyId);
+        },
+      }
+    })
     ```
