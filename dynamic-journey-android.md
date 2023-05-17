@@ -228,6 +228,7 @@ data class NFCResult(
 ) 
 
 ```
+All `extractedFields` from the NFC can be found [here](#nfc-extracted-fields)
 
 The `DocumentRecognition` object contains the following information related to the scanned document.
 
@@ -326,6 +327,26 @@ Please reach out to our IDWise support team for details on how to customise the 
 | WRONG_CREDENTIALS   | 33        | Either apiKey or apiSecret or both are incorrect                                   |
 | INTERNAL_ERROR      | 44        | Internal Error occurred while processing the request                               |
 
+## NFC Extracted Fields
+
+| Field Name |
+|------------|
+|Full Name                  |
+|First Name                 |
+|Last Name                  |
+|Birth Date                 |
+|Expiry Date                |
+|Issue Date                 |
+|Document Number            |
+|Issuing Authority          |
+|Issuing Country            |
+|Issuing Country Code       |
+|Machine Readable Zone      |
+|Machine Readable Zone Type |
+|Nationality                |
+|Nationality Code           |
+|Personal number            |
+|Sex                        |
 
 ## Keep in touch!
 Please get in touch if you want to make any adjustments or customisations to your users journey.
