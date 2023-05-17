@@ -329,24 +329,24 @@ Please reach out to our IDWise support team for details on how to customise the 
 
 ## NFC Extracted Fields
 
-| Field Name |
-|------------|
-|Full Name                  |
-|First Name                 |
-|Last Name                  |
-|Birth Date                 |
-|Expiry Date                |
-|Issue Date                 |
-|Document Number            |
-|Issuing Authority          |
-|Issuing Country            |
-|Issuing Country Code       |
-|Machine Readable Zone      |
-|Machine Readable Zone Type |
-|Nationality                |
-|Nationality Code           |
-|Personal number            |
-|Sex                        |
+|Field Name |
+|-----------|
+|Full Name|
+|First Name|
+|Last Name|
+|Birth Date|
+|Expiry Date|
+|Issue Date|
+|Document Number|
+|Issuing Authority|
+|Issuing Country|
+|Issuing Country Code|
+|Machine Readable Zone|
+|Machine Readable Zone Type|
+|Nationality|
+|Nationality Code|
+|Personal number|
+|Sex|
 
 ## Keep in touch!
 Please get in touch if you want to make any adjustments or customisations to your users journey.
