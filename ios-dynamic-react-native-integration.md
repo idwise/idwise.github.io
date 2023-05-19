@@ -37,7 +37,7 @@ IDWise SDK always supports latest Xcode version only. The current latest release
 The minimum deployment target for IDWiseSDK is iOS 12.0. In order to use the SDK your application minimum deployment target should be iOS 12.0 or higher.
 On your development machine you need to have XCode and CocoaPods installed. Both Intel and M1 (Apple Sillicon) based machines are supported. When working with Cocoapods you might have to run some commands through Rosetta Stone compatibility mode.
 
-## Installation
+## Step 1: Installation
 
 IDWiseSDK is available to install via [CocoaPods package manager](https://cocoapods.org) from IDWise private Cocoapods repository. IDWise is a dynamic framework and requires the podfile to use `use_frameworks!` directive to be used so dynamic pods/frameworks can install and run successfully.
 
@@ -75,8 +75,6 @@ Also, add this configuration underneath your `target` node for your project:
   post_install do |installer|
     installer.pods_project.build_configurations.each do |config|
       config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
-      config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
-
     end
   end
 ```
@@ -119,13 +117,13 @@ After adding our dependency in your Podfile run:
 pod install
 ```
 
-### Linking ###
+## Step 2: Linking
 
 In order to Link the React Code with iOS, we need to create a swift class with objective-c bridging, let's call it `IDWiseModule`. You can find the sample [`IDWiseModule.swift`] (<https://github.com/idwise/idwise-react-native-example/blob/main/ios/IDWiseModule.swift>) for sample code.This class will act as a bridge between swift and react native, because react native's ios bridging code is written in objectve-c so we have to mark our swift class with `@objc` annotation.
 
 We also need to create a header `(.h)` and an implementation file `(.m)` for our swift class with same name as our swift class. In header file, we do some native module imports and in implementation file we export our swift class and It's method's as module and method's respectively. You can find the sample of both of these files [`IDWiseModule.h`,`IDWiseModule.h`] at (<https://github.com/idwise/idwise-react-native-example/blob/main/ios/IDWiseModule.h>) and (<https://github.com/idwise/idwise-react-native-example/blob/main/ios/IDWiseModule.m>) respectively.
 
-## React-Native Usage
+## Step 3: React-Native Usage
 
 Invoking IDWise SDK is very simple. First reterieve `IDWiseModule` from `NativeModules` in your .js file from where you want to invoke IDWise SDK:
 
@@ -135,10 +133,11 @@ const { IDWiseModule } = NativeModules;
 
 ### Initializing the SDK
 
-In order to use the SDK, we need to initialize it first with the `<CLIENT_KEY>` provided by IDWise. You can pre-load this on `componentDidMount()` if you want to. Here is how we can initialize the SDK.
+In order to use the SDK, we need to initialize it first with the `<CLIENT_KEY>` provided by IDWise and a theme parameter. You can pre-load this on `componentDidMount()` if you want to. Here is how we can initialize the SDK.
 
 ```javascript
-IDWiseModule.initialize("<CLIENT_KEY>");
+const theme = 'SYSTEM_DEFAULT'; //[ LIGHT, DARK, SYSTEM_DEFAULT ]
+IDWiseModule.initialize("<CLIENT_KEY>", theme);
 ```
 
 ### Starting the Journey
@@ -147,6 +146,38 @@ Now we can start the verfication journey by calling `startJourney(..)` of the SD
 
 ```javascript
 IDWiseModule.startJourney("<JOURNEY_DEFINITION_ID>","<REFERENCE_NO>","<LOCALE>");
+```
+
+### Starting the Steps
+
+When `onJourneyStarted(...)` or `onJourneyResumed(...)` is triggered successfuly, you can call the `IDWise.startStep(...)` to start the specific verfication Step. `IDWise.startStep` takes the following parameters:
+
+* **stepId:** ID of the step you want to start. (Will be provided by IDWise for each step)
+
+Here is the sample implementation of starting a step
+
+```javascript
+IDWiseModule.startStep("<STEP_ID>");
+```
+
+The above code will show IDWise UI to take the user through capturing the step from the camera.
+
+Instead of using the camera to capture, you can also pass a file directly as a `ByteArray`. Supported file formats are JPG, PNG or PDF.
+
+`Important Note`: Size of the byteArray should be less then 6MB. Following is an example
+
+```javascript
+IDWiseModule.startStepFromFileUpload("<STEP_ID>","<BYTE_ARRAY>");
+```
+
+The step events (`stepCaptured` and `stepResult`) will be triggered the step is handled and processed.
+
+### Resuming the Journey
+
+We can resume the verfication journey by calling `resumeDynamicJourney(..)` of the SDK like below. This will resume the verification process.
+
+```javascript
+IDWiseModule.resumeDynamicJourney("<JOURNEY_DEFINITION_ID>", "<JOURNEY_ID>", "en");
 ```
 
 ### Events (Callbacks)
@@ -158,8 +189,10 @@ These are the supported events:
 * **onJourneyStarted:**  Triggered when the journey is started and the Journey ID is assigned.
 * **onJourneyFinished:**  Triggered when the journey is completed by the user.
 * **onJourneyCancelled:**  Triggered when the user cancels the journey and doesn't finish it.
-* **onJourneyResumed:**  Triggered when an existing journey is resumed.
+* **onJourneySummary:**  Triggered as the callback response for the journey summary.
 * **onError:**  Triggered when an error occurs for example a network connectivity error and lack of permission to access the camera.
+* **onStepCaptured:**  Triggered after capturing the image from the camera for a step.
+* **onStepResult:**  Triggered after the backend processing of a step is competed.
 
 <br />
 
@@ -188,9 +221,33 @@ useEffect(() => {
   eventEmitter.addListener("onJourneyCancelled", (event) => {
     console.log(`Journey Cancelled with id ${event.journeyId}`);
   });
+
+  eventEmitter.addListener('onJourneySummary', event => {
+    console.log(`Journey Summary for id ${event.journeyId}`);
+    console.log(`Journey Step Summaries ${event.journeyStepSummaries}`);
+    console.log(`Journey Result ${event.journeyResult}`);
+    console.log(`Journey Is Complete ${event.journeyIsComplete}`);
+  });
+
+  eventEmitter.addListener('onStepCaptured', event => {
+      console.log(`Step Captured with id ${event.stepId}`);
+      console.log(`Step Captured Bitmap Base64 ${event.bitmapBase64}`);
+  });
+
+  eventEmitter.addListener('onStepResult', event => {
+    console.log(`Step Result with id ${event.stepId} : ${event.stepResult}`);
+  });
 }, []);
+```
+
+### Get Summary of the Verification Journey
+
+You can get the Status of the journey anytime by calling the following function. You will receive the response against `onJourneySummary` event having the fields `journeyId`, `journeyStepSummaries`, `journeyResult` and `journeyIsComplete`.
+
+```javascript
+IDWiseModule.getJourneySummary("<JOURNEY_ID>");
 ```
 
 ## Sample Project
 
-You can find the [`Sample Project`](https://github.com/idwise/idwise-react-native-sdk-samples/tree/main/IDWiseSimpleJourney) for sample code for React-Native Integration.
+You can find the [`Dynamic Journey Sample Project`](https://github.com/idwise/idwise-react-native-sdk-samples/tree/main/IDWiseDynamicJourney) for sample code for React-Native Integration.

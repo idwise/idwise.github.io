@@ -78,6 +78,8 @@ Also, add this configuration underneath your `target` node for your project:
   post_install do |installer|
     installer.pods_project.build_configurations.each do |config|
       config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
+      config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
+
     end
   end
 ```
@@ -112,6 +114,8 @@ Also, add this configuration underneath your `target` node for your project:
   post_install do |installer|
     installer.pods_project.build_configurations.each do |config|
       config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
+      config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
+
     end
   end
 ```
@@ -146,6 +150,8 @@ Also, add this configuration underneath your `target` node for your project:
   post_install do |installer|
     installer.pods_project.build_configurations.each do |config|
       config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
+      config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
+
     end
   end
 ```
@@ -294,6 +300,12 @@ extension ViewController:IDWiseSDKJourneyDelegate {
     }
 }
 ```
+
+- **JourneyStarted:**  Triggered when the journey is started and the Journey ID is assigned.
+- **JourneyFinished:**  Triggered when the journey is completed by the user.
+- **JourneyCancelled:**  Triggered when the user cancels the journey and doesn't finish it.
+- **onJourneyResumed:**  Triggered when an existing journey is resumed.
+- **onError:**  Triggered when an error occurs for example a network connectivity error and lack of permission to access the camera.
 
 When the journey is started it is assigned a unique id called Journey ID in IDWise system and this is provided as a parameter, `journeyID` with the triggering of `JourneyStarted` event.
 We can use this `journeyID` when we need to resume the journey.
