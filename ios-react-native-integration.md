@@ -2,7 +2,7 @@
 layout: default
 parent: React Native Integration
 grand_parent: IDWise Developers
-title: iOS
+title: iOS Simple Journey
 nav_order: 1
 heading_anchors: true
 ---
