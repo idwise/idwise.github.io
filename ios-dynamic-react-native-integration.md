@@ -250,4 +250,4 @@ IDWiseModule.getJourneySummary("<JOURNEY_ID>");
 
 ## Sample Project
 
-You can find the [`Sample Project`](https://github.com/idwise/idwise-react-native-example) for sample code for React-Native Integration.
+You can find the [`Dynamic Journey Sample Project`](https://github.com/idwise/idwise-react-native-sdk-samples/tree/main/IDWiseDynamicJourney) for sample code for React-Native Integration.

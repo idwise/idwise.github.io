@@ -193,4 +193,4 @@ useEffect(() => {
 
 ## Sample Project
 
-You can find the [`Sample Project`](https://github.com/idwise/idwise-react-native-example) for sample code for React-Native Integration.
+You can find the [`Sample Project`](https://github.com/idwise/idwise-react-native-sdk-samples/tree/main/IDWiseSimpleJourney) for sample code for React-Native Integration.
