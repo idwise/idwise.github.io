@@ -37,7 +37,7 @@ IDWise SDK always supports latest Xcode version only. The current latest release
 The minimum deployment target for IDWiseSDK is iOS 12.0. In order to use the SDK your application minimum deployment target should be iOS 12.0 or higher.
 On your development machine you need to have XCode and CocoaPods installed. Both Intel and M1 (Apple Sillicon) based machines are supported. When working with Cocoapods you might have to run some commands through Rosetta Stone compatibility mode.
 
-## Installation
+## Step 1: Installation
 
 IDWiseSDK is available to install via [CocoaPods package manager](https://cocoapods.org) from IDWise private Cocoapods repository. IDWise is a dynamic framework and requires the podfile to use `use_frameworks!` directive to be used so dynamic pods/frameworks can install and run successfully.
 
@@ -117,13 +117,13 @@ After adding our dependency in your Podfile run:
 pod install
 ```
 
-### Linking ###
+## Step 2: Linking
 
 In order to Link the React Code with iOS, we need to create a swift class with objective-c bridging, let's call it `IDWiseModule`. You can find the sample [`IDWiseModule.swift`] (<https://github.com/idwise/idwise-react-native-example/blob/main/ios/IDWiseModule.swift>) for sample code.This class will act as a bridge between swift and react native, because react native's ios bridging code is written in objectve-c so we have to mark our swift class with `@objc` annotation.
 
 We also need to create a header `(.h)` and an implementation file `(.m)` for our swift class with same name as our swift class. In header file, we do some native module imports and in implementation file we export our swift class and It's method's as module and method's respectively. You can find the sample of both of these files [`IDWiseModule.h`,`IDWiseModule.h`] at (<https://github.com/idwise/idwise-react-native-example/blob/main/ios/IDWiseModule.h>) and (<https://github.com/idwise/idwise-react-native-example/blob/main/ios/IDWiseModule.m>) respectively.
 
-## React-Native Usage
+## Step 3: React-Native Usage
 
 Invoking IDWise SDK is very simple. First reterieve `IDWiseModule` from `NativeModules` in your .js file from where you want to invoke IDWise SDK:
 
