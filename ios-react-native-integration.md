@@ -138,7 +138,8 @@ const { IDWiseModule } = NativeModules;
 In order to use the SDK, we need to initialize it first with the `<CLIENT_KEY>` provided by IDWise. You can pre-load this on `componentDidMount()` if you want to. Here is how we can initialize the SDK.
 
 ```javascript
-IDWiseModule.initialize("<CLIENT_KEY>");
+const theme = 'SYSTEM_DEFAULT'; //[ LIGHT, DARK, SYSTEM_DEFAULT ]
+IDWiseModule.initialize("<CLIENT_KEY>", theme);
 ```
 
 ### Starting the Journey
