@@ -76,14 +76,14 @@ dependencies {
 [`Click here for an example for build.gradle`](https://github.com/idwise/idwise-android-sdk-documentation/blob/main/example%20build.gradle)
 
 ## Step 2: Starting a new ID verification  journey
-You can find an example of how to start an ID verification process in the file [`example-activity.kt`](https://github.com/idwise/idwise-android-sdk-documentation/blob/main/example-activity.kt).
+You can find an example of how to start an ID verification process in the file [`example-activity.kt`](https://github.com/idwise/idwise-android-sdk-samples/blob/main/IDWiseDynamicJourney/app/src/main/java/com/idwise/dynamic/MainActivity.kt).
 
 **Initialize the SDK**
 From inside your Activity or Fragment, You can initialize the like this
 
-	IDWise.initialize("<CLIENT_KEY>") { error: IDWiseSDKError? ->
-           error?.printStackTrace()
-        }
+IDWise.initialize("<CLIENT_KEY>",IDWiseSDKTheme.SYSTEM_DEFAULT /*Optional*/) { error: IDWiseSDKError? ->
+  error?.printStackTrace()
+}
 
 After successfully initializing the SDK with your `CLIENT_KEY` provided by IDWIse, Your app can start the journey by making a call to the `startDynamicJourney` method which takes the following parameters:
 
@@ -153,10 +153,6 @@ Following is the sample implementation of `journeyCallback` and `stepCallback`
                 Log.d("IDWiseSDKCallback", "onJourneyCancelled")
               }
 	      
-	      override fun onJourneyInterrupted(journeyInfo: JourneyInfo?) {
-                Log.d("IDWiseSDKCallback", "onJourneyInterrupted")
-              }
-
               override fun onError(error: IDWiseSDKError) {
                 Log.d("IDWiseSDKCallback", "onError ${error.message}")
               }
@@ -345,7 +341,7 @@ Please reach out to our IDWise support team for details on how to customise the 
 |Machine Readable Zone Type|
 |Nationality|
 |Nationality Code|
-|Personal number|
+|Personal Number|
 |Sex|
 
 ## Keep in touch!
