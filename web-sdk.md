@@ -259,8 +259,8 @@ The IDWise SDK supports additional configuration options.
         return;
       }
    
-      const journeySummary = idwiseInstance.getJourneySummary();
-      console.dir('Journey summary: ', journeySummary); // call getJourneySummary() to get the journey summary
+      const journeySummary = idwiseInstance.getJourneySummary(); // call getJourneySummary() on idwise instance to get the journey summary
+      console.dir('Journey summary: ', journeySummary);
       return journeySummary;
     }
    ```
