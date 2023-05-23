@@ -192,3 +192,75 @@ To trigger the IDWise SDK again, call the `startJourney` function on the IDWise 
 
 [//]: # (```)
 
+
+### Extra Configuration Options
+The IDWise SDK supports additional configuration options.
+
+1.  **Disabling the Back Button**
+    
+    To disable the browser's back button from triggering the back button functionality on IDWise SDK, set the `disableBackButton` option to `true` as shown in the following example:
+    ```javascript
+    IDWise.initialize({
+      clientKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx=',
+      locale: 'en',
+      disableBackButton: true, // Optional, default is false
+    })
+    ```
+    By default the IDWise SDK will trigger the back button functionality when the browser's back button is pressed. This option is useful if you want to disable this functionality and handle the back button functionality on your own.
+2. **Get Journey Summary**
+
+    To get the summary of the journey after starting a journey, IDWise SDK exposes `getJourneySummary` method. This method returns an object containing the summary of the journey. The summary object contains the following properties:
+    ```javascript
+    {
+      journeyId: string,
+      isCompleted: boolean,
+      stepSummaries: [
+        {
+          definition: {
+            stepId: number
+          },  
+          result: {
+            hasPassedRules: boolean,
+            isConcluded: boolean,
+            status: boolean,
+            errorUserFeedbackCode:  string,
+            errorUserFeedbackTitle: string,
+            errorUserFeedbackDetails: string
+          }
+        },
+        ...
+      ]
+    }
+    ```
+   example usage:
+   ```javascript
+    let idwiseInstance;
+    const clientKey = "REPLACE_WITH_YOUR_CLIENT_KEY"; // REPLACE THIS
+    const journeyDefinitionId = "REPLACE_WITH_YOUR_JOUENRY_DEFINITION_ID"; // REPLACE THIS
+
+    IDWise.initialize({
+     clientKey: clientKey,
+    }).then(idwise => {
+    idwiseInstance = idwise;  // assign idwise instance to a global variable
+
+      idwise.startJourney({
+        mount: "#idwise-mount",
+        journeyDefinitionId: journeyDefinitionId,
+      });
+    })
+    .catch(err => {
+      console.error(err);
+    });
+
+    // Call this method to get the journey summary at any time after starting the journey
+    function getJourneySummary() {
+      if(!idwiseInstance) {
+        console.error("IDWise instance is not initialized yet");
+        return;
+      }
+   
+      const journeySummary = idwiseInstance.getJourneySummary();
+      console.dir('Journey summary: ', journeySummary); // call getJourneySummary() to get the journey summary
+      return journeySummary;
+    }
+   ```
