@@ -75,14 +75,14 @@ dependencies {
 [`Click here for an example for build.gradle`](https://github.com/idwise/idwise-android-sdk-documentation/blob/main/example%20build.gradle)
 
 ## Step 2: Starting an ID verification journey
-You can find an example of how to start an ID verification process in the file [`example-activity.kt`](https://github.com/idwise/idwise-android-sdk-documentation/blob/main/example-activity.kt).
+You can find an example of how to start an ID verification process in the file [`example-activity.kt`](https://github.com/idwise/idwise-android-sdk-samples/blob/main/IDWiseSimpleJourney/app/src/main/java/com/idwise/simple/MainActivity.kt).
 
 **Initialize the SDK**
 From inside your Activity or Fragment, You can initialize the like this
 
-	IDWise.initialize("<CLIENT_KEY>",IDWiseSDKTheme.LIGHT /*Optional*/) { error: IDWiseSDKError? ->
-           error?.printStackTrace()
-        }
+IDWise.initialize("<CLIENT_KEY>",IDWiseSDKTheme.SYSTEM_DEFAULT /*Optional*/) { error: IDWiseSDKError? ->
+  error?.printStackTrace()
+}
 
 After successfully initializing the SDK with your `CLIENT_KEY` provided by IDWIse and an optional `theme` parameter, Your app can start an ID verification process by making a call to the `startJourney` method which takes the following parameters:
 
