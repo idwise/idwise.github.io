@@ -69,6 +69,15 @@ dependencies {
   implementation 'com.idwise:android-sdk:x.y.z'
 }
 ```
+
+To support RTL, add the following attribute in application tag in your project's AndroidManifest file located at following location
+
+<root-project>/android/app/src/main/AndroidManifest.xml
+
+```
+android:supportsRtl="true"
+```
+
 ## Step 2: Linking
 
 In order to Link the React Code with android, we need to create a Module, let's call it `IDWiseModule`. You can find the sample [`IDWiseModule.java`](https://github.com/idwise/idwise-react-native-sdk-samples/blob/main/IDWiseSimpleJourney/android/app/src/main/java/com/idwisereactnativesample/IDWiseModule.java) for sample code.
