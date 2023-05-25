@@ -70,9 +70,7 @@ dependencies {
 }
 ```
 
-To support RTL, add the following attribute in application tag in your project's AndroidManifest file located at following location
-
-root-project/android/app/src/main/AndroidManifest.xml
+**To support RTL**, add the following attribute in application tag in your project's `AndroidManifest.xml` file located at `projectRoot/android/app/src/main/AndroidManifest.xml`
 
 ```
 android:supportsRtl="true"
