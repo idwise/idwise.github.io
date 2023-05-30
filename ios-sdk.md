@@ -31,7 +31,7 @@ IDWise SDK always supports latest Xcode version only. The current latest release
 
 |  Xcode  | SDK    |  
 | ------- | ------ |
-| 14.3    | 4.1.0  |
+| 14.3    | 4.1.6  |
 
 ## Integration Video
 
@@ -101,18 +101,11 @@ IDWise SDK is designed to start on top of a UIViewController in your application
 
 To start a new journey just provide the UIViewController from which you want the flow to start then call `IDWiseSDK.initialize` method first with your provided client key and then you can call `IDWise.startJourney` method. If initialization is failed for any reason, you will get an error object with a code and a message explaining the reason of the error. In the following example, we called initialize method and then called startJourney method.
 
-The IDWiseSDK.initialize method accepts an optional parameter for specifying the theme (dark or light). If this parameter is not passed, the default theme will be the same as that of the operating system settings. If you want the SDK to be in the same theme mode as the OS, you do not need to pass this parameter. However, if the OS is in dark mode and you want the SDK to be in light mode (or vice versa), you can pass the appropriate value for the theme parameter.
+The IDWiseSDK.initialize method accepts clientKey and theme as It's parameters.The theme parameter is for specifying the theme (dark or light). If you want the SDK to be in the same theme mode  as set in system display settings, you need to pass `IDWiseSDKTheme.systemDefault`. However, if the OS is in dark mode and you want the SDK to be in light mode (or vice versa), you can pass the appropriate value for the theme parameter.
 
-Possible values for the theme parameter include "dark" or "light".
+Possible values for the theme parameter include `IDWiseSDKTheme.light`,`IDWiseSDKTheme.dard` and `IDWiseSDKTheme.systemDefault`.
 
 ```swift
-
-        IDWise.initialize(clientKey: "<YOUR_CLIENT_KEY>",theme: .light) { err in
-                // Deal with error here
-            if let error = err {
-              // handle error, show some alert or any other logic
-            }
-        }
         
 IDWiseSDKTheme.light // to specify light theme mode for SDK
 IDWiseSDKTheme.dark // to specify dark theme mode for SDK
@@ -121,7 +114,7 @@ IDWiseSDKTheme.systemDefault // to specify the same theme as of operating system
 ```
 
 ```swift
-        IDWise.initialize(clientKey: "<YOUR_CLIENT_KEY>") { err in
+        IDWise.initialize(clientKey: "<YOUR_CLIENT_KEY>",theme: .systemDefault) { err in
                 // Deal with error here
             if let error = err {
               // handle error, show some alert or any other logic

@@ -249,7 +249,7 @@ Finally, we will implement channel's handler method and depending on method name
                   }
                 
               }
-              IDWise.initialize(clientKey: clientKey,  /* optional parameter */ theme: sdkTheme) { error in
+              IDWise.initialize(clientKey: clientKey,theme: sdkTheme) { error in
                   result("got some error")
                   if let err = error {
                       channel.invokeMethod(

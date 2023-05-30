@@ -30,7 +30,7 @@ IDWise SDK always supports latest Xcode version only. The current latest release
 
 |  Xcode  | SDK    |  
 | ------- | ------ |
-| 14.3    | 4.1.0  |
+| 14.3    | 4.1.6  |
 
 ## Requirements
 
