@@ -510,3 +510,29 @@ public struct JourneySummary: Decodable {
 | -101         |   An unexpected error occurred while processing the request.Make sure you have Internet connected                                              |
 | -102         |   Network seems to be not connected, Please try again with network connected.                                                                  |
 | 55           |   This method is not supported in this Journey Mode                                                                                            |
+
+## NFC Extracted Fields
+
+|Field Name |
+|-----------|
+|Full Name|
+|First Name|
+|Last Name|
+|Birth Date|
+|Expiry Date|
+|Issue Date|
+|Document Number|
+|Issuing Authority|
+|Issuing Country|
+|Issuing Country Code|
+|Machine Readable Zone|
+|Machine Readable Zone Type|
+|Nationality|
+|Nationality Code|
+|Personal Number|
+|Sex|
+
+## Keep in touch
+
+Please get in touch if you want to make any adjustments or customisations to your users journey.
+Please feel free to jump on a chat by visiting our website: <www.idwise.com>
