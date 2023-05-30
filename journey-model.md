@@ -405,6 +405,7 @@ In the example provided, the `additional_face_db` element represents a check whe
 | unrecognized_document | Recognised Document | Verifies the recognition of the submitted documents as a precisely supported document type. |
 | proof_policy | Proof Policy | Confirms that the document provided is of the accepted type for each particular journey step. |
 | expired_document | Un-expired Document | Confirms that the documents provided are not expired. |
+| under_age | Under Age | Verifies that the applicant is over minimum age (i.e 18 years old)  |
 
 The rules you will get depend on the configuration of your journey definition. So some of these rules might not apply in your case. If you need to make adjustments to the rules on your journey definition please contact IDWise support team.
 
