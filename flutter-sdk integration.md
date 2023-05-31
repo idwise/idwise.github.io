@@ -130,7 +130,7 @@ static const platformChannel = MethodChannel("<METHOD_CHANNEL_NAME>");
 
 Now, we will use methodChannel object to invoke our native platform code. Calling the native code is an asynchronous operation so we need to create a method which returns a Future and is an async method like below. This is all the code that we need to do on flutter side and everything else will be handeled in native platform classes.
 
-Initializing the SDK with your CLIENT_KEY provided by IDWise and an optional theme parameter, Your app can start an ID verification process by making a call to the startJourney method which takes the following parameters:
+Initializing the SDK with your CLIENT_KEY provided by IDWise and a theme parameter, Your app can start an ID verification process by making a call to the startJourney method which takes the following parameters:
 
 * **journeyTemplateId** (also called Journey Definition ID): This is a unique identifier that identifies your journey definition. IDWise shares this with you when you register for using IDWise system.
 * **referenceNo**: (Optional) A parameter that you can use to associate an arbitrary identifier (reference number) with the user making the current journey. This is helpful to link the journey back to the user and/or application that started the journey, you will recieve this in the webhook request.
@@ -233,7 +233,7 @@ Finally, we will implement channel's handler method and depending on method name
               // receiving arguments from Dart side and consuming here
               
               var clientKey: String = "" 
-              var sdkTheme: IDWiseSDKTheme = IDWiseSDKTheme.systemDefault // optional parameter
+              var sdkTheme: IDWiseSDKTheme = IDWiseSDKTheme.systemDefault
               if let parameteres = call.arguments as? [String:Any] {
                   if let clientkey = parameteres["clientKey"] as? String {
                       clientKey = clientkey
@@ -249,7 +249,7 @@ Finally, we will implement channel's handler method and depending on method name
                   }
                 
               }
-              IDWise.initialize(clientKey: clientKey,  /* optional parameter */ theme: sdkTheme) { error in
+              IDWise.initialize(clientKey: clientKey, theme: sdkTheme) { error in
                   result("got some error")
                   if let err = error {
                       channel.invokeMethod(
@@ -346,7 +346,7 @@ methodChannel?.setMethodCallHandler { call, result ->
                 else -> IDWiseSDKTheme.SYSTEM_DEFAULT
             }
 
-            IDWise.initialize(clientKey!!, theme /*Optional*/) { error ->
+            IDWise.initialize(clientKey!!, theme) { error ->
                 Log.d("IDWiseSDKCallback", "onError ${error?.message}")
                 result.error("ERROR", error!!.message, null)
                 methodChannel?.invokeMethod("onError", Gson().toJson(error))
