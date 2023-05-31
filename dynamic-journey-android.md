@@ -80,12 +80,12 @@ You can find an example of how to start an ID verification process in the file [
 
 **Initialize the SDK**
 From inside your Activity or Fragment, You can initialize the like this
-
-IDWise.initialize("<CLIENT_KEY>",IDWiseSDKTheme.SYSTEM_DEFAULT /*Optional*/) { error: IDWiseSDKError? ->
+```
+IDWise.initialize("<CLIENT_KEY>",theme=IDWiseSDKTheme.SYSTEM_DEFAULT) { error: IDWiseSDKError? ->
   error?.printStackTrace()
 }
-
-After successfully initializing the SDK with your `CLIENT_KEY` provided by IDWIse, Your app can start the journey by making a call to the `startDynamicJourney` method which takes the following parameters:
+```
+After successfully initializing the SDK with your `CLIENT_KEY` provided by IDWIse and theme paramter, Your app can start the journey by making a call to the `startDynamicJourney` method which takes the following parameters:
 
 * **journeyTemplateId** (also called Journey Definition ID): This is a unique identifier that identifies your journey definition. IDWise shares this with you when you register for using IDWise system.
 * **referenceNo**: (Optional) A parameter that you can use to associate an arbitrary identifier (reference number) with the user making the current journey. This is helpful to link the journey back to the user and/or application that started the journey, you will recieve this in the webhook request.
