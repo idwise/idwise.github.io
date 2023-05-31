@@ -233,7 +233,7 @@ Finally, we will implement channel's handler method and depending on method name
               // receiving arguments from Dart side and consuming here
               
               var clientKey: String = "" 
-              var sdkTheme: IDWiseSDKTheme = IDWiseSDKTheme.systemDefault // optional parameter
+              var sdkTheme: IDWiseSDKTheme = IDWiseSDKTheme.systemDefault 
               if let parameteres = call.arguments as? [String:Any] {
                   if let clientkey = parameteres["clientKey"] as? String {
                       clientKey = clientkey
