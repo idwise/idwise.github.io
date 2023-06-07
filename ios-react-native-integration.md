@@ -121,9 +121,9 @@ pod install
 
 ### Linking ###
 
-In order to Link the React Code with iOS, we need to create a swift class with objective-c bridging, let's call it `IDWiseModule`. You can find the sample [`IDWiseModule.swift`] (<https://github.com/idwise/idwise-react-native-example/blob/main/ios/IDWiseModule.swift>) for sample code.This class will act as a bridge between swift and react native, because react native's ios bridging code is written in objectve-c so we have to mark our swift class with `@objc` annotation.
+In order to Link the React Code with iOS, we need to create a swift class with objective-c bridging, let's call it `IDWiseModule`. You can find the sample [`IDWiseModule.swift`] (<https://github.com/idwise/idwise-react-native-sdk-samples/blob/main/IDWiseSimpleJourney/ios/IDWiseModule.swift>) for sample code.This class will act as a bridge between swift and react native, because react native's ios bridging code is written in objectve-c so we have to mark our swift class with `@objc` annotation.
 
-We also need to create a header `(.h)` and an implementation file `(.m)` for our swift class with same name as our swift class. In header file, we do some native module imports and in implementation file we export our swift class and It's method's as module and method's respectively. You can find the sample of both of these files [`IDWiseModule.h`,`IDWiseModule.h`] at (<https://github.com/idwise/idwise-react-native-example/blob/main/ios/IDWiseModule.h>) and (<https://github.com/idwise/idwise-react-native-example/blob/main/ios/IDWiseModule.m>) respectively.
+We also need to create a header `(.h)` and an implementation file `(.m)` for our swift class with same name as our swift class. In header file, we do some native module imports and in implementation file we export our swift class and It's method's as module and method's respectively. You can find the sample of both of these files [`IDWiseModule.h`,`IDWiseModule.h`] at (<https://github.com/idwise/idwise-react-native-sdk-samples/blob/main/IDWiseSimpleJourney/ios/IDWiseModule.h>) and (<https://github.com/idwise/idwise-react-native-sdk-samples/blob/main/IDWiseSimpleJourney/ios/IDWiseModule.m>) respectively.
 
 ## React-Native Usage
 
