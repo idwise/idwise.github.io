@@ -226,6 +226,24 @@ You can get the Status of the journey anytime by calling the following function.
 IDWiseModule.getJourneySummary("<JOURNEY_ID>");
 ```
 
+
+## If you use Proguard
+You need to update your build as follow:
+
+	// generate release apk
+	buildTypes {
+		release {
+			signingConfig signingConfigs.release
+
+				proguardFile '../proguard.pro'
+			minifyEnabled true
+			//enableR8 code Shrinking & Obfuscation
+			shrinkResources true
+		}
+	}
+
+And add the following file to your app [`proguard.pro`](https://github.com/idwise/idwise-android-sdk-documentation/blob/main/proguard.pro), in case the first simpler configuration doesn't work, please try the second more comprehensive configuration in [`proguard-2.pro`](https://github.com/idwise/idwise-android-sdk-documentation/blob/main/proguard-2.pro)
+
 ## Step 5: Customising the UI
 
 The text prompts, images, and colours for both the light and dark modes within an ID verification journey are all customisable. This customisation is performed in our cloud which has the following advantages:

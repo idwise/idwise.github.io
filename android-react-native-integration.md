@@ -160,6 +160,23 @@ useEffect(() => {
 }, []);
 ```
 
+## If you use Proguard
+You need to update your build as follow:
+
+	// generate release apk
+	buildTypes {
+		release {
+			signingConfig signingConfigs.release
+
+				proguardFile '../proguard.pro'
+			minifyEnabled true
+			//enableR8 code Shrinking & Obfuscation
+			shrinkResources true
+		}
+	}
+
+And add the following file to your app [`proguard.pro`](https://github.com/idwise/idwise-android-sdk-documentation/blob/main/proguard.pro), in case the first simpler configuration doesn't work, please try the second more comprehensive configuration in [`proguard-2.pro`](https://github.com/idwise/idwise-android-sdk-documentation/blob/main/proguard-2.pro)
+
 ## Sample Project
 You can find the [`Simple Journey Sample Project`](https://github.com/idwise/idwise-react-native-sdk-samples/tree/main/IDWiseSimpleJourney) for sample code for React-Native Integration.
 
