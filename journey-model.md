@@ -35,6 +35,7 @@ First, here are the top-level elements of the graph (with explanation for each e
 {
 	"journey_id": "12d62f80e15c1d50ff23db54",
 	"customer_id": "123628d8-e456-4375-8ff6-6e84f54f8743",
+	"journey_definintion_id":"6e84f54f8743-f345-7523-7ed4-342528d8"
 	"reference_number": "abc-123-FE13",
 	"start_time": "2023-01-26T08:12:00.962462",
 	"end_time": "2023-01-26T08:13:00.454774",
@@ -53,6 +54,7 @@ First, here are the top-level elements of the graph (with explanation for each e
 
 -   `journey_id` - `string`, `not nullable`: The unique identifier of the journey. This identifier is used across IDWise systems to refer to the journey and is auto-generated at the first moment the user starts the journey.
 -   `customer_id` - `string`, `not nullable`: The identifier of your account within the system. All journeys within your account share this identifier.
+-   `journey_definintion_id` - `string`, `not nullable`: The identifier of the flow that this journey belongs to.
 -   `reference_number` - `string`, `nullable`: This is a custom identifier you could attach to the journey when you start it and it will be available as part of the result graph. This is useful for example to link an identifier of the user in your system to the journey or journeys made by this user thus making it easier locate the user in your system after they finish the journey (this used to be called user_id).
 -   `start_time` - `datetime`, `not nullable`: The date time stamp when this journey was initiated. This is formatted as a standard ISO 8601 Date Time string commonly used in JSON.
 -   `end_time` - `datetime`, `nullable`: The date time stamp when this journey was finished. This field can be `null` if the journey is not finished yet. The format of this field is also ISO 8601 Date Time string like in `start_time` field.
@@ -403,7 +405,7 @@ In the example provided, the `additional_face_db` element represents a check whe
 | no_duplicate_applicant | Unique Applicant | Confirms whether the applicant is matched with already existing applicants. |
 | no_aml_records | Datasets (e-KYC/AML) | Confirms whether the applicant has records in electronic Know Your Customer (e-KYC) and Anti Money Laundering (AML) databases, screening for Politically Exposed Persons (PEPs) and Sanctions. |
 | unrecognized_document | Recognised Document | Verifies the recognition of the submitted documents as a precisely supported document type. |
-| proof_policy | Proof Policy | Confirms that the document provided is of the accepted type for each particular journey step. |
+| proof_policy | Accepted Document Policy | Confirms that the document provided is of the accepted type for each particular journey step. |
 | expired_document | Un-expired Document | Confirms that the documents provided are not expired. |
 | under_age | Under Age | Verifies that the applicant is over minimum age (i.e 18 years old). |
 | approved_nationality | Approved Nationality | Verifies whether the nationality of the document holder is in the list of allowed nationalities. |
