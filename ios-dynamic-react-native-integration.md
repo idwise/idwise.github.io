@@ -24,14 +24,6 @@ This git repository contains the official IDWiseSDK meant to be used in React-Na
 
 {% include cta.md %}
 
-## Xcode Supported Version
-
-IDWise SDK always supports latest Xcode version only. The current latest release of IDWise SDK (IDWise 3.9.2) supports below Xcode version.
-
-|  Xcode  | SDK    |  
-| ------- | ------ |
-| 14.3    | 4.1.6  |
-
 ## Requirements
 
 The minimum deployment target for IDWiseSDK is iOS 12.0. In order to use the SDK your application minimum deployment target should be iOS 12.0 or higher.

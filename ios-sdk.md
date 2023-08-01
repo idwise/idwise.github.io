@@ -25,14 +25,6 @@ This git repository contains the official IDWise SDK meant to be used in iOS app
 
 {% include cta.md %}
 
-## Xcode Supported Version
-
-IDWise SDK always supports latest Xcode version only. The current latest release of IDWise SDK supports below Xcode versions.
-
-|  Xcode  | SDK    |  
-| ------- | ------ |
-| 14.3    | 4.1.6  |
-
 ## Integration Video
 
 Get integrated quickly by watching a 4 minutes video:
@@ -79,20 +71,12 @@ After adding our dependency in your Podfile run:
 pod install
 ```
 
-## Modular Approach ( Local Development Pods)
-
-If you're using modular approach and want to use IDWise SDK inside your local development pod only, then you need to do add following configuration to your local pod's podspec file.
-
-```ruby
-  spec.xcconfig = { 'USER_HEADER_SEARCH_PATHS' => '$(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/ExampleModule/ExampleModule.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/GoogleDataTransport/GoogleDataTransport.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilities/GoogleUtilities.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/GoogleUtilitiesComponents/GoogleUtilitiesComponents.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/PromisesObjC/FBLPromises.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/Protobuf/Protobuf.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/nanopb/nanopb.framework/Headers" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/GoogleMLKit" $(inherited) ${PODS_ROOT}/GoogleMLKit/MLKitCore/Sources' }
-```
-
 ## Usage
 
 Invoking IDWise SDK is very simple. First import IDWise package in your code file:
 
 ```swift
-import IDWise
+import IDWiseSDK
 ```
 
 ### Starting a user journey
