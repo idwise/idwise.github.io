@@ -23,6 +23,8 @@ note over Customer App (Android/iOS/Web):Depending on the usecase, you could all
 
 ==**Finished User Steps Webhook**==
 IDWise Backend->Customer Backend:**Webhook** (journeyId, referenceNo)\nOn User Steps Finished\nEvent: "Finished User Steps"
+
+Customer Backend->IDWise Backend:  **Get Journey API** {{journeyId}}
 Customer Backend -> IDWise Backend: **Process Journey Step(stepId, stepType, image)**\n to process the custom stepslike compare \n the selfie image with govenment face.
 
 
