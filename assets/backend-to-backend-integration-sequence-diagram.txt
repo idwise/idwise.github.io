@@ -1,0 +1,34 @@
+# Backend to backend integration sequence diagram
+
+
+participant Your Backend
+participant IDWise Backend
+
+Your Backend->IDWise Backend: Start Journey
+
+
+Your Backend-->IDWise Backend:Process Journey Step for ID-Front image
+activate IDWise Backend
+
+Your Backend-->IDWise Backend:Process Journey Step for ID-Back image
+
+Your Backend-->IDWise Backend:Process Journey Step for Selfie image
+
+Your Backend->IDWise Backend: Complete Journey
+
+
+IDWise Backend->Your Backend:**Finished Journey** Webhook
+deactivate IDWise Backend
+
+
+Your Backend -> IDWise Backend: **Get Journey Result**
+
+activate Your Backend
+
+abox right of Your Backend: Save journey result to DB
+Your Backend -> IDWise Backend: **Get ID and selfie images**
+
+abox right of Your Backend: Save images to stoage
+
+deactivate Your Backend
+
