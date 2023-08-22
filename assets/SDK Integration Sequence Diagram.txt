@@ -1,0 +1,48 @@
+title SDK integration sequence diagram
+
+actor End User
+participant Your App
+participant IDWise SDK
+participant IDWise Backend
+participant Your Backend
+
+End User -> Your App: I want to verify my identity
+
+
+Your App->IDWise SDK: **Start Journey**
+
+End User<-IDWise SDK: Instructions for how to perform the verification journey
+
+End User->IDWise SDK: Submit ID and Selfie images
+
+
+IDWise SDK-->IDWise Backend: Trigger processing of ID and Seflie
+activate IDWise Backend
+
+
+IDWise SDK->Your App: **User Step Capturing finished\n(OnJourneyCompleted callback)** 
+
+Your App ->End User: Verification in progress
+
+
+
+
+IDWise Backend->Your Backend:**Finished Journey** Webhook
+
+deactivate IDWise Backend
+
+
+Your Backend -> IDWise Backend: **Get Journey Result**
+
+activate Your Backend
+
+abox right of Your Backend: Save journey result to DB
+Your Backend -> IDWise Backend: **Get ID and selfie images**
+
+abox right of Your Backend: Save images to stoage
+
+deactivate Your Backend
+
+
+Your App<-Your Backend:Notify profile status change
+End User<-Your App:Notify end user of profile status change
