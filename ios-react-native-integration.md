@@ -28,9 +28,9 @@ This git repository contains the official IDWiseSDK meant to be used in React-Na
 
 IDWise SDK always supports latest Xcode version only. The current latest release of IDWise SDK (IDWise 3.9.2) supports below Xcode version.
 
-|  Xcode  | SDK    |  
-| ------- | ------ |
-| 14.3    | 4.1.6  |
+|  Xcode    | SDK    |  
+| -------   | ------ |
+| 14.3.1    | 4.2.3  |
 
 ## Requirements
 
@@ -49,8 +49,6 @@ If you can find a way where you can use `use_frameworks!` directive and still ab
 
 You can use this plugin to install pods `https://github.com/joncardasis/cocoapods-user-defined-build-types` which enables us to dictate the specific build type of a pod ( dynamic in our case ). You can go through the README section of this plugin as well.
 We can easily install this plugin by typing this command in our terminal `gem install cocoapods-user-defined-build-types`. It will install this plugin over our cocoapods. You can use our sample project's podfile in which we used this plugin for `IDWise` pod's dynamic installation.
-
-### Without cocoapods-user-defined-build-types Plugin
 
 To add IDWise SDK to your project, first ensure you have these two lines at the top of your Podfile file:
 
@@ -80,38 +78,6 @@ Also, add this configuration underneath your `target` node for your project:
     end
   end
 ```
-
-After adding our dependency in your Podfile run:
-
-```
-pod install
-```
-
-### With cocoapods-user-defined-build-types Plugin
-
-To add IDWise SDK to your project, first ensure you have these two lines at the top of your Podfile file:
-
-```ruby
-source 'https://cdn.cocoapods.org/'
-source 'https://github.com/idwise/ios-sdk'
-```
-
-```ruby
-plugin 'cocoapods-user-defined-build-types', {
-  verbose: true
-}
-enable_user_defined_build_types!
-```
-
-This adds IDWise private Cocoapods repository as a source to install packages from
-
-Next add this line also to your Podfile but this time underneath your `target` node for your project:
-
-```ruby
- pod 'IDWise', :build_type => :dynamic_framework
-```
-
-You can have a look at the example `Podfile` provided in the ios folder of this repository to see an example `Podfile` with both the changes above completed
 
 After adding our dependency in your Podfile run:
 
