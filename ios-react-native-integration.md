@@ -26,7 +26,7 @@ This git repository contains the official IDWiseSDK meant to be used in React-Na
 
 ## Xcode Supported Version
 
-IDWise SDK always supports latest Xcode version only. The current latest release of IDWise SDK (IDWise 3.9.2) supports below Xcode version.
+The current latest release of IDWise SDK is IDWise 4.2.3
 
 |  Xcode    | SDK    |  
 | -------   | ------ |
@@ -39,16 +39,7 @@ On your development machine you need to have XCode and CocoaPods installed. Both
 
 ## Installation
 
-IDWiseSDK is available to install via [CocoaPods package manager](https://cocoapods.org) from IDWise private Cocoapods repository. IDWise is a dynamic framework and requires the podfile to use `use_frameworks!` directive to be used so dynamic pods/frameworks can install and run successfully.
-
-React Native’s native iOS dependencies are compiled as static libraries and many react-native node modules are only ever compiled and tested as static libraries. When trying to incorporate a dynamic framework (which Swift dependencies are often bundled as), compilation problems often ensue.
-
-As aforementioned, Cocoapods builds pods by default as static libraries. To use a framework like this we normally use the `use_frameworks!` Cocoapods directive at the top of our Podfile. However, this causes ALL pods to be compiled as dynamic frameworks. Not only will some React Native pods fail, but a large number of 3rd party React Native libraries will as well.
-
-If you can find a way where you can use `use_frameworks!` directive and still able to install `IDWise` pod and other React Native native iOS dependecies (Flipper, Folly, YogaKit etc) and successfully run the react native project then It's fine. Otherwise, the workaround is to use a plugin over cocoapods which can dynamically install specific libraries as static or dynamic during pod installation process.
-
-You can use this plugin to install pods `https://github.com/joncardasis/cocoapods-user-defined-build-types` which enables us to dictate the specific build type of a pod ( dynamic in our case ). You can go through the README section of this plugin as well.
-We can easily install this plugin by typing this command in our terminal `gem install cocoapods-user-defined-build-types`. It will install this plugin over our cocoapods. You can use our sample project's podfile in which we used this plugin for `IDWise` pod's dynamic installation.
+IDWiseSDK is available to install via [CocoaPods package manager](https://cocoapods.org) from IDWise private Cocoapods repository. 
 
 To add IDWise SDK to your project, first ensure you have these two lines at the top of your Podfile file:
 
@@ -56,11 +47,6 @@ To add IDWise SDK to your project, first ensure you have these two lines at the 
 source 'https://cdn.cocoapods.org/'
 source 'https://github.com/idwise/ios-sdk'
 ```
-
-In this case, you should use `use_frameworks!` directive in your podfile.
-
-This adds IDWise private Cocoapods repository as a source to install packages from
-
 Next add this line also to your Podfile but this time underneath your `target` node for your project:
 
 ```ruby
@@ -87,9 +73,11 @@ pod install
 
 ### Linking ###
 
-In order to Link the React Code with iOS, we need to create a swift class with objective-c bridging, let's call it `IDWiseModule`. You can find the sample [`IDWiseModule.swift`] (<https://github.com/idwise/idwise-react-native-sdk-samples/blob/main/IDWiseSimpleJourney/ios/IDWiseModule.swift>) for sample code.This class will act as a bridge between swift and react native, because react native's ios bridging code is written in objectve-c so we have to mark our swift class with `@objc` annotation.
+In order to Link the React Code with iOS, we need to perform some steps.
 
-We also need to create a header `(.h)` and an implementation file `(.m)` for our swift class with same name as our swift class. In header file, we do some native module imports and in implementation file we export our swift class and It's method's as module and method's respectively. You can find the sample of both of these files [`IDWiseModule.h`,`IDWiseModule.h`] at (<https://github.com/idwise/idwise-react-native-sdk-samples/blob/main/IDWiseSimpleJourney/ios/IDWiseModule.h>) and (<https://github.com/idwise/idwise-react-native-sdk-samples/blob/main/IDWiseSimpleJourney/ios/IDWiseModule.m>) respectively.
+1. We need to create a swift class with objective-c bridging, let's call it `IDWiseModule`. You can find the sample [`IDWiseModule.swift`] (<https://github.com/idwise/idwise-react-native-sdk-samples/blob/main/IDWiseSimpleJourney/ios/IDWiseModule.swift>) for sample code.This class will act as a bridge between swift and react native, because react native's ios bridging code is written in objectve-c so we have to mark our swift class with `@objc` annotation.
+
+2. We need to create a header `(.h)` and an implementation file `(.m)` for our swift class with same name as our swift class. In header file, we do some native module imports and in implementation file we export our swift class and It's method's as module and method's respectively. You can find the sample of both of these files [`IDWiseModule.h`,`IDWiseModule.h`] at (<https://github.com/idwise/idwise-react-native-sdk-samples/blob/main/IDWiseSimpleJourney/ios/IDWiseModule.h>) and (<https://github.com/idwise/idwise-react-native-sdk-samples/blob/main/IDWiseSimpleJourney/ios/IDWiseModule.m>) respectively.
 
 ## React-Native Usage
 
