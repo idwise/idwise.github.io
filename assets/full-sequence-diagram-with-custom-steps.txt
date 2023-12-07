@@ -24,9 +24,9 @@ note over Customer App (Android/iOS/Web):Depending on the usecase, you could all
 IDWise Backend->Customer Backend:**Webhook** (journeyId, referenceNo)\nOn User Steps Finished\nEvent: "Finished User Steps"
 
 Customer Backend->IDWise Backend:  **Get Journey API** {{journeyId}}
-Customer Backend -> IDWise Backend: **Process Journey Step(stepId, stepType, image)**\n to process the custom stepslike compare \n the selfie image with govenment face.
+Customer Backend -> IDWise Backend: **Process Custom Journey Step(stepId, stepType, image)**\n to process the custom steps like compare \n the selfie image with govenment face.
 
-note over Customer Backend: At anytime if you want to close the journey\n and get the result with the current status\n call **`Complete Journey {{journeyId}}`**
+note over Customer Backend: At anytime if you want to close the journey\n and get the result with the current status\n call **`Complete Custom Step {{journeyId}}`**
 
 
 
