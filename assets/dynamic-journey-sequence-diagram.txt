@@ -1,25 +1,60 @@
-title Verification Workflow - Dynamic Journey - Frontend
 
-participant Customer App (Android/iOS/Web)
+actor End User
+participant Your App
 participant IDWise SDK
 
-Customer App (Android/iOS/Web)->IDWise SDK:**initialize**(clientKey)
-Customer App (Android/iOS/Web)->IDWise SDK:**startDynamicJourney** (referenceNo,...)
 
-Customer App (Android/iOS/Web)->IDWise SDK:startStep(stepId) (for document front)
-note over Customer App (Android/iOS/Web), IDWise SDK:Document front captured
+participant IDWise Backend
 
-Customer App (Android/iOS/Web)<-IDWise SDK:onStepResult Event (for front - ignore)
+participant Your Backend
 
-Customer App (Android/iOS/Web)->IDWise SDK:startStep(stepId) (for document back)
-note over Customer App (Android/iOS/Web), IDWise SDK:Document back captured
+End User->Your App: I want to verify my identity
+Your App -> IDWise SDK: **IDWise.initialize(...)** 
+Your App -> IDWise SDK: **IDWise.startDynamicJourney(...)**
+IDWise SDK->Your App: Trigger **JourneyStarted(journeyId)** Callback
+activate Your App
+Your App -->Your Backend:Store journeyId for this user
+Your App -> IDWise SDK: **IDWise.stratStep(documentStepId)**
+deactivate Your App
 
-Customer App (Android/iOS/Web)<-IDWise SDK:onStepResult Event (returns initial result for extracted fields)
-note over Customer App (Android/iOS/Web): You can display your own screen for example\nallowing the user to confirm extracted details
-Customer App (Android/iOS/Web)->IDWise SDK:startStep(stepId) (for selfie)
-note over Customer App (Android/iOS/Web), IDWise SDK: Selfie captured
 
-Customer App (Android/iOS/Web)<-IDWise SDK:onStepResult Event - Selfie step result
-note over Customer App (Android/iOS/Web):Decide to allow either the user to proceed or retry the whole process\n(e.g. based on document type or biometrics result)
 
-note over Customer App (Android/iOS/Web): Wait for webhook for the final confirmed result
+IDWise SDK ->End User: Capture ID Document
+IDWise SDK <- End User: Confirm ID Document
+
+IDWise SDK->IDWise Backend: Start processing
+activate IDWise Backend
+IDWise SDK->Your App: Trigger **StepResult(stepResult)** Callback for ID step
+Your App->End User: Show ID document results [optional]
+
+
+note over IDWise Backend: Process the submitted \nID and Selfie steps
+
+End User ->Your App: Continue to selfie step
+
+
+activate Your App
+Your App -> IDWise SDK: **IDWise.startStep(selfieStepId)**
+deactivate Your App
+IDWise SDK ->End User: Capture Selfie
+IDWise SDK <- End User: Confirm Selfie
+IDWise SDK->Your App: Trigger **StepResult(stepResult)** Callback for Selfie step
+
+IDWise Backend-> Your Backend: **Finished Journey** Webhook
+deactivate IDWise Backend
+Your Backend -> IDWise Backend: **Get Journey Result**
+
+activate Your Backend
+
+abox right of Your Backend: Save journey result to DB
+Your Backend -> IDWise Backend: **Get ID and selfie images**
+
+abox right of Your Backend: Save images to stoage
+
+deactivate Your Backend
+
+
+Your App<-Your Backend:Notify profile status change
+End User<-Your App:Notify end user of profile status change
+
+
