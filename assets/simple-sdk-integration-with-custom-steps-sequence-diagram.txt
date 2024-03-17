@@ -14,19 +14,18 @@ Your App->IDWise SDK: **Start Journey**
 
 End User<-IDWise SDK: Instructions for how to perform the verification journey
 
-End User->IDWise SDK: Submit ID and Selfie images
+End User->IDWise SDK: Scan ID (Front/Back)
+IDWise SDK-->IDWise Backend: Trigger processing of ID 
+End User->IDWise SDK: Scan Selfie images
 
 
-IDWise SDK-->IDWise Backend: Trigger processing of ID and Seflie
+IDWise SDK-->IDWise Backend: Trigger processing of Seflie
 activate IDWise Backend
 
-
+note over IDWise Backend: Processing will take between 5-8 secs
 IDWise SDK->Your App: **User Step Capturing finished\n(OnJourneyCompleted callback)** 
 
 Your App ->End User: Verification in progress
-
-
-
 
 IDWise Backend->Your Backend:**Finished User Steps** Webhook
 
