@@ -1,0 +1,67 @@
+title SDK integration sequence diagram
+
+actor End User
+participant Your App
+participant IDWise SDK
+participant IDWise Backend
+participant Your Backend
+participant Ahwal
+
+End User -> Your App: I want to verify my identity
+
+
+Your App->IDWise SDK: **Start Journey**
+
+End User<-IDWise SDK: Instructions for how to perform the verification journey
+
+End User->IDWise SDK: Submit ID and Selfie images
+
+
+IDWise SDK-->IDWise Backend: Trigger processing of ID and Seflie
+activate IDWise Backend
+
+
+IDWise SDK->Your App: **User Step Capturing finished\n(OnJourneyCompleted callback)** 
+
+Your App ->End User: Verification in progress
+
+
+
+
+IDWise Backend->Your Backend:**Finished User Steps** Webhook
+
+deactivate IDWise Backend
+
+
+Your Backend -> IDWise Backend: **Get Journey Result**
+
+group #2f2e7b check criteria #white [all rules has passed(FM pass, under age, not expired document..etc)]
+Your Backend->Ahwal:Get Awhal info by personal number
+Your Backend->IDWise Backend: call **Process Custom Journey Step(journey_id, step_id, ahwal_image)**
+end
+ Your Backend->IDWise Backend: call **Complete Custom Steps(journey_id)**
+
+IDWise Backend->Your Backend:**Finished Journey** Webhook
+
+Your Backend -> IDWise Backend: **Get Journey Result**
+
+activate Your Backend
+
+abox right of Your Backend: Save journey result to DB
+Your Backend -> IDWise Backend: **Get ID and selfie images**
+
+abox right of Your Backend: Save images to stoage
+
+deactivate Your Backend
+
+
+//abox right of Your Backend: Save journey result to DB
+
+
+//abox right of Your Backend: Save images to stoage
+
+
+
+
+Your App<-Your Backend:Notify profile status change
+End User<-Your App:Notify end user of profile status change
