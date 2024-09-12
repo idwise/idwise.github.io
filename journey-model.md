@@ -9,6 +9,7 @@ nav_order: 1
 
 
 # IDWise Journey Model Documentation
+## This documentation has been deprecated. Please refer to the updated documentation [here](https://docs.idwise.com/reference/get-journey-result).
 {: .no_toc }
 
 <details open markdown="block">
