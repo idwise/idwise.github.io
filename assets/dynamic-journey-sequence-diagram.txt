@@ -8,6 +8,7 @@ participant IDWise Backend
 
 participant Your Backend
 
+
 End User->Your App: I want to verify my identity
 Your App -> IDWise SDK: **IDWise.initialize(...)** 
 Your App -> IDWise SDK: **IDWise.startDynamicJourney(...)**
@@ -53,8 +54,22 @@ abox right of Your Backend: Save images to stoage
 
 deactivate Your Backend
 
+group #007700 KYC Passed #white [system_decision =="Complete"]
+
+activate Your Backend 
+abox right of Your Backend: Approve the user on your backend
+deactivate Your Backend
+
+end
+
+group #aa0000 KYC Failed  #white [system_decision =="Refer"]
+
+activate Your Backend 
+abox right of Your Backend: Review the KYC to Apporve or Reject \nthe user on your backend
+deactivate Your Backend
+
+end
+
 
 Your App<-Your Backend:Notify profile status change
 End User<-Your App:Notify end user of profile status change
-
-
