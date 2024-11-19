@@ -144,7 +144,7 @@ To cancel a journey, call the `cleanup` function on the IDWise session instance.
   // Your code here
   // ...
   // Cancel the IDWise journey (e.g., if the user presses the back/cancel button on your UI)
-  idwise.cleanup();
+  await idwise.cleanup();
 </script>
 ```
 
